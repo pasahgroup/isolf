@@ -10,6 +10,7 @@ class PostBody extends Model
       use HasFactory;
       protected $fillable = [
        'category',
+       'category_aboutus',
         'title',     
         'body',
         'introduction',

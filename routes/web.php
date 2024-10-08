@@ -95,8 +95,8 @@ Auth::routes();
 //Route::middleware(['auth', 'Admin'])->group(function () {
 Route::group(['middleware' => ['auth','Account']], function() {
 Route::get('/l', [commandController::class, 'index'])->name('c');
-
 });
+
 // Route::group(['middleware' => ['auth']], function() {
   Route::group(['middleware' => ['auth','Admin']], function() {
 
@@ -155,6 +155,8 @@ Route::get('/New-Partner', [PartnerController::class, 'NewPartner'])->name('NewP
 
 Route::resource('/PostBody', PostBodyController::class);
 Route::get('/coa/', [PostBodyController::class, 'coa'])->name('coa');
+Route::post('store-about', [PostBodyController::class, 'storeAboutUs'])->name('store-about');
+
 Route::get('/coa-About/', [PostBodyController::class, 'createAbout'])->name('coa-About');
 Route::get('/destroy-Aboutus/{x}', [PostBodyController::class, 'destroy'])->name('destroy-Aboutus');
 Route::get('/destroy-contact/{x}', [PostBodyController::class, 'destroyContact'])->name('contact-Aboutus');
@@ -253,6 +255,8 @@ Route::get('/historical-sites', [TourController::class,'historicalSites']);
 Route::get('/cultural', [TourController::class,'culturalTours']);
 Route::resource('/grouptour', GrouptourController::class);
 
+Route::post('/all-search', [TourController::class,'allSearch'])->name('all-search');
+
 // Route::get('/search-tour', [TourController::class,'searchTour']);
 // Route::post('search-tour', [TourController::class, 'searchTour'])->name('search-tour');
 //Galleries
@@ -267,7 +271,7 @@ Route::get('/safaris-gallery', [galleryController::class, 'safarisGallery'])->na
 Route::get('/group', [GrouptourController::class,'group']);
 Route::get('/Group-scheduled', [GrouptourController::class,'GS']);
 Route::get('/special-occasions', [GrouptourController::class,'SO']);
-Route::get('/Utali-nyumani', [GrouptourController::class,'UN']);
+Route::get('/Utali-nyumbani', [GrouptourController::class,'UN']);
 
 //Tour Cost Summary controller
 Route::resource('/tourcostsummary', tourcostsummaryController::class);

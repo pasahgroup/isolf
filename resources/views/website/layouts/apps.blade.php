@@ -1,153 +1,85 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<!--<![endif]-->
+
 <head>
-  <meta charset="utf-8">
-    <title>{{$title ?? 'Palatial Tours'}}</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>{{$title ?? 'ISOL Tours'}}</title>
+  <link rel="icon" type="image/png" href="../mold/assets/img/favicon.png" />
 
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="../mold/assets/css/min/bootstrap.min.css" media="all">
+  <link rel="stylesheet" href="../mold/assets/css/jqueryui.css" media="all">
+  <link rel="stylesheet" href="../mold/vendor/animate-css/animate.css" media="all">
+  <link rel="stylesheet" href="../mold/assets/font/iconfont/iconstyle.css" media="all">
+  <link rel="stylesheet" href="../mold/assets/font/font-awesome/css/font-awesome.css" media="all">
+  <link rel="stylesheet" href="../mold/assets/css/main.css" media="all" id="maincss">
+<link rel="stylesheet" href="../assetf/style.css">
+ <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+<link href="../../assets/corporate/css/style.css" rel="stylesheet">
 
-  <meta content="Experienced hiking and Tour Safaris" name="description">
-  <meta content="Palatial Tours" name="keywords">
-  <meta content="Buruhani Wawa" name="author">
-
- <meta property="og:site_name" content="Palatial tours">
-  <meta property="og:title" content="Palatial tours">
-  <meta property="og:description" content="Palatial tour">
-  <meta property="og:type" content="https://Palatialtours.com/">
-  <meta property="og:image" content="../../assets/corporate/img/logos/logo.png" style="height:6vh;" alt="Palatial Tours"><!-- link to image for socio -->
-  <meta property="og:url" content="https://palatialtours.com/">
-
-  <!-- <link rel="shortcut icon" href="favicon.ico"> -->
-   <link rel="icon" href="../assetf/img/core-img/favicon.ico">
-   <link rel="stylesheet" href="../assetf/style.css">
-   <!-- <link rel="stylesheet" href="../assets/css/button.css"> -->
-
-    <!-- Style CSS -->
-<!-- Custom css -->
- 
-
-  <script src="../custom/js/jquery.min.js"></script>
-    <script src="../custom/js/bootstrap.min.js"></script>
-
-<!-- End of Modal -->
-<style type="text/css">
-    .wpadding{
-       padding-left:20px; 
-        padding-right:25px; 
-    }
-</style>
-
-<style type="text/css">
-    .wppadding{
-       padding-left:6px;  
-    }
-</style>
-
-
-    <link href="../custom/css/style.css" rel="stylesheet">
+  <!-- Custom -->
+  <link href="../../img_library/main.css" rel="stylesheet">
+    <link href="../../img_library/mform.css" rel="stylesheet">
+    <link href="../../css/mform.css" rel="stylesheet">
+    
+    <!--   <link href="../custom/css/style.css" rel="stylesheet">
 
         <link href="../../assets/pages/css/components.css" rel="stylesheet">
 <link href="../../assets/pages/css/slider.css" rel="stylesheet">
-  <link href="../../assets/corporate/css/style.css" rel="stylesheet">
+  
   <link href="../../assets/corporate/css/style-responsive.css" rel="stylesheet">
   <link href="../../assets/corporate/css/themes/red.css" rel="stylesheet" id="style-color">
   <link href="../../assets/corporate/css/custom.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="../../css/style.css">
+ -->
+<!--     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../../css/button.css">
     <link rel="stylesheet" href="../../../css/custom.css">
        <link rel="stylesheet" href="../../css/customAnimation.css">
        <link rel="stylesheet" href="../../css/customAnimation2.css">
         <link rel="stylesheet" href="../../css/customSportLight.css">
+ -->
 
-
-   <link rel="stylesheet" href="../../css/css/font-mytravel.css">
+   <!-- <link rel="stylesheet" href="../../css/css/font-mytravel.css">
   <link rel="stylesheet" href="../../css/style-shortline.css">
+   -->
   
-   <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+  
+<!-- Custom css -->
+ <link rel="stylesheet" href="../css/font621.min.css">
 
 <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <link href="../../assets/pages/css/animate.css" rel="stylesheet">
-  <link href="../../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-  <!-- <link href="../../assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet"> -->
-    <!-- <link href="../../assets/plugins/css/style1xx.css" rel="stylesheet"> -->
-  
- 
-
- <link href="../../assets/pages/css/components.css" rel="stylesheet">
-
- <link href="../../img_library/main.css" rel="stylesheet">
-    <link href="../../img_library/mform.css" rel="stylesheet">
-
-    <link href="../../css/mform.css" rel="stylesheet">
-    <link href="../../css/custom.css" rel="stylesheet">
-    <link href="../../css/sidemenu.css" rel="stylesheet">
-
-
-<link href="../../assets/corporate/css/styleCustom.css" rel="stylesheet">
-
-      <link rel="stylesheet" href="../assets/css/jqueryui.css" media="all">
-
- <!--  <link rel="stylesheet" href="../assets/vendor/animate-css/animate.css" media="all">
-  <link rel="stylesheet" href="../assets/font/iconfont/iconstyle.css" media="all">
-  <link rel="stylesheet" href="../assets/font/font-awesome/css/font-awesome.css" media="all">
- -->
-     <link href="../custom/css/style.css" rel="stylesheet">
-         <link href="../custom/css/bootstrap.min.css" rel="stylesheet">
-
- <!-- Libraries Stylesheet -->
-    <link href="../assetff/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../assetff/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="../assetff/css/style.css" rel="stylesheet">
-
-
-    <style>
-.button {
-  background-color: #04AA6D; /* Green */
-  border: none;
-  color: white;
-  padding: 2px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 1px 1px;
-  cursor: pointer;
-}
-
-.button1 {border-radius: 2px;}
-.button2 {border-radius: 4px;}
-.button3 {border-radius: 8px;}
-.button4 {border-radius: 12px;}
-.button5 {border-radius: 50%;}
-</style>
-
-
+<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+<link href="../../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+<link href="../../assets/pages/css/animate.css" rel="stylesheet">
  <script src="../js/jquery361.min.js"></script>
-     <link rel="stylesheet" href="../css/font621.min.css">
- 
+ <script src="../custom/js/bootstrap.min.js"></script>
+
+
+
+  <!-- <link href="../../assets/pages/css/animate.css" rel="stylesheet">
+  <link href="../../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet"> 
+-->
 </head>
 
 <body>
-    <!-- Preloader -->
- <!--    <div id="preloader">
-        <div class="south-load"></div>
-    </div>
+<!-- 
+  <div class="pre-loader">
+    <div class="loading-img"></div>
+  </div>
  -->
-    <!-- ##### Header Area Start ##### -->
+
+@include('website.layouts.header') 
 
     <header class="header-area">
    <div class="container-fluid top-header-area">
         <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex" style="background-color:#fafbfb;margin-top:-8px;margin-bottom:-8px;">
             <div class="col-lg-2">
                 <a href="" class="text-decoration-none">
-                    <span class="h3 text-uppercase text-primary bg-dark px-2">Palatial</span>
+                    <span class="h3 text-uppercase text-primary bg-dark px-2">ISOL</span>
                     <span class="h3 text-uppercase text-dark bg-primary px-2 ml-n1">Tour</span>
                 </a>            
 
@@ -201,7 +133,7 @@
                 <nav class="classy-navbar justify-content-between" id="southNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="/"><img src="../assets/corporate/img/logos/logoe.png" alt="" style="height:5vh; width:100%;"></a>
+                    <a class="nav-brand" href="/"></a>
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
                         <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -255,7 +187,7 @@
 
                                 <li><a href="#">Services</a>
                                     <ul class="dropdown">
-                                         <li><a href="/whatWeOfferClient">Palatial Tour Services</a></li>
+                                         <li><a href="/whatWeOfferClient">ISOL Tour Services</a></li>
                 <li><a href="/drongo-attractions">Palatial Tour Attractios</a></li>
                 <li><a href="#">Palatial Crafts and Designing</a></li>
                                        
@@ -376,12 +308,63 @@
         </div>
     </header>
 
-    <!-- Header END -->
-    @yield('content')
-  <hr>
-    
+     @yield('content')
 
-      <footer class="footer-area section-padding-100-0 bg-img gradient-background-overlay" style="background-image: url(../assetf/img/bg-img/cta.jpg); color:yellow;">
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7 col-md-3">
+          <h3>Mold Discover</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, quia, architecto? A, reiciendis eveniet! Esse est eaque adipisci natus rerum laudantium accusamus magni.</p>
+        </div>
+        <div class="col-sm-5 col-md-2">
+          <h3>Quick Link</h3>
+          <ul>
+            <li>Holiday Package</li>
+            <li>Summer Adventure</li>
+            <li>Bus and Trasnportation</li>
+            <li>Ticket and Hotel Booking</li>
+            <li>Trek and Hikings</li>
+          </ul>
+        </div>
+        <div class="col-sm-7 col-md-4">
+          <h3>Newsletter Signup</h3>
+          <p>Subscribe to our weekly newsletter to get news and update</p>
+          <br>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Your Email">
+            <div class="input-group-btn">
+              <button class="btn btn-primary">Subscribe</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 col-md-2">
+          <h3>Contact Info</h3>
+          <ul>
+            <li>Mold Discover</li>
+            <li>info@moldthemes.com</li>
+          </ul>
+          <div class="clearfix">
+            <div class="social-icon-list">
+              <ul>
+                <li>
+                  <a href="https://twitter.com/moldthemes" class="icon-twitter"></a>
+                </li>
+                <li>
+                  <a href="mailto:info@moldthemes.com" class="icon-mail"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copy"><span>&copy;</span> Copyright Mold Discover, 2017</div>
+  </footer>
+
+
+
+  <footer class="footer-area section-padding-100-0 bg-img gradient-background-overlay" style="background-image: url(../assetf/img/bg-img/cta.jpg); color:yellow;">
         <!-- Main Footer Area -->
         <div class="row px-xl-5 pt-5">
               <div class="col-md-4 mb-5">
@@ -489,137 +472,92 @@
                 </p>
             </div>
         </div>
-
   </footer>
 
+  <script src="../mold/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../mold/vendor/jqueryui/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="../mold/vendor/jquery.ui.touch-punch.min.js"></script>
+  <script src="../mold/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script src="../mold/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+  <script src="../mold/vendor/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../mold/vendor/retina.min.js"></script>
+  <script src="../mold/vendor/jquery.imageScroll.min.js"></script>
+  <script src="../mold/assets/js/min/responsivetable.min.js"></script>
+  <script src="../mold/assets/js/bootstrap-tabcollapse.js"></script>
+
+  <script src="../mold/assets/js/min/countnumbers.min.js"></script>
+  <script src="../mold/assets/js/main.js"></script>
+
+  <!-- Current Page JS -->
+  <script src="../mold/assets/js/min/home.min.js"></script>
+  <script>
+    $(document).ready(function(){
+            $('.equal-height > div').deasil_equalHeight();
+            $('#carousel').carousel({
+              interval: 10000
+            })
+          });
+          $(window).resize(function(){
+            $('.equal-height > div').deasil_equalHeight();
+          });
+  </script>
 
 
-       <!-- <script src="../assetf/js/jquery/jquery-2.2.4.min.js"></script> -->
+
+
+
+
+
+
+
+
 
     <!-- Popper js -->
-    <script src="../assetf/js/popper.min.js"></script>
-    <!-- Bootstrap js -->
+<!--     <script src="../assetf/js/popper.min.js"></script>
+
     <script src="../assetf/js/bootstrap.min.js"></script>
-    <!-- Plugins js -->
+              -->        
     <script src="../assetf/js/plugins.js"></script>
     <script src="../assetf/js/classy-nav.min.js"></script>
     <script src="../assetf/js/jquery-ui.min.js"></script>
-    <!-- Active js -->
+      
     <script src="../assetf/js/active.js"></script>
+     <script src="../assets/js/main.js"></script> 
 
 <!-- Custom Javascript -->
 
 
-  <script src="../assets/vendor/jqueryui/jquery-ui-1.10.3.custom.min.js"></script>
+  <!--  <script src="../assets/vendor/jqueryui/jquery-ui-1.10.3.custom.min.js"></script>
   <script src="../assets/vendor/jquery.ui.touch-punch.min.js"></script>
 
 
- 
+
   <script src="../assets/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
   <script src="../assets/vendor/owlcarousel/owl.carousel.min.js"></script>
   <script src="../assets/vendor/retina.min.js"></script>
+ <script src="../../assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<script src="../../js/bootstrap.min.js"></script>
+ -->
 
-
-  <script src="..assets/vendor/jquery.imageScroll.min.js"></script>
+ <!--  <script src="..assets/vendor/jquery.imageScroll.min.js"></script>
   <script src="../assets/js/min/responsivetable.min.js"></script>
-  <script src="../assets/js/bootstrap-tabcollapse.js"></script>
+  <script src="../assets/js/bootstrap-tabcollapse.js"></script> -->
 
-  <script src="../assets/js/min/countnumbers.min.js"></script>
-  <script src="../assets/js/main.js"></script>
+  <!-- <script src="../assets/js/min/countnumbers.min.js"></script> -->
+  <!-- <script src="../assets/js/main.js"></script>  -->
 
 
  <!-- Custom2 -->
 
-  <script src="../../assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
-    <script src="../../assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script>
+   <!-- <script src="../../assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
+    <script src="../../assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script> -->
 
-    <script src="../../assets/corporate/scripts/layout.js" type="text/javascript"></script>
-    <script src="../../assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
-
-
-
-   <script src="../../assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-
-<script src="../../js/bootstrap.min.js"></script>
-
-  <script type="text/javascript">
-        jQuery(document).ready(function() {
-            Layout.init();
-            Layout.initOWL();
-            Layout.initTwitter();
-            Layout.initFixHeaderWithPreHeader(); 
-            Layout.initNavScrolling();
-        });
-    </script>
-
-<!-- Custom3 -->   
-  <!-- Plugin prevent returning of mobile menu  -->
-   <!-- Image libray -->
-   <script src="../../img_library/scripts.js" type="text/javascript"></script>
-    <!-- End of Image libray -->
+    <!-- <script src="../../assets/corporate/scripts/layout.js" type="text/javascript"></script> -->
+    <!-- <script src="../../assets/pages/scripts/bs-carousel.js" type="text/javascript"></script> -->
+ <script src="../../img_library/scripts.js" type="text/javascript"></script>
 
 
-
-
-
-<script> 
-    // jQuery code for initializing a tooltip 
-    $(document).ready(function () { 
-        // jQuery Attribute value selector to  
-        // select the specified element and  
-        // call the tooltip method on it 
-        $('[data-toggle="tooltip"]').tooltip(); 
-    }); 
-</script>
-
-
-
-
-<script type="text/javascript">
-    //  function getURL(){
-    //     url2=window.location.href;
-    //       alert(url2);
-    // }
-    var APP_URL = {!! json_encode(url('/')) !!}
-       // var base_url = '{{ URL::asset('/') }}';
-          // var base_url = '{{ URL('/') }}';
-         url=window.location.href;
-   //alert(url);
-      //alert(res[0]);
-    $(".changeLang").change(function(){
-      // var APP_URL = '{{ URL::asset('/') }}';
-       url=window.location.href;
-      // url2=window.location.pathname;
-       //url3=window.location.protocol;
-       //url4=window.location.host;
-       search=window.location.search;
-
-if(search.length ===0)
-{
-  window.location.href =url + "?lang="+ $(this).val();
-}
-else
-{
-  var res = url.match("http(.*)?lang");
-  window.location.href =res[0] + "="+ $(this).val();
-}
-    });
-</script>
-    <!-- END PAGE LEVEL JAVASCRIPTS -->
-
-
-    <script type="text/javascript">
-    $(document).ready(function () {
-        // Tooltips
-        $('.tip').each(function () {
-            $(this).tooltip(
-            {
-                html: true,
-                title: $('#' + $(this).data('tip')).html()
-            });
-        });
-    });
-</script>
+  
 </body>
-<!-- END BODY -->
 </html>

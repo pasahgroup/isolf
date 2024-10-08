@@ -13,9 +13,11 @@ class CreatePostBodiesTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('post_bodies', function (Blueprint $table) {
           $table->bigIncrements('id');
           $table->string('category')->unique();
+            $table->string('category_aboutus')->nullable();
           $table->string('title')->nullable();          
           $table->string('body',450)->nullable();
 

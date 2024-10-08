@@ -19,7 +19,7 @@ class CreateTailorMadesTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('nationality')->nullable();
             $table->string('email')->nullable();
-             $table->integer('phone')->nullable();
+             $table->string('phone',64)->nullable();
             $table->date('arrival_date')->date();
            $table->integer('days')->nullable();
             $table->integer('adults')->nullable();           

@@ -107,7 +107,7 @@ public function emailSendF()
        include_once(app_path().'/jrf/sample/setting.php');
        $jasper = new PHPJasperXML();
            // $jasper = new PHPJasper;
-
+       
 //dd('bvncx');
 $input =app_path().'/reports/pieChart.jrxml';
  //$input =app_path().'/reports/department.jrxml';
@@ -509,6 +509,9 @@ $adults_cost=$unit_price * $adults;
         $tourcostsummary = invoice::create([
         'customer_id'=>$tour_costsummary->id,
         'tour_id'=>request('tour_id'),
+        'adults_percent'=>$adult->percent,
+'teens_percent'=>$teen->percent,
+'children_percent'=>$children->percent,
         'unit_price'=> $unit_price,
         'children_cost'=> $children_cost,
         'teens_cost'=> $teens_cost,

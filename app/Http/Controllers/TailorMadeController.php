@@ -13,6 +13,7 @@ use App\Models\tourEquerySocialMedia;
 use App\Models\socialmedia;
 use App\Models\itinerary;
 use App\Models\itinerary_day;
+use App\Models\accommodationInclusive;
 
 use App\Models\departures;
 use App\Models\buyaddons;
@@ -91,7 +92,8 @@ $status="Active";
  $validator = Validator::make($request->all(), [
         'first_name' => 'required|string|max:255',
          'last_name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users',
+        'email' => 'required|email',
+         // 'email' => 'required|email|unique:users',
         'arrival_date' => 'required|Date',
         'days' => 'required|integer',
 
@@ -337,13 +339,14 @@ $status="Active";
            }
            
            $tour_addon='tailor_made';
-           $programs = tailorMade::
-           join('itineraries','itineraries.program_id','tailor_mades.id')
-           ->join('attachments','attachments.destination_id','tailor_mades.id')
+              
+$programs = tailorMade::join('itineraries','itineraries.program_id','tailor_mades.id')
+            //->join('attachments','attachments.destination_id','tailor_mades.id')        
           ->where('itineraries.tour_addon','tailor_made')
-          ->where('attachments.type','tailor_made')
+          // ->where('attachments.type','tailor_made')
           ->where('tailor_mades.id',$id)->first();
-    
+
+
            if($programs ==null){
               $programs = tailorMade::
               where('tailor_mades.id',$id)->first();
@@ -376,10 +379,18 @@ $status="Active";
             return ($programs->full_name .' Ops your tailor made still on Progess....');
           };
 
+
+
+//Accommodation Inclusive
+          $inclusives=DB::select("select id,inclusive from inclusives  where id not in(select (inclusive_id)id from accommodation_inclusives where tour_id =$id)");
+
+           $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
+        ->where('accommodation_inclusives.tour_id',$id)->get();
+
         $basic=tailorMade::join('attachments','attachments.destination_id','tailor_mades.id')
         ->get();
         
-        return view('website.tailorMade.tailorMadeSummary',compact('datas','id','programs','basic'));
+        return view('website.tailorMade.tailorMadeSummary',compact('datas','id','programs','basic','inclusives','assignLists'));
     }
  
     /**

@@ -13,8 +13,39 @@
     <div class="container">
       <div class="border-box">
         <div class="box-title">
-          <h5><strong>{{$programs->tour_name}}</strong></h5>
-        </div>
+           <div class="col-md-12">
+             <p><strong>{{$programs->tour_name}}</strong></p>
+           </div>
+        
+<div class="col-md-12">
+         @if($message = Session::get('success'))
+  <div class="alert alert-success">
+    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+    <span aria-hidden="true">&times;</span></button>
+    <strong>Well!: </strong> {{$message}}
+  </div>
+  @endif
+
+ @if($message = Session::get('info'))
+  <div class="alert alert-warning">
+    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+    <span aria-hidden="true">&times;</span></button>
+    <strong>Ops!: </strong> {{$message}}
+  </div>
+  @endif   
+
+ @if($message = Session::get('error'))
+  <div class="alert alert-danger">
+    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+    <span aria-hidden="true">&times;</span></button>
+    <strong>Sorry!: </strong> {{$message}}
+  </div>
+  @endif
+</div>
+</div>
+
+
+
         <p>{{$cust->first_name}} {{$cust->last_name}}</p>
         <em>Summary invoice for your favourite tour costs</em>
           <em><b>(Please make Payment to arrange your favourite tour)</b></em>
@@ -165,61 +196,79 @@
               </tr>
               <tr class="total">
                 <td class="price">Grand Total</td>
-                <td class="price"> {{ number_format($cust->total_cost,2)}}  {{ $cust->currency}}:: </td>
+                <td class="price"> {{ number_format($cust->total_cost,2)}}  {{ $cust->currency}}</td>
               </tr>
-            </table>
-
-
-          </div>
-
-        </div>
-
-   <form  method="post"  action="{{ route('payConfirm',189) }}" enctype="multipart/form-data">
+ <form  method="post"  action="{{ route('payConfirm',$cust->id) }}" enctype="multipart/form-data">
           @csrf
                
-        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                            <label class="fieldlabels">First Name: *</label> <input type="text" name="first_name" value="{{$cust->first_name}}" />
+              <tr class="total">
+                       <input type="hidden" name="total_cost" value="{{ $cust->total_cost,2}}" id="total_cost" /> 
+                     
+                <td class="price">Amount to be Paid</td>
+                <td class="price"><input type="text" name="amount" id="amount" value="{{ $cust->total_cost,2}}"/>Down Payment must not below 30% of total booking costs.</td>
+              </tr>
+            </table>
+ <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                       
+                             <label class="fieldlabels">Select currency to pay with:*</label> 
+                            <select name="currency" class="form-control">
+                              <option value="{{ $cust->currency}}" selected>{{ $cust->currency}}</option>
+                        <option value="KES">KES</option>
+                          <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                              <option value="GBP">GBP</option>
+                                <option value="UGX">UGX</option>
+
+                                 <option value="TZS">TZS</option>
+                                  <option value="ZMW">ZMW</option>
+                                   <option value="RWF">RWF</option>
+                         
+                         </select>
+                        </div>
+
+          </div>
+        </div>
+
+  
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> <input type="hidden" name="first_name" value="{{$cust->first_name}}" />
                         </div>
                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                       
-                             <label class="fieldlabels">Last Name: *</label> <input type="text" name="last_name" value="{{$cust->last_name}}" /> 
+                        <input type="hidden" name="last_name" value="{{$cust->last_name}}" /> 
                         </div>
+  
                         
 
-                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                       
-                             <label class="fieldlabels">Amount: *</label> <input type="text" name="amount" value="{{ number_format($cust->total_cost,2)}}"/> 
+                          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <input type="hidden" name="reference" value="{{$cust->id}}" /> 
                         </div>
                           <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                       
-                             <label class="fieldlabels">Reference: *</label> <input type="text" name="reference" value="{{$cust->id}}" /> 
-                        </div>
-                          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                       
-                             <label class="fieldlabels">Type: *</label> <input type="text" name="type" value="MERCHANT" /> 
+                        <input type="hidden" name="type" value="MERCHANT" /> 
                         </div>
                
-                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">                       
-                             <label class="fieldlabels">Email: *</label> <input type="text" name="email" value="{{$cust->email}}" /> 
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">   <input type="hidden" name="email" value="{{$cust->email}}" /> 
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                       
-                             <label class="fieldlabels">Phone: *</label> <input type="text" name="desc" value="{{$cust->phone}}" /> 
+                       <input type="hidden" name="desc" value="{{$cust->phone}}" /> 
+                        </div>
+                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                       <input type="hidden" name="percent_downpayment" value="{{$percent_downpayment}}" id="percent_downpayment" /> 
                         </div>
 
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                        
-                             <label class="fieldlabels">Description: *</label> <input type="text" name="desc" value="{{$programs->tour_name}}" /> 
+                            <input type="hidden" name="desc" value="{{$programs->tour_name}}" /> 
                         </div>
 
 
-        <div class="clearfix">
-         <button href="/payConfirm/" class="btn btn-success pull-right hvr-sweep-to-right" type="submit">Proceed Checkout</button>
+        <div class="clearfix">          
+         <button href="/payConfirm/" class="btn btn-success pull-right hvr-sweep-to-right" type="submit">Ok</button>        
         </div>
-      </form>
 
+
+
+      </form>
       </div>
-    </div>
+                
   </section>
 </body>
 @endsection

@@ -1854,18 +1854,18 @@ ul.about-listing {
 }
 .breadcrumb {
 	background: transparent;
-	color: #fff;
+	color: #2c1695;
 	padding: 10px 0;
 }
 .breadcrumb-item.active {
-	color: #fff;
+	color: #2c1695;
 	font-weight: 300;
 }
 .breadcrumb-item a{
 	font-weight: 600;
 }
 .breadcrumb-item+.breadcrumb-item::before {
-	color: #fff;
+	color: #2c1695;
 }
 /*---------- package-list ----------*/
 
@@ -2447,7 +2447,7 @@ ul.share-icon {
 .pagination li a.page-link {
 	color: #21ab64;
 	background-color: transparent;
-	font-size: 20px;
+	font-size: 15px;
 	line-height: 35px;
 	height: 55px;
 	width: 45px;

@@ -121,10 +121,28 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
 
 
     public function payConfirm(Request $request,$id)
-    {  
-   
+    {   
 
+//dd(request('percent_downpayment'));
+$amount_percent=request('percent_downpayment')*request('total_cost');
 
+if(request('amount')<$amount_percent)
+{
+ return redirect()->back()->with('error','Down Payment must not below 30% of total booking costs.');
+}
+
+// Fetching JSON
+$req_url = 'https://api.exchangerate-api.com/v4/latest/USD';
+$response_json = file_get_contents($req_url);
+
+//dd($response_json);
+// Continuing if we got a result
+if(false !== $response_json) {
+
+    // Try/catch for json_decode operation
+    try {
+    // Decoding
+    $response_object = json_decode($response_json);
 $first_name=request('first_name');
 $last_name=request('last_name');
 $desc=request('desc');
@@ -132,9 +150,35 @@ $email=request('email');
 $phone=request('phone');
 
 $type=request('type');
-
 $amount=request('amount');
-    return view('website.pesapal.pesapal',compact('first_name','last_name','amount','desc','email','phone','type'));  
+$currency=request('currency');
+$status=1;
+
+ // dd($amount);
+
+// dd(number_format($amount, 2));
+    // YOUR APPLICATION CODE HERE, e.g.
+    //$base_price =$amount; // Your price in USD
+    $amount = (float)$amount;
+
+$base_price=($response_object->rates->TZS/$response_object->rates->$currency);
+
+ // $defaultCurrency2=($response_object->rates->$currency);
+    $to_bepaid = round(($amount * $base_price), 2);
+     dd($to_bepaid);
+    
+    }
+    catch(Exception $e) {
+        // Handle JSON parse error...
+    }
+}
+ 
+ //return response()->json(['url' => redirect('https://payments.pesapal.com/palatialtours',compact(['first_name','status']));
+//return redirect('https://payments.pesapal.com/palatialtours',compact('status'));
+
+return view('website.pesapal.pesapal',compact('first_name','last_name','currency','to_bepaid','desc','email','phone','type'));  
+    
+
     }
 
 
@@ -278,8 +322,9 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
         ->get();
 
        // dd($basic);
-
-        return view('website.payments.privatePaySummary',compact('datas','id','programs','basic','discounts','tourInvoice','assignLists','inclusives','cust'));
+ $peoplePercents=people_percent::get();
+ 
+        return view('website.payments.privatePaySummary',compact('datas','id','programs','basic','discounts','tourInvoice','assignLists','inclusives','cust','peoplePercents'));
     }
     /**
      * Show the form for creating a new resource.
