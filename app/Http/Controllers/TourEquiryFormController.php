@@ -278,29 +278,44 @@ dd('Mail sent successfully');
 
 
 
-public function viewTripf($pin)    {
-
-              //Verify if the pin exists
-          // $pin=request('pin');  
-          // dd($pin);      
-
-            $trip = TourEquiryForm::
+public function viewTripf(Request $request,$pin)    {
+    
+$tourType="";
+if(request('print')=="print")
+{
+  $trip = tailorMade::
+            where('tailor_mades.pin',$pin)
+           ->where('tailor_mades.status','Active')->first();
+         $tourType="Private";
+          
+           }
+           else{
+  $trip = TourEquiryForm::
             where('tour_equiry_forms.pin',$pin)
-           ->where('tour_equiry_forms.status','Active')->first();        
+           ->where('tour_equiry_forms.status','Active')->first();
+           $tourType=$trip->tour_type;
+           }        
             //dd($trip);
 
            if($trip==null)
            {
-            return 'Enter your PIN No Or Your PIN No is Expired Or Not Exists';
+            return 'Enter your PIN Number Or Your PIN No is Expired Or Not Exists';
            }
            else
            {
            // $id=$trip->tour_id;
              $id=$trip->id;         
             // dd($id);
-        if($trip->tour_type=='Private' || $trip->tour_type=='Group')
+        if($tourType=='Private' || $tourType=='Group')
         {
-        return redirect()->route('pg',$id)->with('success','Tour Summary Cost created successful');
+             if(request('print')=="print")
+{    
+        return redirect()->route('pgtm',$id)->with('success','Tour Summary Cost created successful');
+    }
+    else
+    {
+     return redirect()->route('pg',$id)->with('success','Tour Summary Cost created successful');   
+    }
         }
         // else if ($trip->tour_type=='Group') {
         //     # code... 
@@ -610,35 +625,35 @@ $id=request('tour_id');
 
  $socialmedia = socialmedia::get();
 
-$date=date('d-M-Y');
-// $data["email"] = "palatialtours@gmail.com";
-$data["email"] = request('email');
+// $date=date('d-M-Y');
+// // $data["email"] = "palatialtours@gmail.com";
+// $data["email"] = request('email');
 
-$data["title"] = "ITINERARY ".$tour_addon;
-$data["body"] = "Manyara Best View Hotel: Daily General Inspection Report held on $date";
-$data["date"] = "Date: $date";
+// $data["title"] = "ITINERARY ".$tour_addon;
+// $data["body"] = "Manyara Best View Hotel: Daily General Inspection Report held on $date";
+// $data["date"] = "Date: $date";
 
-// $arrayName =$socialmedia;
-$data['socialmedia'] =$socialmedia;
-$data['datas'] =$datas; 
-$data['programs'] =$tour_addons; 
-//dd($data);
+// // $arrayName =$socialmedia;
+// $data['socialmedia'] =$socialmedia;
+// $data['datas'] =$datas; 
+// $data['programs'] =$tour_addons; 
+// //dd($data);
 
-$files = [
-//app_path('reports/pieChart.pdf'),
+// $files = [
+// //app_path('reports/pieChart.pdf'),
 
-// app_path().'/reports/itinerayReportf.pdf',
-// public_path('files/reports.png'),
-];
-  //SendMailJobf::dispatch($data);
- //dd('try34');
-Mail::send('website.emails.email_send',$data, function($message)use($data, $files) {
-$message->to($data["email"], $data["email"])
-        ->subject($data["title"]);
-foreach ($files as $file){
-    $message->attach($file);
-}
-});
+// // app_path().'/reports/itinerayReportf.pdf',
+// // public_path('files/reports.png'),
+// ];
+//   //SendMailJobf::dispatch($data);
+//  //dd('try34');
+// Mail::send('website.emails.email_send',$data, function($message)use($data, $files) {
+// $message->to($data["email"], $data["email"])
+//         ->subject($data["title"]);
+// foreach ($files as $file){
+//     $message->attach($file);
+// }
+// });
 
 
   return response()->json(['url' => route('viewTripf', [$pin])]);

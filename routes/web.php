@@ -200,6 +200,8 @@ Route::post('/privatePay/{y}', [PaymentController::class, 'privatePay'])->name('
 Route::post('/groupPay/{x}', [PaymentController::class, 'groupPay'])->name('groupPay');
 
 Route::get('/pg/{x}', [PaymentController::class, 'pg'])->name('pg');
+Route::get('/pgtm/{x}', [PaymentController::class, 'pgtm'])->name('pgtm');
+
 Route::get('/pay/{x}', [PaymentController::class, 'payInvoice'])->name('payInvoice');
 Route::post('/payConfirm/{x}', [PaymentController::class, 'payConfirm'])->name('payConfirm');
 

@@ -1,5 +1,4 @@
-@extends('website.layouts.apps')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
   <!-- <link rel="stylesheet" href="../assets/css/min/bootstrap.min.css" media="all"> -->
 
@@ -14,39 +13,42 @@
       <div class="border-box">
         <div class="box-title">
            <div class="col-md-12">
-             <p><strong>{{$programs->tour_name}}</strong></p>
+             <p><strong><?php echo e($programs->tour_name); ?></strong></p>
            </div>
         
 <div class="col-md-12">
-         @if($message = Session::get('success'))
+         <?php if($message = Session::get('success')): ?>
   <div class="alert alert-success">
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
     <span aria-hidden="true">&times;</span></button>
-    <strong>Well!: </strong> {{$message}}
-  </div>
-  @endif
+    <strong>Well!: </strong> <?php echo e($message); ?>
 
- @if($message = Session::get('info'))
+  </div>
+  <?php endif; ?>
+
+ <?php if($message = Session::get('info')): ?>
   <div class="alert alert-warning">
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
     <span aria-hidden="true">&times;</span></button>
-    <strong>Ops!: </strong> {{$message}}
-  </div>
-  @endif   
+    <strong>Ops!: </strong> <?php echo e($message); ?>
 
- @if($message = Session::get('error'))
+  </div>
+  <?php endif; ?>   
+
+ <?php if($message = Session::get('error')): ?>
   <div class="alert alert-danger">
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
     <span aria-hidden="true">&times;</span></button>
-    <strong>Sorry!: </strong> {{$message}}
+    <strong>Sorry!: </strong> <?php echo e($message); ?>
+
   </div>
-  @endif
+  <?php endif; ?>
 </div>
 </div>
 
 
 
-        <p>{{$cust->first_name}} {{$cust->last_name}}</p>
+        <p><?php echo e($cust->first_name); ?> <?php echo e($cust->last_name); ?></p>
         <em>Summary invoice for your favourite tour costs</em>
           <em><b>(Please make Payment to arrange your favourite tour)</b></em>
         <div class="table-responsive-wrap">
@@ -55,9 +57,9 @@
               <tr>
                 <th>People</th>
                   <th>Percent Price Rate(%)</th>
-                     <th>Actual Price({{ $cust->currency}})</th>
+                     <th>Actual Price(<?php echo e($cust->currency); ?>)</th>
                 <th>No of Persons</th>
-                <th class="price">Total({{ $cust->currency}})</th>
+                <th class="price">Total(<?php echo e($cust->currency); ?>)</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
@@ -68,83 +70,89 @@
                  Adults
                 </td>
                 <td>
-    @foreach ($peoplePercents as $percent)
-    @if($percent->percent_name==="Adults")
-      {{$percent->percent}}
-    @endif  
-    @endforeach
+    <?php $__currentLoopData = $peoplePercents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $percent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php if($percent->percent_name==="Adults"): ?>
+      <?php echo e($percent->percent); ?>
+
+    <?php endif; ?>  
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                
                 </td>
                   <td>
-                     @foreach ($peoplePercents as $percent)
-    @if($percent->percent_name==="Adults")
-      {{number_format(($percent->percent/100)*($cust->unit_price),2)}}
-    @endif  
-    @endforeach
+                     <?php $__currentLoopData = $peoplePercents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $percent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php if($percent->percent_name==="Adults"): ?>
+      <?php echo e(number_format(($percent->percent/100)*($cust->unit_price),2)); ?>
+
+    <?php endif; ?>  
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </td>
                 <td>
                   <div class="counter-number">
                     <div class="sub icon-minus"></div>
-                    <input type="text" value="{{ $cust->adults }}" readonly>
+                    <input type="text" value="<?php echo e($cust->adults); ?>" readonly>
 
                     <div class="add icon-plus"></div>
                   </div>
                 </td>
-                <td class="price">{{ number_format($cust->adults_cost,2)}}</td>
+                <td class="price"><?php echo e(number_format($cust->adults_cost,2)); ?></td>
               </tr>
 
               <tr>
                 <td>
                  Teens
                 </td>
-                <td>   @foreach ($peoplePercents as $percent)
-    @if($percent->percent_name==="Teens")
-      {{$percent->percent}}
-    @endif  
-    @endforeach </td>
+                <td>   <?php $__currentLoopData = $peoplePercents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $percent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php if($percent->percent_name==="Teens"): ?>
+      <?php echo e($percent->percent); ?>
+
+    <?php endif; ?>  
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> </td>
                   <td>
-                                    @foreach ($peoplePercents as $percent)
-    @if($percent->percent_name==="Teens")
-      {{number_format(($percent->percent/100)*($cust->unit_price),2)}}
-    @endif  
-    @endforeach
+                                    <?php $__currentLoopData = $peoplePercents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $percent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php if($percent->percent_name==="Teens"): ?>
+      <?php echo e(number_format(($percent->percent/100)*($cust->unit_price),2)); ?>
+
+    <?php endif; ?>  
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </td>
                 <td>
                   <div class="counter-number">
                     <div class="sub icon-minus"></div>
-                     <input type="text" value="{{ $cust->teens }}" readonly>
+                     <input type="text" value="<?php echo e($cust->teens); ?>" readonly>
                     <div class="add icon-plus"></div>
                   </div>
                 </td>
-                <td class="price">{{ number_format($cust->teens_cost,2)}}</td>
+                <td class="price"><?php echo e(number_format($cust->teens_cost,2)); ?></td>
               </tr>
 
                  <tr>
                 <td>
                  Children
                 </td>
-                <td>   @foreach ($peoplePercents as $percent)
-    @if($percent->percent_name==="Children")
-      {{$percent->percent}}
-    @endif  
-    @endforeach </td>
+                <td>   <?php $__currentLoopData = $peoplePercents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $percent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php if($percent->percent_name==="Children"): ?>
+      <?php echo e($percent->percent); ?>
+
+    <?php endif; ?>  
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> </td>
                   <td>
 
-  @foreach ($peoplePercents as $percent)
-    @if($percent->percent_name==="Children")
-      {{number_format(($percent->percent/100)*($cust->unit_price),2)}}
-    @endif  
-    @endforeach
+  <?php $__currentLoopData = $peoplePercents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $percent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php if($percent->percent_name==="Children"): ?>
+      <?php echo e(number_format(($percent->percent/100)*($cust->unit_price),2)); ?>
+
+    <?php endif; ?>  
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                   </td>
                 <td>
                   <div class="counter-number">
                     <div class="sub icon-minus"></div>
-                     <input type="text" value="{{ $cust->children }}" readonly>
+                     <input type="text" value="<?php echo e($cust->children); ?>" readonly>
                     <div class="add icon-plus"></div>
                   </div>
                 </td>
-                <td class="price">{{ number_format($cust->children_cost,2)}}</td>
+                <td class="price"><?php echo e(number_format($cust->children_cost,2)); ?></td>
               </tr>
 
             </tbody>
@@ -174,7 +182,8 @@
                   Sub Total
                 </td>
                 <td class="price">
-                 {{ number_format($cust->total_price,2)}}  {{ $cust->currency}}
+                 <?php echo e(number_format($cust->total_price,2)); ?>  <?php echo e($cust->currency); ?>
+
                 </td>
               </tr>
                <tr>
@@ -182,7 +191,8 @@
                   Addon total
                 </td>
                 <td class="price">
-                 {{ number_format($cust->total_addon_price,2)}}  {{ $cust->currency}}
+                 <?php echo e(number_format($cust->total_addon_price,2)); ?>  <?php echo e($cust->currency); ?>
+
                 </td>
               </tr>
 
@@ -191,28 +201,29 @@
                   Discount
                 </td>
                 <td class="price">
-                {{ number_format($cust->total_discount,2)}}  {{ $cust->currency}}
+                <?php echo e(number_format($cust->total_discount,2)); ?>  <?php echo e($cust->currency); ?>
+
                 </td>
               </tr>
               <tr class="total">
                 <td class="price">Grand Total</td>
-                <td class="price"> {{ number_format($cust->total_cost,2)}}  {{ $cust->currency}}</td>
+                <td class="price"> <?php echo e(number_format($cust->total_cost,2)); ?>  <?php echo e($cust->currency); ?></td>
               </tr>
- <form  method="post"  action="{{ route('payConfirm',$cust->id) }}" enctype="multipart/form-data">
-          @csrf
+ <form  method="post"  action="<?php echo e(route('payConfirm',$cust->id)); ?>" enctype="multipart/form-data">
+          <?php echo csrf_field(); ?>
                
               <tr class="total">
-                       <input type="hidden" name="total_cost" value="{{ $cust->total_cost,2}}" id="total_cost" /> 
+                       <input type="hidden" name="total_cost" value="<?php echo e($cust->total_cost,2); ?>" id="total_cost" /> 
                      
                 <td class="price">Amount to be Paid</td>
-                <td class="price"><input type="text" name="amount" id="amount" value="{{ $cust->total_cost,2}}"/>Down Payment must not below 30% of total booking costs.</td>
+                <td class="price"><input type="text" name="amount" id="amount" value="<?php echo e($cust->total_cost,2); ?>"/>Down Payment must not below 30% of total booking costs.</td>
               </tr>
             </table>
  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                        
                              <label class="fieldlabels">Select currency to pay with:*</label> 
                             <select name="currency" class="form-control">
-                              <option value="{{ $cust->currency}}" selected>{{ $cust->currency}}</option>
+                              <option value="<?php echo e($cust->currency); ?>" selected><?php echo e($cust->currency); ?></option>
                         <option value="KES">KES</option>
                           <option value="USD">USD</option>
                             <option value="EUR">EUR</option>
@@ -230,38 +241,38 @@
         </div>
 
   
-        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> <input type="hidden" name="first_name" value="{{$cust->first_name}}" />
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> <input type="hidden" name="first_name" value="<?php echo e($cust->first_name); ?>" />
                         </div>
                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <input type="hidden" name="last_name" value="{{$cust->last_name}}" /> 
+                        <input type="hidden" name="last_name" value="<?php echo e($cust->last_name); ?>" /> 
                         </div>
   
                         
 
                           <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <input type="hidden" name="reference" value="{{$cust->id}}" /> 
+                        <input type="hidden" name="reference" value="<?php echo e($cust->id); ?>" /> 
                         </div>
                           <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <input type="hidden" name="type" value="MERCHANT" /> 
                         </div>
                
-                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">   <input type="hidden" name="email" value="{{$cust->email}}" /> 
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">   <input type="hidden" name="email" value="<?php echo e($cust->email); ?>" /> 
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                       <input type="hidden" name="desc" value="{{$cust->phone}}" /> 
+                       <input type="hidden" name="desc" value="<?php echo e($cust->phone); ?>" /> 
                         </div>
                          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                       <input type="hidden" name="percent_downpayment" value="{{$percent_downpayment}}" id="percent_downpayment" /> 
+                       <input type="hidden" name="percent_downpayment" value="<?php echo e($percent_downpayment); ?>" id="percent_downpayment" /> 
                         </div>
 
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                        
-                            <input type="hidden" name="desc" value="{{$programs->tour_name}}" /> 
+                            <input type="hidden" name="desc" value="<?php echo e($programs->tour_name); ?>" /> 
                         </div>
 
 
         <div class="clearfix">          
-         <button href="/payConfirm/" class="btn btn-success pull-right hvr-sweep-to-right" type="submit">Proceed</button>        
+         <button href="/payConfirm/" class="btn btn-success pull-right hvr-sweep-to-right" type="submit">Ok</button>        
         </div>
 
 
@@ -271,4 +282,5 @@
                 
   </section>
 </body>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('website.layouts.apps', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\isolf\resources\views/website/payments/privatePaySummary.blade.php ENDPATH**/ ?>

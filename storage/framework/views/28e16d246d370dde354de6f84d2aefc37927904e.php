@@ -109,9 +109,13 @@
 
  <li class="nav-item dropdown">
          <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="">          
-          <div class="logo mr-auto"><img src="<?php echo e(URL::asset('/storage/user/'.auth()->user()->photo)?? 0); ?>" width="60" height="40">
+          <i class="">    
+
+           <?php if(isset(auth()->user()->photo)): ?>
+               <div class="logo mr-auto"><img src="<?php echo e(URL::asset('/storage/user/'.auth()->user()->photo)?? 0); ?>" width="60" height="40">
           </div>
+ <?php endif; ?>      
+          
           </i>         
         </a>
 
@@ -122,12 +126,25 @@
               <img src="../../dist/img/" alt="Profile:" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
+                   <?php if(isset(auth()->user()->name)): ?>
                 <?php echo e(auth()->user()->name); ?>
 
+                <?php endif; ?>
                   <span class="float-right text-sm text-danger"><i class=""></i></span>
                 </h3>
-                <p class="text-sm"><?php echo e(auth()->user()->email); ?></p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i><?php echo e(auth()->user()->role); ?></p>
+                <p class="text-sm">
+  <?php if(isset(auth()->user()->email)): ?>
+                <?php echo e(auth()->user()->email); ?>
+
+                <?php endif; ?>
+                                  </p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>
+                   <?php if(isset(auth()->user()->role)): ?>
+                <?php echo e(auth()->user()->role); ?>
+
+                <?php endif; ?>
+
+                </p>
               </div>
             </div>
             <!-- Message End -->
@@ -161,13 +178,19 @@
             <a href="/dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
+               <?php if(isset(auth()->user()->role)): ?>
+              
                 <?php if(Auth::user()->role == 'Admin' || Auth::user()->role =='accountant' || Auth::user()->role =='NMB' || Auth::user()->role =='owner' || Auth::user()->role =='Cultural'): ?>
                 Dashboard
                 <?php endif; ?>
+                 <?php endif; ?>
              </p>
             </a>
           </li>
+          <?php if(isset(auth()->user()->role)): ?>
             <?php if(Auth::user()->role == 'Admin' || Auth::user()->role =='accountant'): ?>
+             <?php endif; ?>
+
           
           <li class="nav-item">
             <a href="#" class="nav-link">

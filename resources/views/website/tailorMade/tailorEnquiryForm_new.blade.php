@@ -2,9 +2,9 @@
 @section('content')
  <section class="bg-gray">
         <div class="container">
-           <div class="col-lg-3 col-md-12 col-sm-12">
+           <div class="col-lg-1 col-md-12 col-sm-12">
            </div>
-           <div class="col-lg-6 col-md-12 col-sm-12">
+           <div class="col-lg-10 col-md-12 col-sm-12">
              <div class="card">
                         <div class="card-body">
       <div class="modal-content">
@@ -26,7 +26,7 @@
     </div>
 @endif
           </div>
-                <form id="msform"  method="post"  action="{{ route('tailorMade.store') }}" class="registration-form">
+                <form id="msform" method="post" action="{{ route('tailorMade.store') }}" class="registration-form">
                     @csrf
                     <!-- progressbar -->
                     <ul id="progressbar">
@@ -284,7 +284,7 @@
 </div>
 </div>
 
-<div class="col-lg-3 col-md-12 col-sm-12">
+<div class="col-lg-1 col-md-12 col-sm-12">
            </div>
 </div>
 </section>
@@ -396,62 +396,5 @@ return false;
 })
 
 });
-
 </script>
-
-<!-- 
-
-
-    <script type="text/javascript">        
-        $(document).ready(function () {
-    $('.registration-form fieldset:first-child').fadeIn('slow');
-
-    $('.registration-form input[type="text"]').on('focus', function () {
-        $(this).removeClass('input-error');
-    });
-
-    // next step
-    $('.registration-form .next').on('click', function () {
-        var parent_fieldset = $(this).parents('fieldset');
-        var next_step = true;
-        parent_fieldset.find('input[required],input[type="email"]').each(function () {
-                 if ($(this).val() == "" || $(this).val() == "0") {
-                $(this).addClass('input-error');
-                next_step = false;
-            } else {
-                $(this).removeClass('input-error');
-            }
-        });
-
-        if (next_step) {
-            parent_fieldset.fadeOut(400, function () {
-                $(this).next().fadeIn();
-            });
-        }
-
-    });
-
-    // previous step
-    $('.registration-form .btn-previous').on('click', function () {
-        $(this).parents('fieldset').fadeOut(400, function () {
-            $(this).prev().fadeIn();
-        });
-    });
-
-    // submit
-    $('.registration-form').on('submit', function (e) {
-
-        $(this).find('input[required],input[type="email"]').each(function () {
-                if ($(this).val() == "" || $(this).val() == "0") {
-                e.preventDefault();
-                $(this).addClass('input-error');
-            } else {
-                $(this).removeClass('input-error');
-            }
-        });
-
-    });
-   
-});
-    </script> -->
 @endsection

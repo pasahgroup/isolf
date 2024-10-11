@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="../mold/assets/font/iconfont/iconstyle.css" media="all">
   <link rel="stylesheet" href="../mold/assets/font/font-awesome/css/font-awesome.css" media="all">
   <link rel="stylesheet" href="../mold/assets/css/main.css" media="all" id="maincss">
+
+
 <link rel="stylesheet" href="../assetf/style.css">
  <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
 <link href="../../assets/corporate/css/style.css" rel="stylesheet">

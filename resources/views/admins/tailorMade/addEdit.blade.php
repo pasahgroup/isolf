@@ -160,10 +160,24 @@
                                 </div>
      
 
-             <div class="col-md-12 col-sm-12 col-xs-12">
-                   <label class="control-label" for="photo">Tour Photo</label>
-                    <input name="attachment[]" type="file" id="main_img" multiple>
-            </div> 
+
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                                   <label for="">Tour Photo:</label>
+                                    <div class="form-group">
+                                    <input type="file" name="attachment[]" onChange="displayImage(this)" id="photo" accept="image/*" class="" style="display:block;"> 
+                                   
+                                </div>
+                                </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <span class="img-div">
+              <div class="text-center img-placeholder"  onClick="triggerClick()">
+                <h4>Update image</h4>
+             
+              <img src="{{URL::asset('/storage/tailorMade/'.$tailorMades->attachment?? '') }}" onClick="triggerClick()" id="profileDisplay">
+                </div>
+            </span>
+            </div>  
 
             <div class="col-md-12">
                <label for="">  Additional Information we should know?</label>

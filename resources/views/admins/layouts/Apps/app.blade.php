@@ -106,9 +106,13 @@
 
  <li class="nav-item dropdown">
          <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="">          
-          <div class="logo mr-auto"><img src="{{ URL::asset('/storage/user/'.auth()->user()->photo)?? 0}}" width="60" height="40">
+          <i class="">    
+
+           @isset(auth()->user()->photo)
+               <div class="logo mr-auto"><img src="{{ URL::asset('/storage/user/'.auth()->user()->photo)?? 0}}" width="60" height="40">
           </div>
+ @endisset      
+          
           </i>         
         </a>
 
@@ -119,11 +123,22 @@
               <img src="../../dist/img/" alt="Profile:" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
+                   @isset(auth()->user()->name)
                 {{auth()->user()->name}}
+                @endisset
                   <span class="float-right text-sm text-danger"><i class=""></i></span>
                 </h3>
-                <p class="text-sm">{{auth()->user()->email}}</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{auth()->user()->role}}</p>
+                <p class="text-sm">
+  @isset(auth()->user()->email)
+                {{auth()->user()->email}}
+                @endisset
+                                  </p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>
+                   @isset(auth()->user()->role)
+                {{auth()->user()->role}}
+                @endisset
+
+                </p>
               </div>
             </div>
             <!-- Message End -->
@@ -157,13 +172,19 @@
             <a href="/dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
+               @isset(auth()->user()->role)
+              
                 @if(Auth::user()->role == 'Admin' || Auth::user()->role =='accountant' || Auth::user()->role =='NMB' || Auth::user()->role =='owner' || Auth::user()->role =='Cultural')
                 Dashboard
                 @endif
+                 @endisset
              </p>
             </a>
           </li>
+          @isset(auth()->user()->role)
             @if(Auth::user()->role == 'Admin' || Auth::user()->role =='accountant')
+             @endisset
+
           {{-- Sales --}}
           <li class="nav-item">
             <a href="#" class="nav-link">
