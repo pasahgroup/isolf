@@ -1,40 +1,41 @@
-<?php $__env->startSection('content'); ?>
+
+@extends('website.layouts.apps')
+@section('content')
  <div class="container">
    <div class="package-list-wrap ">
-                <img src="<?php echo e(URL::asset('/storage/uploads/'.$programs->attachment?? '')); ?>" class="img-fluid" alt="det-img" style="min-height: 20vh !important;max-height: 50vh;background-size: cover;width: 100%;">
+                <img src="{{URL::asset('/storage/uploads/'.$programs->attachment?? '') }}" class="img-fluid" alt="det-img" style="min-height: 20vh !important;max-height: 50vh;background-size: cover;width: 100%;">
                 <div class="package-list-content">
-                    <p class="package-list-duration"><?php echo e($programs->days); ?> Days, <?php echo e($programs->days -1); ?>  Night(s)<span
+                    <p class="package-list-duration">{{$programs->days}} Days, {{$programs->days -1}}  Night(s)<span
                             class="rate">
 
-              <!--              <?php if($discounts !=[]): ?>-->
-              <!--              $<?php echo e(number_format($discounts->new_price),2); ?>-->
-              <!--     <?php else: ?>-->
-              <!-- $ <?php echo e(number_format($programs->price),2); ?>-->
-              <!--<?php endif; ?>-->
+              <!--              @if($discounts !=[])-->
+              <!--              ${{number_format($discounts->new_price),2 }}-->
+              <!--     @else-->
+              <!-- $ {{number_format($programs->price),2 }}-->
+              <!--@endif-->
 
                     </span>
                     </p>
                      
                      <h3 class="package-list-title">
-                        <?php echo e($programs->tour_name); ?>
-
+                        {{ $programs->tour_name }}
                     </h3>
                     <button href="#bookNow" type="button" class="btn btn-success" data-toggle="modal">Book Now</button>
                      
                      
                 </div>
-             <?php if($discounts !=[]): ?>
+             @if($discounts !=[])
            <span class="off-box">
             
                  <div class="col-md-12 col-sm-12 col-xs-12">
-                                          <span class="text-danger" style="font-size:18px"><strong>$<?php echo e(number_format($discounts->new_price),2); ?> </strong> pp
-                                           </span><s style=""><sup>$ <?php echo e(number_format($programs->price),2); ?> </sup></s><br>
-                                            <span style="font-size:12px;">Save $<?php echo e(number_format($discounts->save),2); ?></span>
+                                          <span class="text-danger" style="font-size:18px"><strong>${{number_format($discounts->new_price),2 }} </strong> pp
+                                           </span><s style=""><sup>$ {{number_format($programs->price),2 }} </sup></s><br>
+                                            <span style="font-size:12px;">Save ${{number_format($discounts->save),2 }}</span>
                 </div>
               </span>
-              <?php else: ?>
-               <span class="off-box">FROM  $ <?php echo e(number_format($programs->price),2); ?></span>
-              <?php endif; ?>
+              @else
+               <span class="off-box">FROM  $ {{number_format($programs->price),2 }}</span>
+              @endif
             </div>
           </div>
 
@@ -47,10 +48,7 @@
           </li>
           <li class=""><a href="#itenary" data-toggle="tab">Itenary</a>
           </li>
-           <li class=""><a href="#accomodation" data-toggle="tab">Accomodation</a>
-          </li>
-
-           <li class=""><a href="#inclusive" data-toggle="tab">Inclusive</a>
+          <li class=""><a href="#dateprice" data-toggle="tab">Date &amp; Price</a>
           </li>
           <li class=""><a href="#reveiws" data-toggle="tab">Reviews</a>
           </li>
@@ -61,60 +59,82 @@
           <div class="tab-pane active" id="overview">
             <div class="row">
               <div class="col-sm-6">
-               
+                <h3>Rediscover lost Sangrila</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id aut similique voluptas! Tenetur aperiam alias, officiis, perferendis accusamus, sint, error possimus quas repellendus facilis asperiores dolorem. Nostrum maiores laudantium possimus
+                  consequatur quam. Dolores placeat laudantium similique, beatae animi, vel reprehenderit! Quisquam veniam laudantium ullam eaque! Error ex cumque iure aliquam commodi voluptatibus, animi quam quas maiores, deserunt rerum, provident consequuntur!</p>
+                <p>Dolor sit amet, consectetur adipisicing elit. Incidunt consequatur iusto odio quis magnam, aut assumenda ipsa magni ea, veritatis, nostrum rerum necessitatibus excepturi eos et nemo iste? Illo temporibus mollitia ducimus aspernatur numquam,
+                  sint sunt consequatur rerum aliquam odio!</p>
+                <p>Consectetur adipisicing elit. Debitis natus eum autem nisi cumque optio. Quis, necessitatibus laboriosam, alias, ea aut atque facere fugiat iusto tenetur minima itaque vero aperiam! Veniam exercitationem, distinctio laborum magnam rerum
+                  quia et commodi hic quis suscipit! Molestias, eaque. Incidunt, a, molestias! Veniam, nobis, recusandae.</p>
                 <blockquote class="with-icon">
-                 <strong><?php echo e($programs->tour_name); ?></strong>
-                <p><?php echo e($programs->tour_highlight); ?></p>
-                  <footer>Tour Duration: <cite title="Source Title"><?php echo e($programs->days); ?> Days, <?php echo e($programs->days -1); ?>  Night(s)</cite>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis laboriosam repudiandae eligendi illum vero cum corrupti impedit nihil, aliquid. Veniam!
+                  <footer>Someone famous in <cite title="Source Title">Source Title</cite>
                   </footer>
                 </blockquote>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, deleniti optio similique nobis.
+                </p>
+
               </div>
               <div class="col-sm-6">
                 <div class="border-box">
                   <br>
-                  <div class="box-title">Safari Overview</div>
+                  <div class="box-title">Trip Overview</div>
                   <ul class="trip-overview">
                     <li>
                       <span class="icon-road-sign"></span>
                       <div class="detail">
                         <div class="title">Trip profile</div>
-                        <div class="desc"><?php echo e($programs->days); ?> Days, <?php echo e($programs->days -1); ?>  Night(s)</div>
+                        <div class="desc">21 Day Trip 14 days point-to-point trekdiv nights</div>
                       </div>
                     </li>
-                   
+                    <li>
+                      <span class="icon-dollar"></span>
+                      <div class="detail">
+                        <div class="title">Cost</div>
+                        <div class="desc">USD 422</div>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="icon-camp-fire"></span>
+                      <div class="detail">
+                        <div class="title">Type</div>
+                        <div class="desc">Camping</div>
+                      </div>
+                    </li>
                     <li>
                       <span class="icon-barcode"></span>
                       <div class="detail">
-                        <div class="title">Tour Code</div>
-                        <div class="desc"><?php echo e($programs->tour_code); ?></div>
+                        <div class="title">Trip Code</div>
+                        <div class="desc">AD 23</div>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="icon-calendar"></span>
+                      <div class="detail">
+                        <div class="title">Trek Days</div>
+                        <div class="desc">18</div>
                       </div>
                     </li>
                     <li>
                       <span class="icon-door-tag "></span>
                       <div class="detail">
-                       <div class="title">Destinations</div>
-                        <div class="desc"> <?php $__currentLoopData = $datas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $destnation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                               <span class="text-primary " style="font-size: 12px; border-right:solid 1px #ddd; padding-right:2px"> <?php echo e($destnation->destination_name); ?></span>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></div>
+                        <div class="title">Accomodation</div>
+                        <div class="desc">6 Night hotel, 3 night Tea House</div>
                       </div>
                     </li>
                     <li>
                       <span class="icon-home"></span>
                       <div class="detail">
-                      
-                                                <div class="title">Accomodations</div>
-                        <div class="desc"> <?php $__currentLoopData = $datas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $accom): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                               <span class="text-primary " style="font-size: 12px; border-right:solid 1px #ddd; padding-right:2px"> <?php echo e($accom->accommodation_name); ?></span>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></div>
+                        <div class="title">Trek Accomodation</div>
+                        <div class="desc">6 Night hotel, 3 night Tea House</div>
                       </div>
                     </li>
                     <li>
                       <span class="icon-bus"></span>
                       <div class="detail">
                         <div class="title">Transportation</div>
-                        <div class="desc"><?php $__currentLoopData = $datas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $trans): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                               <span class="text-primary " style="font-size: 12px; border-right:solid 1px #ddd; padding-right:2px"> <?php echo e($trans->transport); ?></span>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></div>
+                        <div class="desc">Bus, Jeep</div>
                       </div>
                     </li>
                   </ul>
@@ -123,10 +143,9 @@
             </div>
           </div>
 
-
- <div class="tab-pane" id="itenary">
+          <div class="tab-pane" id="itenary">
             <div class="row">
-             <!--  <div class="col-sm-6">
+              <div class="col-sm-6">
                 <ul class="itenary-steps">
                   <li>
                     <div class="icon-plane"></div>
@@ -180,179 +199,136 @@
                     <div class="detail">Trip concludes</div>
                   </li>
                 </ul>
-              </div> -->
-                   <div class="col-md-12 col-sm-12">
-                <p class="card-text">
-                                            <?php echo e($programs->itinerary_summury); ?>
+              </div>
+              <div class="col-sm-6">
+                <br>
 
-                                            </p>
-                                            <?php $__currentLoopData = $datas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <div class="card card-primary booking-tourPadding">
-                                                <div class="card-header  booking-tourPadding"  style="background-color:Gray;">
-                                                <span><b> Day <?php echo e($data->day); ?> - <?php echo e($data->itinerary_title); ?>
+                <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading1One">
+                      <h4 class="panel-title">
 
-                                                 <?php if($data->day==1): ?>
-                                                 <i class="icon-plane"></i>
-                                                  <?php endif; ?>
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapse1One" aria-expanded="true" aria-controls="collapse1One">
 
-                                                     <?php if($data->day==$data->day-1): ?>
-                                                 <i class="icon-plane"></i>
-                                                  <?php endif; ?>
-                                                </b></span>
+                                                    Included
 
-                                                </div>
-                                                <div class="card-body">
-                                                
+                                                </a>
 
-                                                <div class="row masonry-item">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 masonry">
-                                       <div class="">
+                                            </h4>
+                    </div>
+                    <div id="collapse1One" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1One">
+                      <div class="panel-body">
+                        <ul class="clean-ul">
+                          <li><span class="icon-tick"></span>
+                            <div class="desc">All meals except main meals in Kathmandu</div>
+                          </li>
+                          <li><span class="icon-tick"></span>
+                            <div class="desc">All ground transport, airport transfers, and flights</div>
+                          </li>
+                          <li><span class="icon-tick"></span>
+                            <div class="desc">All accommodations</div>
+                          </li>
+                          <li><span class="icon-tick"></span>
+                            <div class="desc">Sightseeing in Kathmandu</div>
+                          </li>
+                          <li><span class="icon-tick"></span>
+                            <div class="desc">All applicable permits and entrance fees</div>
+                          </li>
+                          <li><span class="icon-tick"></span>
+                            <div class="desc">Full trek staff arrangements a Trek Leader and guides</div>
+                          </li>
+                          <li><span class="icon-tick"></span>
+                            <div class="desc">Porters or pack animals to carry equipments</div>
+                          </li>
+                          <li><span class="icon-tick"></span>
+                            <div class="desc">Use of Trek Pack</div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading1Two">
+                      <h4 class="panel-title">
 
-                                <div class="">
-                                <div class="col-lg-7">
-                                <div class="hotel-diss">
-                               <p class="booking-btn-gray"><?php echo e($data->itinerary_description); ?></p>   
-                                               
-                                                     
-                               <div class=""> 
-                                      <div class="col-md-12 col-lg-12 col-sm-12">
-                                        <p><b class="text-success">Distance:</b> <?php echo e($data->distance); ?> KM <b class="text-success">Transport:</b> <?php echo e($data->transport); ?></p>
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapse1Two" aria-expanded="false" aria-controls="collapse1Two">
 
-                                          <p><b class="text-success">Accommodation:</b> <?php echo e($data->accommodation_name); ?> | <b class="text-success">Meal Plan:</b> <?php echo e($data->meal); ?></p>
-                                      </div>           
-                                                                                 
-                                                  </div>
-                                                 </div>
-                                               </div>
-                                        <div class="col-lg-5">                           
-                                            <div class="hotel-pics-one">                                               <img src="<?php echo e(URL::asset('/storage/destination/'.$data->photo)); ?>" alt="" style="height: 32vh !important;width:100%">                                                                              </div> 
+                                                    Not Included
 
-                                                 </div>
-                                                 </div>
-                                                </div>
-                                                </div>
-                                                </div>
+                                                </a>
 
-                                        
-                                            </div>
-                                            </div>
-                                            <hr>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </h4>
+                    </div>
+                    <div id="collapse1Two" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1Two">
+                      <div class="panel-body">
+                        <ul class="clean-ul">
+                          <li><span class="icon-cross"></span>
+                            <div class="desc">Alcohol or Beverage</div>
+                          </li>
+                          <li><span class="icon-cross"></span>
+                            <div class="desc">Use of Trek Pack</div>
+                          </li>
+                          <li><span class="icon-cross"></span>
+                            <div class="desc">Group medical kit</div>
+                          </li>
+                          <li><span class="icon-cross"></span>
+                            <div class="desc">All major group equipments, etc.</div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+
+              </div>
             </div>
           </div>
 
-
- <div class="tab-pane" id="accomodation">
-            <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                
-               <?php $__currentLoopData = $datas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-     
-       <div class="card booking-tourPadding">   
-      <div class="card-header booking-tourPadding" style="background-color:#37533c;color:#fff">
-    <span><b>Day <?php echo e($data->day); ?> - <?php echo e($data->itinerary_title); ?></b></span>
-                     </div>          
-
-                        <div class="card-body">
-                       <div class="">
-                                <div class="col-lg-7">
-                                <div class="hotel-diss" style="background-color:#2e4432">
-                
-                               <div class="">                   
-                                <div class="col-md-6 col-lg-6 col-sm-12">                                   
-                                  <div class="rating">                     
-                                    <h4>Location Details</h4>                        
-                                  </div>                                                                        
-
-                                  <a class="map-viw" href="#"><i class="fa fa-map-marker"></i> <?php echo e($data->destination_name); ?></a> 
-                                     <a class="map-viw" href="#"><i class="fa fa-home"></i> <?php echo e($data->location_name); ?>/<?php echo e($data->region); ?>/<?php echo e($data->country); ?></a>    
-                                   </div>                                                                                                                           
-                                <div class="col-md-6 col-lg-6 col-sm-12 booking-tour">                             
-                                <div class="rating">                                                                       <h4>Accommodation Details</h4>                                                                       </div>  <a class="map-viw" href="#"><i class="fa fa-home"></i><b><?php echo e($data->accommodation_name); ?></b></a>      
-
-                                    <div>                            
-                                     <a class="map-viw" href="#"><i class="fa fa-home"></i><b>Standard Category: <br>  
-                                        <?php for($i=0;$i<$data->national_standard;$i++): ?>                                 
-                                        <span class="fa fa-star text-warning"></span>
-                                        <?php endfor; ?>
-                                         <?php for($i=0;$i<5-$data->national_standard;$i++): ?>   
-                                        <span class="fa fa-star-o text-warning"></span>
-                                           <?php endfor; ?>
-                                         </div></b></a>
- 
-                                       <a class="map-viw" href="#"><i class="fa fa-home"></i><b>Our Category</b>: <?php echo e($data->type); ?>:</a>
-                                       <a href="https://<?php echo e($data->url); ?>" class="btn btn-primary" role="button">View More</a>                                          </div>
-                                                  </div>
-                                                 </div>
-                                               </div>
-                                        <div class="col-lg-5">                  
-                                            <div class="hotel-pics-one">                                    
-                                            <img src="<?php echo e(URL::asset('/storage/uploads/'.$data->attachment)); ?>" alt="" style="height: 32vh !important;width:100%">        
-                                            </div>                   
-
-                                      </div>
-                               </div>                           
-                                </div>
-                                </div>  
-                                <hr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
-                </div>
+          <div class="tab-pane" id="dateprice">
+            <div class="table-responsive-wrap">
+              <table class="table table-responsive">
+                <thead>
+                  <tr>
+                    <th>Trip Dates</th>
+                    <th>Availability</th>
+                    <th>Discount</th>
+                    <th>Price</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>12 July to 18 July 2015</td>
+                    <td>Yes</td>
+                    <td>3%</td>
+                    <td><b>USD 239</b>
+                    </td>
+                    <td><a href="" class="btn btn-primary"> Book Now</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>12 July to 18 July 2015</td>
+                    <td>No</td>
+                    <td>3%</td>
+                    <td><b>USD 239</b>
+                    </td>
+                    <td><a href="" class="btn btn-default"> Book Now</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>12 July to 18 July 2015</td>
+                    <td>Yes</td>
+                    <td><i>with Promotional Code</i>
+                    </td>
+                    <td><b>USD 239</b>
+                    </td>
+                    <td><a href="" class="btn btn-primary"> Book Now</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </div>
-
-
-
-
-
-
-
-
-
-          <div class="tab-pane" id="inclusive">
-            
-
-
-   <div class="row">                   
-                                <div class="col-md-6 col-lg-6 col-sm-12">                                   
-                                  <div class="rating">                                                                      <h4>Not Inclusive</h4>                        
-                                  </div>                                
-   <?php $__currentLoopData = $inclusives; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $inclusive): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>    
-                                  <div class="form-check">
-   <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled>
-  <label class="form-check-label" for="flexCheckDisabled">
-   <?php echo e($inclusive->inclusive); ?>
-
-  </label>
-</div>
-     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                              
-    </div>  
-      <div class="col-lg-5">  
-                                            <div class="rating">    
-                                                <h4>Inclusive</h4>                                                           
-
-                                            </div>                                        <?php $__currentLoopData = $assignLists; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $assignList): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-  <label class="form-check-label" for="flexCheckChecked">
-   <?php echo e($assignList->inclusive); ?>
-
-  </label>
-</div>  
-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                  
-                                                    
-                                </div>  
-
-
-
-                                                  </div>
-
-
-
-
-
-
-            <hr>
           </div>
 
           <div class="tab-pane" id="reveiws">
@@ -428,7 +404,7 @@
            <div class="row">
                <div class="col-sm-12 col-md-12 float-right">
                 <div class="float-right">
-   <button type="button" class="btn btn-primary hvr-sweep-to-right" data-toggle="modal" data-target="#bookNow">Book Now</button>
+   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bookNow">Book Now</button>
 
   </div>
   </div>
@@ -446,42 +422,99 @@
       </div>
       <div class="row item">
 
- <?php $__currentLoopData = $same_programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $extra_prog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
         <div class="col-sm-6 col-md-4">
           <div class="item-grid">
-            <div class="item-img" style="background-image: url('<?php echo e(URL::asset('/storage/uploads/'.$extra_prog->attachment)); ?>');">
+            <div class="item-img" style="background-image: url('http://placehold.it/370x260');">
               <div class="item-overlay">
                 <a href=""><span class="icon-binocular"></span></a>
               </div>
             </div>
-            <div class="item-desc" style="background-color:#345742;">
+            <div class="item-desc">
               <div class="item-info">
                 <span class="icon-hard"></span>
-                <h4 class="title"><a href=""><?php echo e($extra_prog->tour_name); ?></a></h4>
+                <h4 class="title"><a href="">Routeburn Track</a></h4>
               </div>
 
               <div class="sub-title">
-                <span class="location">Tour Category: <?php echo e($extra_prog->category); ?></span>
-                <span class="grade"> Physical rating: <?php echo e($extra_prog->style); ?></span>
+                <span class="location">New Zealand</span>
+                <span class="grade">Difficult</span>
               </div>
 
               <div class="item-detail">
                 <div class="left">
-                  <div class="day"><span class="icon-sun"></span><?php echo e($extra_prog->days); ?> Days, <?php echo e($extra_prog->days -1); ?>  Night(s)</div>
-                  <div class="night"><span class="icon-moon"></span>Tour Code: <?php echo e($extra_prog->tour_code); ?></div>
+                  <div class="day"><span class="icon-sun"></span>3 Days</div>
+                  <div class="night"><span class="icon-moon"></span>2 Nights</div>
                 </div>
                 <div class="right">
-                  
-                  <div class="price"><span class="icon-dollar"><?php echo e(number_format($extra_prog->price,2)); ?></span></div>
-                  <a href="/safaris/<?php echo e($extra_prog->id); ?>" class="btn btn-primary hvr-sweep-to-right">Book Now</a>
+                  <div class="price">USD 121</div>
+                  <a href="#" class="btn btn-primary hvr-sweep-to-right">Book Now</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="item-grid">
+            <div class="item-img" style="background-image: url('http://placehold.it/370x260');">
+              <div class="item-overlay">
+                <a href=""><span class="icon-binocular"></span></a>
+              </div>
+            </div>
+            <div class="item-desc">
+              <div class="item-info">
+                <span class="icon-hard"></span>
+                <h4 class="title"><a href="">Fitz Roy Trek</a></h4>
+              </div>
 
-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              <div class="sub-title">
+                <span class="location">Patagonia, Argentina</span>
+                <span class="grade">Difficult</span>
+              </div>
 
+              <div class="item-detail">
+                <div class="left">
+                  <div class="day"><span class="icon-sun"></span>3 Days</div>
+                  <div class="night"><span class="icon-moon"></span>2 Nights</div>
+                </div>
+                <div class="right">
+                  <div class="price">USD 121</div>
+                  <a href="#" class="btn btn-primary hvr-sweep-to-right">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="item-grid">
+            <div class="item-img" style="background-image: url('http://placehold.it/370x260');">
+              <div class="item-overlay">
+                <a href=""><span class="icon-binocular"></span></a>
+              </div>
+            </div>
+            <div class="item-desc">
+              <div class="item-info">
+                <span class="icon-hard"></span>
+                <h4 class="title"><a href="">Annapurna Circuit</a></h4>
+              </div>
+
+              <div class="sub-title">
+                <span class="location">Nepal</span>
+                <span class="grade">Difficult</span>
+              </div>
+
+              <div class="item-detail">
+                <div class="left">
+                  <div class="day"><span class="icon-sun"></span>3 Days</div>
+                  <div class="night"><span class="icon-moon"></span>2 Nights</div>
+                </div>
+                <div class="right">
+                  <div class="price">USD 121</div>
+                  <a href="#" class="btn btn-primary hvr-sweep-to-right">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
  
@@ -553,12 +586,12 @@
   <div class="preview-wrap">
            
             <div class="form-wrap">
-                <h4 id="heading">Booking Form:<span style="color:green"><?php echo e($programs->tour_name); ?></span></h4>
-                <!-- <form  method="post" id="post_form" action="<?php echo e(route('tourForm.store')); ?>"> -->
+                <h4 id="heading">Booking Form:<span style="color:green">{{$programs->tour_name}}</span></h4>
+                <!-- <form  method="post" id="post_form" action="{{ route('tourForm.store') }}"> -->
                 
 
-                <form id="msform"  method="post"  action="<?php echo e(route('tourForm.store')); ?>" class="registration-form">
-                    <?php echo csrf_field(); ?>
+                <form id="msform"  method="post"  action="{{ route('tourForm.store') }}" class="registration-form">
+                    @csrf
                    
                <!-- progressbar -->
                     <ul id="progressbar">
@@ -583,278 +616,14 @@
                            
 
  <div class="form-group">
-            <?php if($discounts !=null): ?>
-           <input type="hidden" class="form-control" name="unit_price" value="<?php echo e($discounts->new_price); ?>">
-             <?php else: ?>
-              <input type="hidden" class="form-control" name="unit_price" value="<?php echo e($programs->price); ?>">
-             <?php endif; ?>       
+            @if($discounts !=null)
+           <input type="hidden" class="form-control" name="unit_price" value="{{$discounts->new_price}}">
+             @else
+              <input type="hidden" class="form-control" name="unit_price" value="{{$programs->price}}">
+             @endif       
                             
-             <input type="hidden" class="form-control" name="tour_name" value="<?php echo e($programs->tour_name); ?>">
-            <input type="hidden" class="form-control" name="currency" value="<?php echo e($programs->currency); ?>">
-        </div>
-
-
-                        <!--  <input type="text" name="first_name" placeholder="first name" /> 
-                           <input type="text" name="last_name" placeholder="last name" /> 
-
-
- -->
-           
-             <div class="form-group">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <input type="text" name="first_name" placeholder="first name" /> 
-                    
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                           <input type="text" name="last_name" placeholder="last name" /> 
-                                    </div>
-                                </div>
-  </div>
-
-
-                              <!-- <label class="fieldlabels">Phone: *</label> -->
-                               <input type="text" name="phone" placeholder="Phone(+00 00 000 000)"/>                                 
-                            <input type="email" name="email" placeholder="email"/> 
-
-                             <input type="text" name="country" placeholder="Nationality" /> 
-
-                        </div> 
-                             <button type="button" class="close float-left" data-dismiss="modal" style="background-color:#b32121;padding: 8px 30px;">Close</button>
-                        <input type="button" name="next" class="next action-button" value="Next" />
-                    </fieldset>
-                    <fieldset>
-
-                            <div class="form-card">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4 class="fs-title">Tour Information:|Step 2 - 4</h4>
-                                </div>
-                             </div>
-
-                       
-          
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                   <label for="">Travel Date:</label>
-                                    <div class="form-group">
-                                        <input type="date" name="travel_date" id="travel_date" class="form-control" placeholder="From" value="">
-                    
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                   <label for="">Adults (>16 yrs):</label>
-                                    <div class="form-group">
-                                        <input type="number" class="zt-control" name="adults" min="0" value="1">
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                   <label for="">Teens (12-14 yrs):</label>
-                                    <div class="form-group">
-                                        <input type="number" class="zt-control" name="teens" min="0" value="0">
-                                    </div>
-                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                   <label for="">Children (5-12 yrs):</label>
-                                    <div class="form-group">
-                                        <input type="number" class="zt-control" name="children" min="0" value="0">
-                                    </div>
-                                 </div>
- 
-
- <div class="col-md-12">
-        <div class="form-group">
-            <label for="">Tour type:</label>
-                   <input type="hidden" class="form-control" placeholder=""  name="tour_id" value="<?php echo e($programs->program_id); ?>" readonly="true">
-          <input type="text" class="form-control" placeholder=""  name="tour_type" value="<?php echo e($programs->category); ?>" readonly="true">
-        </div>
-    </div>
-                  
-            
-
-                        </div> 
-
-                             <button type="button" class="close float-left" data-dismiss="modal" style="background-color:#b32121;padding: 8px 30px;">Close</button>
-
-                        <input type="button" name="previous" class="previous action-button-previous float-left" value="Previous" />
-                        <input type="button" name="next" class="next action-button float-right" value="Next" /> 
-                    </fieldset>
-                    <fieldset>
-                        <div class="form-card">
-                                <div class="col-12">
-                                    <h4 class="fs-title">Other Information:|Step 3 - 4</h4>                               
-</div>
-
-
-             
-              <div class="col-md-6">
-                       
-                                 <label for="">Tour Addon:</label>
-                                   
-                                                        <select class="selectpicker search-fields form-control" name="addon">
-              <option value="0" selected>None</option>
-              <?php $__currentLoopData = $addons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $addon): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <option value="<?php echo e($addon->price); ?>"><?php echo e($addon->addon_name); ?> - <?php echo e($addon->days); ?> days / $<?php echo e($addon->price); ?></option>
-              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-          </select>
-                                </div>
-
-               <div class="col-md-6"> 
-                           
-                                   <label for="">Accommodation:</label>
-                                   
-                                       <select class="form-control" name="accomodation">
-                                            <option value="0">--Select Accomodation--</option>
-                                            <option>Basic</option>
-                                             <option>Comfort</option>
-                                              <option>Deluxe</option>
-                                               <option>Mix</option>
-                                                <option>Not Sure</option>
-                                           
-                                        </select>
-                                   
-                                </div>                
-    <div class="col-md-12">
-                <div class="form-group">
-                    <label for="">  Additional Information we should know?</label>
-
-         <textarea class="form-control" id="" cols="2" rows="1" name="additional_information" placeholder="Type your additional information here..."></textarea>
-        </div>
-     </div>
-
-
-     <div class="col-md-12">
-        <div class="form-group">
-            <label for=""> How did you hear about us?:</label>
-
-       <div class="form-group">
-           <label for="facebook">Facebook
-          <input id="facebook" type="checkbox" class="zt-control"  name="hear[]" value="Facebook">
-        </label>
-        <label for="instagram">Instagram
-          <input id="instagram" type="checkbox" class="zt-control"  name="hear[]" value="Instagram">
-        </label>
-          <label for="google">Google
-          <input id="google" type="checkbox" class="zt-control"  name="hear[]" value="Google">
-        </label>
-          <label for="mouth">Word of Mouth
-          <input  id="mouth" type="checkbox" class="zt-control"  name="hear[]" value="Word of Mouth">
-        </label>
-        </div>
-        </div>
-  </div>
-
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="form-group">
-        <label for=""> Other Media:</label>
-           <input type="text" class="form-control" name="hear_about_us">
-        </div>
-        </div> 
-                          </div> 
-                             
-                                           
-                        <button type="button" class="close float-left" data-dismiss="modal" style="background-color:#b32121;padding: 8px 30px;">Close</button>
-                         <input type="button" name="previous" class="previous action-button-previous float-left" value="Previous" />
-                           <button type="submit" class="btn btn-success float-right btn-submit" style="padding: 8px 30px;">Submit</button>
-                    </fieldset>
-                    <fieldset>
-                        <div class="form-card">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4 class="fs-title">Finish:| Step 4 - 4</h4>
-                                </div>
-                            </div> <br>
-                            <h2 class="purple-text text-center"><strong>Success!</strong></h2> <br>
-                            <div class="row justify-content-center">
-                                <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> </div>
-                            </div> <br><br>
-                            <div class="row justify-content-center">
-                                <div class="col-7 text-center">
-                                    <h5 class="purple-text text-center">You Have Successfully submitted</h5>
-                                </div>
-                            </div>
-                        </div>
-
-                    </fieldset>
-                        
-                </form>
-            </div>
-        </div>              
-
-                </div>
-                <div class="modal-footer">
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-
-
-
-
-    <div class="modal fade modal-book-now" id="bookNow" tabindex="-1" role="dialog" style="margin-top:50px;">
- 
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-          </button>
-
-
-          <!-- <h4 class="modal-title"><b><?php echo e($programs->tour_name); ?></b></h4> -->
-        </div>
-        <div class="modal-body">
-
-          <div class="preview-wrap">
-           
-            <div class="form-wrap">
-                <h4 id="heading">Booking Form:<span style="color:green"><?php echo e($programs->tour_name); ?></span></h4>
-                <!-- <form  method="post" id="post_form" action="<?php echo e(route('tourForm.store')); ?>"> -->
-                
-
-                <form id="msform"  method="post"  action="<?php echo e(route('tourForm.store')); ?>" class="registration-form">
-                    <?php echo csrf_field(); ?>
-                   
-               <!-- progressbar -->
-                    <ul id="progressbar">
-                      <li class="active" id="account"><strong>Step 1:</strong></li>
-                        <li id="personal"><strong>Step 2:</strong></li>
-                        <li id="payment"><strong>Step 3:</strong></li>
-                        <li id="confirm"><strong>Finish</strong></li>
-                    </ul>
-                      <div class="alert alert-danger print-error-msg" style="display:none">
-                        <ul></ul>
-                    </div> 
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> <br> <!-- fieldsets -->
-                    <fieldset>
-                        <div class="form-card">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4 class="fs-title">Personal Details:| Step 1 - 4</h4>
-                                </div>                                
-                            </div> 
-                           
-
- <div class="form-group">
-            <?php if($discounts !=null): ?>
-           <input type="hidden" class="form-control" name="unit_price" value="<?php echo e($discounts->new_price); ?>">
-             <?php else: ?>
-              <input type="hidden" class="form-control" name="unit_price" value="<?php echo e($programs->price); ?>">
-             <?php endif; ?>       
-                            
-             <input type="hidden" class="form-control" name="tour_name" value="<?php echo e($programs->tour_name); ?>">
-            <input type="hidden" class="form-control" name="currency" value="<?php echo e($programs->currency); ?>">
+             <input type="hidden" class="form-control" name="tour_name" value="{{ $programs->tour_name }}">
+            <input type="hidden" class="form-control" name="currency" value="{{ $programs->currency }}">
         </div>
 
 
@@ -936,8 +705,8 @@
  <div class="col-md-12">
         <div class="form-group">
             <label for="">Tour type:</label>
-                   <input type="hidden" class="form-control" placeholder=""  name="tour_id" value="<?php echo e($programs->program_id); ?>" readonly="true">
-          <input type="text" class="form-control" placeholder=""  name="tour_type" value="<?php echo e($programs->category); ?>" readonly="true">
+                   <input type="hidden" class="form-control" placeholder=""  name="tour_id" value="{{$programs->program_id}}" readonly="true">
+          <input type="text" class="form-control" placeholder=""  name="tour_type" value="{{$programs->category}}" readonly="true">
         </div>
     </div>
 
@@ -966,9 +735,278 @@
                                    
                                                         <select class="selectpicker search-fields form-control" name="addon">
               <option value="0" selected>None</option>
-              <?php $__currentLoopData = $addons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $addon): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <option value="<?php echo e($addon->price); ?>"><?php echo e($addon->addon_name); ?> - <?php echo e($addon->days); ?> days / $<?php echo e($addon->price); ?></option>
-              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              @foreach ($addons as $addon)
+            <option value="{{ $addon->price }}">{{ $addon->addon_name }} - {{ $addon->days }} days / ${{ $addon->price }}</option>
+              @endforeach
+          </select>
+                                </div>
+
+               <div class="col-md-6"> 
+                           
+                                   <label for="">Accommodation:</label>
+                                   
+                                       <select class="form-control" name="accomodation">
+                                            <option value="0">--Select Accomodation--</option>
+                                            <option>Basic</option>
+                                             <option>Comfort</option>
+                                              <option>Deluxe</option>
+                                               <option>Mix</option>
+                                                <option>Not Sure</option>
+                                           
+                                        </select>
+                                   
+                                </div>                
+    <div class="col-md-12">
+                <div class="form-group">
+                    <label for="">  Additional Information we should know?</label>
+
+         <textarea class="form-control" id="" cols="2" rows="1" name="additional_information" placeholder="Type your additional information here..."></textarea>
+        </div>
+     </div>
+
+
+     <div class="col-md-12">
+        <div class="form-group">
+            <label for=""> How did you hear about us?:</label>
+
+       <div class="form-group">
+           <label for="facebook">Facebook
+          <input id="facebook" type="checkbox" class="zt-control"  name="hear[]" value="Facebook">
+        </label>
+        <label for="instagram">Instagram
+          <input id="instagram" type="checkbox" class="zt-control"  name="hear[]" value="Instagram">
+        </label>
+          <label for="google">Google
+          <input id="google" type="checkbox" class="zt-control"  name="hear[]" value="Google">
+        </label>
+          <label for="mouth">Word of Mouth
+          <input  id="mouth" type="checkbox" class="zt-control"  name="hear[]" value="Word of Mouth">
+        </label>
+        </div>
+        </div>
+  </div>
+
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group">
+        <label for=""> Other Media:</label>
+           <input type="text" class="form-control" name="hear_about_us">
+        </div>
+        </div> 
+                                </div>
+                          </div> 
+                             
+                                           
+                        <button type="button" class="close float-left" data-dismiss="modal" style="background-color:#b32121;padding: 8px 30px;">Close</button>
+                         <input type="button" name="previous" class="previous action-button-previous float-left" value="Previous" />
+                           <button type="submit" class="btn btn-success float-right btn-submit" style="padding: 8px 30px;">Submit</button>
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="fs-title">Finish:| Step 4 - 4</h4>
+                                </div>
+                            </div> <br>
+                            <h2 class="purple-text text-center"><strong>Success!</strong></h2> <br>
+                            <div class="row justify-content-center">
+                                <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> </div>
+                            </div> <br><br>
+                            <div class="row justify-content-center">
+                                <div class="col-7 text-center">
+                                    <h5 class="purple-text text-center">You Have Successfully submitted</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                        
+                </form>
+            </div>
+        </div>              
+
+                </div>
+                <div class="modal-footer">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+    <div class="modal fade modal-book-now" id="bookNow" tabindex="-1" role="dialog" style="margin-top:50px;">
+ 
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+          </button>
+
+
+          <!-- <h4 class="modal-title"><b>{{$programs->tour_name}}</b></h4> -->
+        </div>
+        <div class="modal-body">
+
+          <div class="preview-wrap">
+           
+            <div class="form-wrap">
+                <h4 id="heading">Booking Form:<span style="color:green">{{$programs->tour_name}}</span></h4>
+                <!-- <form  method="post" id="post_form" action="{{ route('tourForm.store') }}"> -->
+                
+
+                <form id="msform"  method="post"  action="{{ route('tourForm.store') }}" class="registration-form">
+                    @csrf
+                   
+               <!-- progressbar -->
+                    <ul id="progressbar">
+                      <li class="active" id="account"><strong>Step 1:</strong></li>
+                        <li id="personal"><strong>Step 2:</strong></li>
+                        <li id="payment"><strong>Step 3:</strong></li>
+                        <li id="confirm"><strong>Finish</strong></li>
+                    </ul>
+                      <div class="alert alert-danger print-error-msg" style="display:none">
+                        <ul></ul>
+                    </div> 
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> <br> <!-- fieldsets -->
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="fs-title">Personal Details:| Step 1 - 4</h4>
+                                </div>                                
+                            </div> 
+                           
+
+ <div class="form-group">
+            @if($discounts !=null)
+           <input type="hidden" class="form-control" name="unit_price" value="{{$discounts->new_price}}">
+             @else
+              <input type="hidden" class="form-control" name="unit_price" value="{{$programs->price}}">
+             @endif       
+                            
+             <input type="hidden" class="form-control" name="tour_name" value="{{ $programs->tour_name }}">
+            <input type="hidden" class="form-control" name="currency" value="{{ $programs->currency }}">
+        </div>
+
+
+                        <!--  <input type="text" name="first_name" placeholder="first name" /> 
+                           <input type="text" name="last_name" placeholder="last name" /> 
+
+
+ -->
+           
+             <div class="row form-group">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" placeholder="first name" /> 
+                    
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                           <input type="text" name="last_name" placeholder="last name" /> 
+                                    </div>
+                                </div>
+  </div>
+
+
+                              <!-- <label class="fieldlabels">Phone: *</label> -->
+                               <input type="text" name="phone" placeholder="Phone(+00 00 000 000)"/>                                 
+                            <input type="email" name="email" placeholder="email"/> 
+
+                             <input type="text" name="country" placeholder="Nationality" /> 
+
+                        </div> 
+                             <button type="button" class="close float-left" data-dismiss="modal" style="background-color:#b32121;padding: 8px 30px;">Close</button>
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+                    <fieldset>
+
+                            <div class="form-card">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="fs-title">Tour Information:|Step 2 - 4</h4>
+                                </div>
+                             </div>
+
+                       
+             <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                   <label for="">Travel Date:</label>
+                                    <div class="form-group">
+                                        <input type="date" name="travel_date" id="travel_date" class="form-control" placeholder="From" value="">
+                    
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                   <label for="">Adults (>16 yrs):</label>
+                                    <div class="form-group">
+                                        <input type="number" class="zt-control" name="adults" min="0" value="1">
+                                    </div>
+                                </div>
+  </div>
+
+                                <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                   <label for="">Teens (12-14 yrs):</label>
+                                    <div class="form-group">
+                                        <input type="number" class="zt-control" name="teens" min="0" value="0">
+                                    </div>
+                                 </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                   <label for="">Children (5-12 yrs):</label>
+                                    <div class="form-group">
+                                        <input type="number" class="zt-control" name="children" min="0" value="0">
+                                    </div>
+                                 </div>
+  </div>
+
+<div class="row">
+ <div class="col-md-12">
+        <div class="form-group">
+            <label for="">Tour type:</label>
+                   <input type="hidden" class="form-control" placeholder=""  name="tour_id" value="{{$programs->program_id}}" readonly="true">
+          <input type="text" class="form-control" placeholder=""  name="tour_type" value="{{$programs->category}}" readonly="true">
+        </div>
+    </div>
+
+                                 </div>                    
+            
+
+                        </div> 
+
+                             <button type="button" class="close float-left" data-dismiss="modal" style="background-color:#b32121;padding: 8px 30px;">Close</button>
+
+                        <input type="button" name="previous" class="previous action-button-previous float-left" value="Previous" />
+                        <input type="button" name="next" class="next action-button float-right" value="Next" /> 
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="fs-title">Other Information:|Step 3 - 4</h4>                               
+</div>
+
+
+             
+              <div class="col-md-6">
+                       
+                                 <label for="">Tour Addon:</label>
+                                   
+                                                        <select class="selectpicker search-fields form-control" name="addon">
+              <option value="0" selected>None</option>
+              @foreach ($addons as $addon)
+            <option value="{{ $addon->price }}">{{ $addon->addon_name }} - {{ $addon->days }} days / ${{ $addon->price }}</option>
+              @endforeach
           </select>
                                 </div>
 
@@ -1189,6 +1227,4 @@ return false;
 
 });
 </script>    
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('website.layouts.apps', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\isolf\resources\views/website/tour/tourSummary.blade.php ENDPATH**/ ?>
+@endsection

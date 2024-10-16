@@ -165,7 +165,7 @@ $base_price=($response_object->rates->TZS/$response_object->rates->$currency);
 
  // $defaultCurrency2=($response_object->rates->$currency);
     $to_bepaid = round(($amount * $base_price), 2);
-     dd($to_bepaid);
+     //dd($to_bepaid);
     
     }
     catch(Exception $e) {
@@ -260,7 +260,20 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
        $cust_id=$id;
        $cust=invoice::where('customer_id',$cust_id)->first();
        // dd($cust);
-        $id=$cust->tour_id;   
+
+        if($cust==null)
+        {
+            return redirect()->back()->with('info','Tour ID is Null ...! Trace 2 Payment controller');
+
+        }
+        else{
+               $id=$cust->tour_id;
+               if($id==0)
+        {
+            return redirect()->back()->with('info','Tour ID is 0 ...! Trace  Payment controller');
+
+        }   
+        }
 
           $discounts=specialOffer::where('tour_id',$id)->first();
              $tourInvoice=invoice::where('tour_id',$id)->first();

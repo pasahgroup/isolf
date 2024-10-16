@@ -2,7 +2,6 @@
 @extends('website.layouts.apps')
 @section('content')
 
-
   <section class="bg-gray">
         <div class="container">
             <div class="package-list-wrap ">

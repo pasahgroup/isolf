@@ -135,12 +135,13 @@
          <textarea rows="2" name="driving_license"  maxlength="120"  placeholder="List here separate by comma ..." style="width:  100%" ></textarea>
         </div>
      </div>
-     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                               
-                                     <label for="">Language(Mother Tongue):</label>
-                                     <div class="form-group icon_down">
-                                        <select class="form-control" name="language">
-                                              <option value="0">--Speaking Language--</option>
+
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> 
+  <strong>Language(Mother Tongue):</strong>
+    <label for="browser" class="form-label">Choose the language from the list:</label>
+    <input class="form-control" list="languages" name="language" id="language">
+    <datalist id="languages">
+         <option value="0">--Speaking Language--</option>
                                             <option value="English">English</option>
                                             <option value="France">France</option>
                                               <option value="Germany">Germany</option>
@@ -152,14 +153,13 @@
                                             <option value="Chinese">Chinese</option>
                                                 <option value="Swahili">Swahili</option>
                                               <option value="Other">Other Language</option>
-                                        </select>
-                                    </div>
-                                </div>
-            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+    </datalist> 
+</div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <label for="">Other languages we should know(French,Spain,chinese etc.)?</label>
-                <div class="form-group">                 
+                <div class="form-group">    
+          <input class="form-control" name="other_language" id="other_language" placeholder="List here separate by comma...">
 
-         <textarea rows="2" name="other_language"  maxlength="120" placeholder="List here separate by comma..." style="width:  100%"></textarea>
         </div>
         </div>
 

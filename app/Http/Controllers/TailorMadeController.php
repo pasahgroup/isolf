@@ -18,6 +18,8 @@ use App\Models\itinerary_day;
 use App\Models\accommodationInclusive;
 use App\Models\people_percent;
 use App\Models\specialOffer;
+use Mail;
+use Illuminate\Support\Facades\Route;
 
 use App\Models\departures;
 use App\Models\buyaddons;
@@ -121,7 +123,7 @@ $status="Active";
      $start_datef=date('Y-m-d', strtotime($start_date));
        $end_date=date('Y-m-d', strtotime($start_date. ' + '.$days.' days'));
 
-        $tailorMadeSummary = tailorMade::UpdateOrCreate([
+        $datas = tailorMade::UpdateOrCreate([
         'first_name'=>request('first_name'),
         'last_name'=>request('last_name'),
         'nationality'=>request('nationality'),
@@ -150,7 +152,7 @@ $status="Active";
          if($hear_from !=null){
         foreach ($hear_from as $hears) {
         $tourhearfrom = tourEquerySocialMedia::create([
-        'tour_equery_id'=>$tailorMadeSummary->id,
+        'tour_equery_id'=>$datas->id,
         'social_name'=>$hears,
         'from_name'=>'tailor_made'
         
@@ -160,7 +162,7 @@ $status="Active";
 
         //Install into invoices
          $tourcostsummary = invoice::UpdateOrCreate([
-        'customer_id'=>$tailorMadeSummary->id,
+        'customer_id'=>$datas->id,
         'tour_id'=>0,
         'unit_price'=>0.00,
         'children_cost'=>0.00,
@@ -175,7 +177,49 @@ $status="Active";
         ]);
 
 }
+//dd(request('company_name'));
+$currentPath= Route::getFacadeRoot()->current()->uri();
+$currentPath_root= $request->root();
+$uri = $request->fullUrl();
+
+//dd($currentPath_url);
 //Send PIN to customer Email
+$company_name=request('company_name');
+$date=date('d-M-Y');
+// $data["email"] = "palatialtours@gmail.com";
+$data["email"] = request('email');
+// $data["email"] ="buruwawa@gmail.com";
+
+// $data["title"] = "ITINERARY ".$tour_addon;
+$data["title"] = "TAILOR MADE WITH ".' '.$company_name;
+$data["uri"] =$currentPath_root.'/tailorClientForm';
+
+$data["body"] = "Manyara Best View Hotel: Daily General Inspection Report held on $date";
+$data["date"] = "Date: $date";
+
+// $arrayName =$socialmedia;
+$data['socialmedia'] ="facebook";
+$data['datas'] =$datas; 
+$data['programs'] ="Program 1";
+
+
+$files = [
+//app_path('reports/pieChart.pdf'),
+
+// app_path().'/reports/itinerayReportf.pdf',
+// public_path('files/reports.png'),
+];
+
+  //SendMailJobf::dispatch($data);
+ //dd('try34');
+Mail::send('website.emails.email_send_pin',$data, function($message)use($data, $files) {
+$message->to($data["email"], $data["email"])
+        ->subject($data["title"]);
+foreach ($files as $file){
+    $message->attach($file);
+}
+});
+
     return redirect()->back()->with('success','SuccessfulSubmitted');
     }
 
@@ -513,16 +557,28 @@ $adults_cost=$unit_price * $adults;
               //Verify if the pin exists
           $pin=request('pin');
          // dd($pin);
+          
           $tailorMades = tailorMade::
-            where('tailor_mades.pin',$pin)
-          ->where('tailor_mades.status','Active')->first();        
+            where('tailor_mades.pin',$pin)->first(); 
+
+            //dd($tailorMades);
+          // ->where('tailor_mades.status','Active')->first();        
+           
            if($tailorMades==null)
            {
-            return 'Enter your PIN No Or Your PIN No is Expired Or Not Exists';
+            // return 'Enter your PIN No Or Your PIN No is Expired Or Not Exists';
+               return redirect()->back()->with('error','Your tailor PIN Number does not Exists');
            }
            else
            {
-            $id=$tailorMades->id;
+             if($tailorMades->status=="Inactive")
+           {
+             return redirect()->back()->with('error','Your tailor PIN Number has been already Expired');
+           }else
+           {
+             $id=$tailorMades->id;
+           }
+           
            }
            
            $tour_addon='tailor_made';          
@@ -558,7 +614,8 @@ $adults_cost=$unit_price * $adults;
 
          if($datas == "[]"){          
             $destinations = destination::get();
-            return ($programs->full_name.' Ops your tailor made still on Progess....');
+              return redirect()->back()->with('info',$programs->full_name.' Ops your tailor made still on Progess....');
+            // return ($programs->full_name.' Ops your tailor made still on Progess....');
           };
 
         $basic=tailorMade::join('attachments','attachments.destination_id','tailor_mades.id')
@@ -569,7 +626,7 @@ $adults_cost=$unit_price * $adults;
            $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
         ->where('accommodation_inclusives.tour_id',$id)->get();
 //dd($programs);
-        return view('website.tailorMade.tailorMadeSummary',compact('datas','id','programs','basic','inclusives','assignLists'));
+        return view('website.tailorMade.tailorMadeSummary',compact('datas','id','programs','basic','inclusives','assignLists','pin'));
     }
  
     /**

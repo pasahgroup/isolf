@@ -48,7 +48,10 @@
           </li>
           <li class=""><a href="#itenary" data-toggle="tab">Itenary</a>
           </li>
-          <li class=""><a href="#dateprice" data-toggle="tab">Date &amp; Price</a>
+           <li class=""><a href="#accomodation" data-toggle="tab">Accomodation</a>
+          </li>
+
+           <li class=""><a href="#inclusive" data-toggle="tab">Inclusive</a>
           </li>
           <li class=""><a href="#reveiws" data-toggle="tab">Reviews</a>
           </li>
@@ -59,82 +62,60 @@
           <div class="tab-pane active" id="overview">
             <div class="row">
               <div class="col-sm-6">
-                <h3>Rediscover lost Sangrila</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id aut similique voluptas! Tenetur aperiam alias, officiis, perferendis accusamus, sint, error possimus quas repellendus facilis asperiores dolorem. Nostrum maiores laudantium possimus
-                  consequatur quam. Dolores placeat laudantium similique, beatae animi, vel reprehenderit! Quisquam veniam laudantium ullam eaque! Error ex cumque iure aliquam commodi voluptatibus, animi quam quas maiores, deserunt rerum, provident consequuntur!</p>
-                <p>Dolor sit amet, consectetur adipisicing elit. Incidunt consequatur iusto odio quis magnam, aut assumenda ipsa magni ea, veritatis, nostrum rerum necessitatibus excepturi eos et nemo iste? Illo temporibus mollitia ducimus aspernatur numquam,
-                  sint sunt consequatur rerum aliquam odio!</p>
-                <p>Consectetur adipisicing elit. Debitis natus eum autem nisi cumque optio. Quis, necessitatibus laboriosam, alias, ea aut atque facere fugiat iusto tenetur minima itaque vero aperiam! Veniam exercitationem, distinctio laborum magnam rerum
-                  quia et commodi hic quis suscipit! Molestias, eaque. Incidunt, a, molestias! Veniam, nobis, recusandae.</p>
+               
                 <blockquote class="with-icon">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis laboriosam repudiandae eligendi illum vero cum corrupti impedit nihil, aliquid. Veniam!
-                  <footer>Someone famous in <cite title="Source Title">Source Title</cite>
+                 <strong>{{ $programs->tour_name }}</strong>
+                <p>{{ $programs->tour_highlight }}</p>
+                  <footer>Tour Duration: <cite title="Source Title">{{$programs->days}} Days, {{$programs->days -1}}  Night(s)</cite>
                   </footer>
                 </blockquote>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, deleniti optio similique nobis.
-                </p>
-
               </div>
               <div class="col-sm-6">
                 <div class="border-box">
                   <br>
-                  <div class="box-title">Trip Overview</div>
+                  <div class="box-title">Safari Overview</div>
                   <ul class="trip-overview">
                     <li>
                       <span class="icon-road-sign"></span>
                       <div class="detail">
                         <div class="title">Trip profile</div>
-                        <div class="desc">21 Day Trip 14 days point-to-point trekdiv nights</div>
+                        <div class="desc">{{$programs->days}} Days, {{$programs->days -1}}  Night(s)</div>
                       </div>
                     </li>
-                    <li>
-                      <span class="icon-dollar"></span>
-                      <div class="detail">
-                        <div class="title">Cost</div>
-                        <div class="desc">USD 422</div>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="icon-camp-fire"></span>
-                      <div class="detail">
-                        <div class="title">Type</div>
-                        <div class="desc">Camping</div>
-                      </div>
-                    </li>
+                   
                     <li>
                       <span class="icon-barcode"></span>
                       <div class="detail">
-                        <div class="title">Trip Code</div>
-                        <div class="desc">AD 23</div>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="icon-calendar"></span>
-                      <div class="detail">
-                        <div class="title">Trek Days</div>
-                        <div class="desc">18</div>
+                        <div class="title">Tour Code</div>
+                        <div class="desc">{{$programs->tour_code}}</div>
                       </div>
                     </li>
                     <li>
                       <span class="icon-door-tag "></span>
                       <div class="detail">
-                        <div class="title">Accomodation</div>
-                        <div class="desc">6 Night hotel, 3 night Tea House</div>
+                       <div class="title">Destinations</div>
+                        <div class="desc"> @foreach($datas as $destnation)
+                               <span class="text-primary " style="font-size: 12px; border-right:solid 1px #ddd; padding-right:2px"> {{ $destnation->destination_name }}</span>
+                                @endforeach</div>
                       </div>
                     </li>
                     <li>
                       <span class="icon-home"></span>
                       <div class="detail">
-                        <div class="title">Trek Accomodation</div>
-                        <div class="desc">6 Night hotel, 3 night Tea House</div>
+                      
+                                                <div class="title">Accomodations</div>
+                        <div class="desc"> @foreach($datas as $accom)
+                               <span class="text-primary " style="font-size: 12px; border-right:solid 1px #ddd; padding-right:2px"> {{ $accom->accommodation_name }}</span>
+                                @endforeach</div>
                       </div>
                     </li>
                     <li>
                       <span class="icon-bus"></span>
                       <div class="detail">
                         <div class="title">Transportation</div>
-                        <div class="desc">Bus, Jeep</div>
+                        <div class="desc">@foreach($datas as $trans)
+                               <span class="text-primary " style="font-size: 12px; border-right:solid 1px #ddd; padding-right:2px"> {{ $trans->transport }}</span>
+                                @endforeach</div>
                       </div>
                     </li>
                   </ul>
@@ -143,9 +124,10 @@
             </div>
           </div>
 
-          <div class="tab-pane" id="itenary">
+
+ <div class="tab-pane" id="itenary">
             <div class="row">
-              <div class="col-sm-6">
+             <!--  <div class="col-sm-6">
                 <ul class="itenary-steps">
                   <li>
                     <div class="icon-plane"></div>
@@ -199,136 +181,175 @@
                     <div class="detail">Trip concludes</div>
                   </li>
                 </ul>
-              </div>
-              <div class="col-sm-6">
-                <br>
+              </div> -->
+                   <div class="col-md-12 col-sm-12">
+                <p class="card-text">
+                                            {{ $programs->itinerary_summury }}
+                                            </p>
+                                            @foreach ($datas as $data)
+                                            <div class="card card-primary booking-tourPadding">
+                                                <div class="card-header  booking-tourPadding"  style="background-color:Gray;">
+                                                <span><b> Day {{ $data->day }} - {{ $data->itinerary_title }}
+                                                 @if($data->day==1)
+                                                 <i class="icon-plane"></i>
+                                                  @endif
 
-                <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="heading1One">
-                      <h4 class="panel-title">
+                                                     @if($data->day==$data->day-1)
+                                                 <i class="icon-plane"></i>
+                                                  @endif
+                                                </b></span>
 
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapse1One" aria-expanded="true" aria-controls="collapse1One">
+                                                </div>
+                                                <div class="card-body">
+                                                {{-- test --}}
 
-                                                    Included
+                                                <div class="row masonry-item">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 masonry">
+                                       <div class="">
 
-                                                </a>
+                                <div class="">
+                                <div class="col-lg-7">
+                                <div class="hotel-diss">
+                               <p class="booking-btn-gray">{{ $data->itinerary_description }}</p>   
+                                               
+                                                     
+                               <div class=""> 
+                                      <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <p><b class="text-success">Distance:</b> {{$data->distance}} KM <b class="text-success">Transport:</b> {{$data->transport}}</p>
 
-                                            </h4>
-                    </div>
-                    <div id="collapse1One" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1One">
-                      <div class="panel-body">
-                        <ul class="clean-ul">
-                          <li><span class="icon-tick"></span>
-                            <div class="desc">All meals except main meals in Kathmandu</div>
-                          </li>
-                          <li><span class="icon-tick"></span>
-                            <div class="desc">All ground transport, airport transfers, and flights</div>
-                          </li>
-                          <li><span class="icon-tick"></span>
-                            <div class="desc">All accommodations</div>
-                          </li>
-                          <li><span class="icon-tick"></span>
-                            <div class="desc">Sightseeing in Kathmandu</div>
-                          </li>
-                          <li><span class="icon-tick"></span>
-                            <div class="desc">All applicable permits and entrance fees</div>
-                          </li>
-                          <li><span class="icon-tick"></span>
-                            <div class="desc">Full trek staff arrangements a Trek Leader and guides</div>
-                          </li>
-                          <li><span class="icon-tick"></span>
-                            <div class="desc">Porters or pack animals to carry equipments</div>
-                          </li>
-                          <li><span class="icon-tick"></span>
-                            <div class="desc">Use of Trek Pack</div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="heading1Two">
-                      <h4 class="panel-title">
+                                          <p><b class="text-success">Accommodation:</b> {{$data->accommodation_name}} | <b class="text-success">Meal Plan:</b> {{$data->meal}}</p>
+                                      </div>           
+                                                                                 
+                                                  </div>
+                                                 </div>
+                                               </div>
+                                        <div class="col-lg-5">                           
+                                            <div class="hotel-pics-one">                                               <img src="{{URL::asset('/storage/destination/'.$data->photo) }}" alt="" style="height: 32vh !important;width:100%">                                                                              </div> 
 
-                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapse1Two" aria-expanded="false" aria-controls="collapse1Two">
+                                                 </div>
+                                                 </div>
+                                                </div>
+                                                </div>
+                                                </div>
 
-                                                    Not Included
-
-                                                </a>
-
-                                            </h4>
-                    </div>
-                    <div id="collapse1Two" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1Two">
-                      <div class="panel-body">
-                        <ul class="clean-ul">
-                          <li><span class="icon-cross"></span>
-                            <div class="desc">Alcohol or Beverage</div>
-                          </li>
-                          <li><span class="icon-cross"></span>
-                            <div class="desc">Use of Trek Pack</div>
-                          </li>
-                          <li><span class="icon-cross"></span>
-                            <div class="desc">Group medical kit</div>
-                          </li>
-                          <li><span class="icon-cross"></span>
-                            <div class="desc">All major group equipments, etc.</div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                                        {{-- test --}}
+                                            </div>
+                                            </div>
+                                            <hr>
+                                            @endforeach
                 </div>
-
-
-              </div>
             </div>
           </div>
 
-          <div class="tab-pane" id="dateprice">
-            <div class="table-responsive-wrap">
-              <table class="table table-responsive">
-                <thead>
-                  <tr>
-                    <th>Trip Dates</th>
-                    <th>Availability</th>
-                    <th>Discount</th>
-                    <th>Price</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>12 July to 18 July 2015</td>
-                    <td>Yes</td>
-                    <td>3%</td>
-                    <td><b>USD 239</b>
-                    </td>
-                    <td><a href="" class="btn btn-primary"> Book Now</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>12 July to 18 July 2015</td>
-                    <td>No</td>
-                    <td>3%</td>
-                    <td><b>USD 239</b>
-                    </td>
-                    <td><a href="" class="btn btn-default"> Book Now</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>12 July to 18 July 2015</td>
-                    <td>Yes</td>
-                    <td><i>with Promotional Code</i>
-                    </td>
-                    <td><b>USD 239</b>
-                    </td>
-                    <td><a href="" class="btn btn-primary"> Book Now</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+
+ <div class="tab-pane" id="accomodation">
+            <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                
+               @foreach ($datas as $data)
+     
+       <div class="card booking-tourPadding">   
+      <div class="card-header booking-tourPadding" style="background-color:#37533c;color:#fff">
+    <span><b>Day {{ $data->day }} - {{ $data->itinerary_title }}</b></span>
+                     </div>          
+
+                        <div class="card-body">
+                       <div class="">
+                                <div class="col-lg-7">
+                                <div class="hotel-diss" style="background-color:#2e4432">
+                
+                               <div class="">                   
+                                <div class="col-md-6 col-lg-6 col-sm-12">                                   
+                                  <div class="rating">                     
+                                    <h4>Location Details</h4>                        
+                                  </div>                                                                        
+
+                                  <a class="map-viw" href="#"><i class="fa fa-map-marker"></i> {{ $data->destination_name }}</a> 
+                                     <a class="map-viw" href="#"><i class="fa fa-home"></i> {{ $data->location_name }}/{{ $data->region }}/{{ $data->country }}</a>    
+                                   </div>                                                                                                                           
+                                <div class="col-md-6 col-lg-6 col-sm-12 booking-tour">                             
+                                <div class="rating">                                                                       <h4>Accommodation Details</h4>                                                                       </div>  <a class="map-viw" href="#"><i class="fa fa-home"></i><b>{{ $data->accommodation_name }}</b></a>      
+
+                                    <div>                            
+                                     <a class="map-viw" href="#"><i class="fa fa-home"></i><b>Standard Category: <br>  
+                                        @for($i=0;$i<$data->national_standard;$i++)                                 
+                                        <span class="fa fa-star text-warning"></span>
+                                        @endfor
+                                         @for($i=0;$i<5-$data->national_standard;$i++)   
+                                        <span class="fa fa-star-o text-warning"></span>
+                                           @endfor
+                                         </div></b></a>
+ 
+                                       <a class="map-viw" href="#"><i class="fa fa-home"></i><b>Our Category</b>: {{$data->type }}:</a>
+                                       <a href="https://{{$data->url}}" class="btn btn-primary" role="button">View More</a>                                          </div>
+                                                  </div>
+                                                 </div>
+                                               </div>
+                                        <div class="col-lg-5">                  
+                                            <div class="hotel-pics-one">                                    
+                                            <img src="{{URL::asset('/storage/uploads/'.$data->attachment) }}" alt="" style="height: 32vh !important;width:100%">        
+                                            </div>                   
+
+                                      </div>
+                               </div>                           
+                                </div>
+                                </div>  
+                                <hr>
+                            @endforeach 
+                </div>
             </div>
+          </div>
+
+
+
+
+
+
+
+
+
+          <div class="tab-pane" id="inclusive">
+            
+
+
+   <div class="row">                   
+                                <div class="col-md-6 col-lg-6 col-sm-12">                                   
+                                  <div class="rating">                                                                      <h4>Not Inclusive</h4>                        
+                                  </div>                                
+   @foreach($inclusives as $inclusive)    
+                                  <div class="form-check">
+   <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled>
+  <label class="form-check-label" for="flexCheckDisabled">
+   {{ $inclusive->inclusive}}
+  </label>
+</div>
+     @endforeach                              
+    </div>  
+      <div class="col-lg-5">  
+                                            <div class="rating">    
+                                                <h4>Inclusive</h4>                                                           
+
+                                            </div>                                        @foreach($assignLists as $assignList)
+                                    <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+  <label class="form-check-label" for="flexCheckChecked">
+   {{ $assignList->inclusive}}
+  </label>
+</div>  
+@endforeach                  
+                                                    
+                                </div>  
+
+
+
+                                                  </div>
+
+
+
+
+
+
+            <hr>
           </div>
 
           <div class="tab-pane" id="reveiws">
@@ -404,7 +425,7 @@
            <div class="row">
                <div class="col-sm-12 col-md-12 float-right">
                 <div class="float-right">
-   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bookNow">Book Now</button>
+   <button type="button" class="btn btn-primary hvr-sweep-to-right" data-toggle="modal" data-target="#bookNow">Book Now</button>
 
   </div>
   </div>
@@ -422,99 +443,42 @@
       </div>
       <div class="row item">
 
+ @foreach($same_programs as $extra_prog) 
         <div class="col-sm-6 col-md-4">
           <div class="item-grid">
-            <div class="item-img" style="background-image: url('http://placehold.it/370x260');">
+            <div class="item-img" style="background-image: url('{{URL::asset('/storage/uploads/'.$extra_prog->attachment)}}');">
               <div class="item-overlay">
                 <a href=""><span class="icon-binocular"></span></a>
               </div>
             </div>
-            <div class="item-desc">
+            <div class="item-desc" style="background-color:#345742;">
               <div class="item-info">
                 <span class="icon-hard"></span>
-                <h4 class="title"><a href="">Routeburn Track</a></h4>
+                <h4 class="title"><a href="">{{$extra_prog->tour_name}}</a></h4>
               </div>
 
               <div class="sub-title">
-                <span class="location">New Zealand</span>
-                <span class="grade">Difficult</span>
+                <span class="location">Tour Category: {{$extra_prog->category}}</span>
+                <span class="grade"> Physical rating: {{$extra_prog->style}}</span>
               </div>
 
               <div class="item-detail">
                 <div class="left">
-                  <div class="day"><span class="icon-sun"></span>3 Days</div>
-                  <div class="night"><span class="icon-moon"></span>2 Nights</div>
+                  <div class="day"><span class="icon-sun"></span>{{$extra_prog->days}} Days, {{$extra_prog->days -1}}  Night(s)</div>
+                  <div class="night"><span class="icon-moon"></span>Tour Code: {{$extra_prog->tour_code}}</div>
                 </div>
                 <div class="right">
-                  <div class="price">USD 121</div>
-                  <a href="#" class="btn btn-primary hvr-sweep-to-right">Book Now</a>
+                  
+                  <div class="price"><span class="icon-dollar">{{number_format($extra_prog->price,2)}}</span></div>
+                  <a href="/safaris/{{$extra_prog->id}}" class="btn btn-primary hvr-sweep-to-right">Book Now</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="item-grid">
-            <div class="item-img" style="background-image: url('http://placehold.it/370x260');">
-              <div class="item-overlay">
-                <a href=""><span class="icon-binocular"></span></a>
-              </div>
-            </div>
-            <div class="item-desc">
-              <div class="item-info">
-                <span class="icon-hard"></span>
-                <h4 class="title"><a href="">Fitz Roy Trek</a></h4>
-              </div>
 
-              <div class="sub-title">
-                <span class="location">Patagonia, Argentina</span>
-                <span class="grade">Difficult</span>
-              </div>
+@endforeach
 
-              <div class="item-detail">
-                <div class="left">
-                  <div class="day"><span class="icon-sun"></span>3 Days</div>
-                  <div class="night"><span class="icon-moon"></span>2 Nights</div>
-                </div>
-                <div class="right">
-                  <div class="price">USD 121</div>
-                  <a href="#" class="btn btn-primary hvr-sweep-to-right">Book Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="item-grid">
-            <div class="item-img" style="background-image: url('http://placehold.it/370x260');">
-              <div class="item-overlay">
-                <a href=""><span class="icon-binocular"></span></a>
-              </div>
-            </div>
-            <div class="item-desc">
-              <div class="item-info">
-                <span class="icon-hard"></span>
-                <h4 class="title"><a href="">Annapurna Circuit</a></h4>
-              </div>
-
-              <div class="sub-title">
-                <span class="location">Nepal</span>
-                <span class="grade">Difficult</span>
-              </div>
-
-              <div class="item-detail">
-                <div class="left">
-                  <div class="day"><span class="icon-sun"></span>3 Days</div>
-                  <div class="night"><span class="icon-moon"></span>2 Nights</div>
-                </div>
-                <div class="right">
-                  <div class="price">USD 121</div>
-                  <a href="#" class="btn btn-primary hvr-sweep-to-right">Book Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
  
@@ -633,7 +597,7 @@
 
  -->
            
-             <div class="row form-group">
+             <div class="form-group">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <input type="text" name="first_name" placeholder="first name" /> 
@@ -669,7 +633,7 @@
                              </div>
 
                        
-             <div class="row">
+          
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                    <label for="">Travel Date:</label>
                                     <div class="form-group">
@@ -684,9 +648,8 @@
                                         <input type="number" class="zt-control" name="adults" min="0" value="1">
                                     </div>
                                 </div>
-  </div>
 
-                                <div class="row">
+
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                    <label for="">Teens (12-14 yrs):</label>
                                     <div class="form-group">
@@ -699,9 +662,8 @@
                                         <input type="number" class="zt-control" name="children" min="0" value="0">
                                     </div>
                                  </div>
-  </div>
+ 
 
-<div class="row">
  <div class="col-md-12">
         <div class="form-group">
             <label for="">Tour type:</label>
@@ -709,8 +671,7 @@
           <input type="text" class="form-control" placeholder=""  name="tour_type" value="{{$programs->category}}" readonly="true">
         </div>
     </div>
-
-                                 </div>                    
+                  
             
 
                         </div> 
@@ -722,7 +683,6 @@
                     </fieldset>
                     <fieldset>
                         <div class="form-card">
-                            <div class="row">
                                 <div class="col-12">
                                     <h4 class="fs-title">Other Information:|Step 3 - 4</h4>                               
 </div>
@@ -792,7 +752,6 @@
            <input type="text" class="form-control" name="hear_about_us">
         </div>
         </div> 
-                                </div>
                           </div> 
                              
                                            

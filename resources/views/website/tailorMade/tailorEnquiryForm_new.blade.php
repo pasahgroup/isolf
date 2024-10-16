@@ -47,6 +47,7 @@
                            
 
  <div class="form-group">
+    <input type="hidden" class="form-control" name="company_name" value="{{$company_name}}">
           {{--   @if($discounts !=null)
            <input type="hidden" class="form-control" name="unit_price" value="{{$discounts->new_price}}">
              @else

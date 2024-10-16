@@ -461,8 +461,23 @@ else{
           ->where('attachments.type', $tour_addon)
          ->where('itineraries.tour_addon', $tour_addon)
          ->where('programs.id',$id)
+            ->select('programs.*','attachments.attachment','itineraries.*')->first();
+          //dd($programs);
+// if($programs->type==null)
+// {
+// $programs->type="";
+// }
+
+ $same_programs = program::
+           join('itineraries','itineraries.program_id','programs.id')
+          ->join('attachments','programs.id','attachments.destination_id')
+          ->where('attachments.type', $tour_addon)
+         ->where('itineraries.tour_addon', $tour_addon)
+         ->where('programs.type',$programs->type)
+          ->where('programs.id','!=',$id)
             ->select('programs.*','attachments.attachment','itineraries.*')
-          ->get()->first();
+          ->limit(3)->get();
+ //dd($same_programs);
       
        $datas = itinerary::join('itinerary_days','itineraries.id','itinerary_days.itinerary_id')
         ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')
@@ -532,7 +547,7 @@ else{
 
 // Send Email to clint
 
-        return view('website.tour.tourSummary',compact('datas','id','programs','basic','comfort','luxury','buyaddons','addons','addondatas','discounts','inclusives','assignLists'));
+        return view('website.tour.tourSummary',compact('datas','id','programs','basic','comfort','luxury','buyaddons','addons','addondatas','discounts','inclusives','assignLists','same_programs'));
     }
 
     /**

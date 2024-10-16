@@ -25,7 +25,7 @@
   @endisset
 
 
-  <section class="bg-gray">
+  <section class="bg-gray" style="padding-top:20px;">
         <div class="container-fluid">
             
                 {{-- start of tabs --}}

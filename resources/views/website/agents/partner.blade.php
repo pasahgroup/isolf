@@ -56,26 +56,24 @@
 
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                               <label class="fieldlabels">Email: *</label> <input type="email" name="email" placeholder="email" />
-                          </div>
+                          </div>                       
 
-                          
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                              <label class="fieldlabels">Nationality: *</label> <input type="text" name="nationality" placeholder="nationality" class="form-control" />                             
-                        </div>
                         </div> 
                    
 
                     </fieldset>
                     <fieldset>
                             <div class="form-card">
-                                          
-     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                               
-                                     <label for="">Language(Mother Tongue):</label>
-                                     <div class="form-group icon_down">
-                                        <select class="form-control" name="language">
-                                              <option value="0">--Speaking Language--</option>
+                               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                              <label class="fieldlabels">Nationality: *</label> <input type="text" name="nationality" placeholder="nationality" class="form-control" />                             
+                        </div>
+ <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">  
+  <strong>Language(Mother Tongue):</strong>
+    <label for="browser" class="form-label">Choose the language from the list:</label>
+    <input class="form-control" list="languages" name="language" id="language">
+    <datalist id="languages">
+         <option value="0">--Speaking Language--</option>
                                             <option value="English">English</option>
                                             <option value="France">France</option>
                                               <option value="Germany">Germany</option>
@@ -87,9 +85,8 @@
                                             <option value="Chinese">Chinese</option>
                                                 <option value="Swahili">Swahili</option>
                                               <option value="Other">Other Language</option>
-                                        </select>
-                                    </div>
-                                </div>
+    </datalist> 
+</div>
          
 
                     </fieldset>
@@ -171,5 +168,4 @@
     </div>
 </div> 
 </div>
-
 @endsection

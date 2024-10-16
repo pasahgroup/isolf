@@ -24,7 +24,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        Schema::defaultStringLength(191);
+        
+             // Using view composer to set following variables globally
+           view()->composer('*',function($view) {
+    $view->with('percent_downpayment',0.3);
+    $view->with('company_name',"ISOL Tour Company");
+  //dd($view->percent);
+
+
+            //->select('properties.property_name')->first());
+             //$view->with('qnsCount', collect($qnsCount));
+
+            // $view->with('company', myCompany::where('status','Active')->first());
+        });
+        //Schema::defaultStringLength(191);
     }
 }
