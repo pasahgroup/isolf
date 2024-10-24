@@ -47,17 +47,115 @@ class PaymentController extends Controller
     }
 
   
+ public function pgtm($cust_id)
+    {      
+
+//dd($cust_id);
+      //Get customer details
+
+        $cust=invoice::join('tailor_mades','tailor_mades.id','invoices.customer_id')
+        ->where('invoices.customer_id',$cust_id)
+        ->select('invoices.*','tailor_mades.children','tailor_mades.teens','tailor_mades.adults','tailor_mades.pin','tailor_mades.first_name','tailor_mades.last_name','tailor_mades.email','tailor_mades.phone')->first();
+     
+
+        $id=$cust_id; 
+        //dd($cust);
+
+         $discounts=specialOffer::where('tour_id',$id)->first();
+         $tourInvoice=invoice::where('tour_id',$id)->first();
+         $tourInvoice=invoice::where('tour_id',$id)->first();
+
+
+        $tour_addon='Programs';
+        // $programs = tailorMade::
+        //    join('itineraries','itineraries.program_id','programs.id')
+        //  ->join('attachments','programs.id','attachments.destination_id')
+        // ->join('invoices','programs.id','invoices.tour_id')
+        //  ->where('attachments.type','tailor_made')
+        //  ->where('itineraries.tour_addon','tailor_made')
+        //  ->where('invoices.customer_id',$cust->customer_id)
+        //  ->where('programs.id',$id) ->first();
+
+
+ $programs = tailorMade::join('itineraries','itineraries.program_id','tailor_mades.id')
+        ->where('itineraries.tour_addon','tailor_made')
+        ->where('tailor_mades.id',$id)->first();
+
+
+
+//dd($programs);
+
+       // $datas_org = itinerary::join('itinerary_days','itineraries.id','itinerary_days.itinerary_id')
+       //  ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')
+       //  ->join('destinations','destinations.id','itinerary_days.destination_id')
+       //  ->join('programs','programs.id','itineraries.program_id')
+       //  ->join('attachments','accommodations.id','attachments.destination_id')
+        
+       //  ->orderby('itinerary_days.id','ASC')
+       //  ->where('itineraries.tour_addon','tailor_made')
+       //  ->where('itineraries.program_id',$id)
+       //  ->where('attachments.type','Accommodation')
+       //  ->select('accommodations.accommodation_name','accommodations.accommodation_descriptions','accommodations.category',
+       //  'destinations.destination_name','itineraries.*','programs.tour_name','itinerary_days.*','attachments.attachment')
+       //  ->get();
+
+         $datas = itinerary::join('itinerary_days','itineraries.id','itinerary_days.itinerary_id')
+        ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')
+        ->join('destinations','destinations.id','itinerary_days.destination_id')
+        ->join('tailor_mades','tailor_mades.id','itineraries.program_id')
+        ->orderby('itinerary_days.id','ASC')
+         ->where('itineraries.tour_addon','tailor_made')
+        ->where('itineraries.program_id',$id)
+        ->select('accommodations.accommodation_name','destinations.destination_name','itineraries.*','tailor_mades.first_name','tailor_mades.last_name','itinerary_days.*')
+          ->get();
+
+//dd($datas);
+
+
+         if($datas == "[]"){
+            $programs = program::where('id',$id)->first();
+            $accommodations = accommodation::get();
+            $destinations = destination::get();
+            return view('admins.itinerary.add',compact('programs','accommodations','destinations','tour_addon'));
+        };
+       
+       $basic = Tourcostsummary::
+       where('status','Basic')
+       ->get();
+        $comfort = Tourcostsummary::
+       where('status','Comfort')
+       ->get();
+        $luxury = Tourcostsummary::
+       where('status','Deluxe')
+       ->get();
+
+ $peoplePercents=people_percent::get();
+ //dd($peoplePercents);
+
+ $inclusives=DB::select("select id,inclusive from inclusives  where id not in(select (inclusive_id)id from accommodation_inclusives where tour_id =$id)");
+
+   $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
+        ->where('accommodation_inclusives.tour_id',$id)->get();
+
+$basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_FORMAT(d.start_date,'%m-%Y')datef from departures d,programs p,attachments a where d.tour_id=p.id and a.destination_id=p.id and d.status='Active' and a.type='Programs' and d.tour_id=$id group by datef)as tmp_table order by DATE_FORMAT(datef,'%m-%Y')");
+
+        return view('website.payments.privatePaySummary',compact('datas','basicCount','inclusives','cust','assignLists','id','programs','basic','comfort','luxury','discounts','tourInvoice','peoplePercents'));
+    }
+
+
+
   public function pg($cust_id)
     {      
 
-//dd('poppp');
+//dd($cust_id);
       //Get customer details
 
         $cust=invoice::join('tour_equiry_forms','tour_equiry_forms.id','invoices.customer_id')
         ->where('invoices.customer_id',$cust_id)
         ->select('invoices.*','tour_equiry_forms.children','tour_equiry_forms.teens','tour_equiry_forms.adults','tour_equiry_forms.pin','tour_equiry_forms.first_name','tour_equiry_forms.last_name','tour_equiry_forms.email','tour_equiry_forms.phone')->first();
-        //dd($cust);
-        $id=$cust->tour_id;   
+     
+
+        $id=$cust->tour_id; 
 
          $discounts=specialOffer::where('tour_id',$id)->first();
          $tourInvoice=invoice::where('tour_id',$id)->first();
@@ -259,21 +357,22 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
     {
        $cust_id=$id;
        $cust=invoice::where('customer_id',$cust_id)->first();
-       // dd($cust);
-
+     
         if($cust==null)
         {
-            return redirect()->back()->with('info','Tour ID is Null ...! Trace 2 Payment controller');
+            return redirect()->back()->with('info','Tour ID is null ...! Trace 2 Payment controller');
 
         }
         else{
-               $id=$cust->tour_id;
-               if($id==0)
+               $id=$cust->tour_id;  
+ if($id==0)
         {
             return redirect()->back()->with('info','Tour ID is 0 ...! Trace  Payment controller');
 
-        }   
         }
+
+        }
+
 
           $discounts=specialOffer::where('tour_id',$id)->first();
              $tourInvoice=invoice::where('tour_id',$id)->first();
@@ -319,8 +418,14 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
           
             $accommodations = accommodation::get();
             $destinations = destination::get();
-            return view('admins.itinerary.add',compact('programs','accommodations','destinations','tour_addon'));
-             };
+            
+            return redirect()->back()->with('info','Itinerary not specified');
+
+            // return view('admins.itinerary.add',compact('programs','accommodations','destinations','tour_addon'));
+             
+            };
+
+             //dd($datas);
   
      $inclusives=DB::select("select id,inclusive from inclusives  where id not in(select (inclusive_id)id from accommodation_inclusives where tour_id =$id)");
     $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
@@ -334,9 +439,9 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
          ->where('departures.tour_id',$id)
         ->get();
 
-       // dd($basic);
- $peoplePercents=people_percent::get();
- 
+           $peoplePercents=people_percent::get();
+
+  //dd($basic);
         return view('website.payments.privatePaySummary',compact('datas','id','programs','basic','discounts','tourInvoice','assignLists','inclusives','cust','peoplePercents'));
     }
     /**

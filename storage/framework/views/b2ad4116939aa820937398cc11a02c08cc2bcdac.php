@@ -1,5 +1,4 @@
-@extends('website.layouts.apps')
-@section('content')
+<?php $__env->startSection('content'); ?>
  <section class="bg-gray" style="padding-top:40px;">
         <div class="container">
            <div class="col-lg-1 col-md-12 col-sm-12">
@@ -16,18 +15,18 @@
             <div class="form-wrap">
                 <h4 id="heading">Custom Booking Form:<span style="color:green"> Create My Safari</span></h4>
           <div>
-            @if ($errors->any())
+            <?php if($errors->any()): ?>
     <div class="alert alert-danger">
         <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li><?php echo e($error); ?></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </ul>
     </div>
-@endif
+<?php endif; ?>
           </div>
-                <form id="msform" method="post" action="{{ route('tailorMade.store') }}" class="registration-form">
-                    @csrf
+                <form id="msform" method="post" action="<?php echo e(route('tailorMade.store')); ?>" class="registration-form">
+                    <?php echo csrf_field(); ?>
                     <!-- progressbar -->
                     <ul id="progressbar">
                         <li class="active" id="account"><strong>1 Step</strong></li>
@@ -47,13 +46,8 @@
                            
 
  <div class="form-group">
-    <input type="hidden" class="form-control" name="company_name" value="{{$company_name}}">
-          {{--   @if($discounts !=null)
-           <input type="hidden" class="form-control" name="unit_price" value="{{$discounts->new_price}}">
-             @else
-              <input type="hidden" class="form-control" name="unit_price" value="{{$programs->price}}">
-             @endif       
-               --}}
+    <input type="hidden" class="form-control" name="company_name" value="<?php echo e($company_name); ?>">
+          
 
              <input type="hidden" class="form-control" name="tour_name" value="666">
             <input type="hidden" class="form-control" name="currency" value="555">
@@ -398,4 +392,5 @@ return false;
 
 });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('website.layouts.apps', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\isolf\resources\views/website/tailorMade/tailorEnquiryForm_new.blade.php ENDPATH**/ ?>

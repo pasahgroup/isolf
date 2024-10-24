@@ -28,7 +28,12 @@
             <div class="card card-outline card-info">
               <div class="card-header">
                 <h3 class="card-title">
+                     @if($day_data->tour_addon=="Programs")
                  <a href="{{ route('programs.show',$day_data->program_id) }}"class="btn btn-primary"><span class="fa fa-arrow-left"></span> Back</a>
+                 @endif
+                 @if($day_data->tour_addon=="tailor_made")
+                   <a href="{{ route('attachmentTailorMade',$day_data->program_id) }}"class="btn btn-primary"><span class="fa fa-arrow-left"></span> Back</a>
+                    @endif
                 </h3>
               </div>
               <div class="container-fluid x_content">

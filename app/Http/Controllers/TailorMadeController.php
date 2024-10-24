@@ -626,7 +626,9 @@ $adults_cost=$unit_price * $adults;
            $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
         ->where('accommodation_inclusives.tour_id',$id)->get();
 //dd($programs);
-        return view('website.tailorMade.tailorMadeSummary',compact('datas','id','programs','basic','inclusives','assignLists','pin'));
+  $invoice_amount = invoice::where('customer_id',$id)->first();
+
+        return view('website.tailorMade.tailorMadeSummary',compact('datas','id','programs','basic','inclusives','assignLists','pin','invoice_amount'));
     }
  
     /**

@@ -1,35 +1,35 @@
-@extends('website.layouts.apps')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
-  <!-- <section class="featured-properties-area section-padding-100-50" style="padding-bottom:0px;">  -->
-
- <section style="padding-top: 2px">
+  <section style="padding-top: 2px">
     <div class="container" style="padding-bottom:60px">  
             
-        <h4 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3 section-heading wow fadeInUp" style="color:#b76b0b;">My Booking Trip</span></h4>
-               @if($message = Session::get('success'))
+        <h4 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3 section-heading wow fadeInUp" style="color:#b76b0b;">My Tailor Made Trip</span></h4>
+               <?php if($message = Session::get('success')): ?>
   <div class="alert alert-success">
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
     <span aria-hidden="true">&times;</span></button>
-    <strong>Well!: </strong> {{$message}}
-  </div>
-  @endif
+    <strong>Well!: </strong> <?php echo e($message); ?>
 
- @if($message = Session::get('info'))
+  </div>
+  <?php endif; ?>
+
+ <?php if($message = Session::get('info')): ?>
   <div class="alert alert-warning">
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
     <span aria-hidden="true">&times;</span></button>
-    <strong>Ops!: </strong> {{$message}}
-  </div>
-  @endif   
+    <strong>Ops!: </strong> <?php echo e($message); ?>
 
- @if($message = Session::get('error'))
+  </div>
+  <?php endif; ?>   
+
+ <?php if($message = Session::get('error')): ?>
   <div class="alert alert-danger">
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
     <span aria-hidden="true">&times;</span></button>
-    <strong>Sorry!: </strong> {{$message}}
+    <strong>Sorry!: </strong> <?php echo e($message); ?>
+
   </div>
-  @endif     
+  <?php endif; ?>     
     
 <div class="col-md-12 col-sm-12 pb-1" style="background-color:#4c7149"> 
 
@@ -37,14 +37,14 @@
 
 
                                 <div class="col-lg-12 col-md-12 col-sm-">
-                                    <label style="color:yellow;">Enter Your Booking Number</label></div>
+                                    <label style="color:yellow;">Enter Your Tailor Made Pin No:</label></div>
              
   <div class="col-12 col-sm-6 col-xl-3" style="padding-left:20px;padding-right:20px;">
                         <div class="footer-widget-area mb-100">
                             <!-- Widget Title -->
                             <div class="widget-title">
-                                  <form  method="post" id="post_form" action="{{ route('viewTrip') }}">
-                        @csrf
+                                  <form  method="post" id="post_form" action="<?php echo e(route('clientTailorMade')); ?>">
+                        <?php echo csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="form-group">                                                                 
@@ -69,7 +69,7 @@
     </div>
 </div>
 </section>
-@endsection
+
  
      <script src="../assetff/js/category.js"></script>
     <script src="../assetff/lib/easing/easing.min.js"></script>
@@ -90,3 +90,5 @@
     <script src="../assetff/js/plugins.js"></script>
     <script src="../assetff/j../assetff/s/classy-nav.min.js"></script>
     <script src="../assetff/js/jquery-ui.min.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('website.layouts.apps', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\isolf\resources\views/website/tailorMade/tailorClientForm.blade.php ENDPATH**/ ?>

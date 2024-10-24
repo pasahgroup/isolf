@@ -50,6 +50,9 @@ class TestimonyController extends Controller
      */
     public function store(Request $request)
     {
+
+       //dd('klll');
+        
    $status=request('status');
    if ($status==null || $status==0)
    {
@@ -64,11 +67,15 @@ class TestimonyController extends Controller
 
         $testimonies = Testimony::create([
         'full_name'=>request('full_name'),
+        'email'=>request('email'),
         'comments'=>request('comments'),
         'rating'=>request('rank'),
         'status'=>$status,
         'user_id'=>auth()->id()
         ]);
+
+//dd('inserted');
+
         if(request('attachment')){
             $attach = request('attachment');
             foreach($attach as $attached){
@@ -93,6 +100,9 @@ class TestimonyController extends Controller
                 );
             }
         }
+
+
+
         if ($client=='Client')
         {
        return redirect('/')->with('success','Accommodation created successful');

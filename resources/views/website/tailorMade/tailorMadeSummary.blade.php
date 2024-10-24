@@ -18,7 +18,13 @@
                      <h3 class="package-list-title">
                         {{ $programs->tour_name }}
                     </h3>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bookNow">Pay Invoicex</button>
+                   
+               @isset($invoice_amount)
+@if($invoice_amount->amount_remain==null || $invoice_amount->amount_remain>0)
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bookNow">Pay Invoice</button>
+@endif
+@endisset
+
 
                 </div>
         
@@ -33,7 +39,7 @@
                     <div class="package-detail"> 
                         
             <div class="">
-               <strong style="color:#fff;">PIN number: {{$pin}}</strong>
+               <strong>PIN number: {{$pin}}</strong>
                <br>
             <ul class="nav nav-tabs">
               <li><a href="#tab-H" data-toggle="tab">Highlight</a></li>
@@ -250,22 +256,26 @@
                     @csrf
 <input type="hidden" name="_method" value="PUT">
 
-                      <button type="submit" class="btn btn-success float-right" name="print" value="print">Pay Invoice</button>
+                      
+               @isset($invoice_amount)
+@if($invoice_amount->amount_remain==null || $invoice_amount->amount_remain>0)
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bookNow">Pay Invoice</button>
+@endif
+@endisset
+
 
 </form>
                             </div>
                             </div>
-                        <hr>
-                            
-                                <p class="text-center">
-                               <h5 > List of Add-ons</h5>
-                                </p>
+                        
 
                     </div>
-{{-- End of tour summary sidebar --}}
+                 <hr>
+                 @isset($invoice_amount)
+ <p class="text-center">Amount remain:{{$invoice_amount->amount_remain}} {{$invoice_amount->currency}}</p>
+ @endisset
 
                 </div>
-                <hr>
                 <p class="text-center">
                 <a class="btn btn-primary" href="{{ route('addons.index') }}">Print Invoice</a></p>
                 </div>

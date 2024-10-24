@@ -1,9 +1,8 @@
 @extends('website.layouts.apps')
 @section('content')
 
-  <section class="featured-properties-area section-padding-100-50" style="padding-bottom:0px;"> 
-
-    <div class="container" style="padding-bottom:0px;">  
+  <section style="padding-top: 2px">
+    <div class="container" style="padding-bottom:60px">  
             
         <h4 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3 section-heading wow fadeInUp" style="color:#b76b0b;">My Tailor Made Trip</span></h4>
                @if($message = Session::get('success'))

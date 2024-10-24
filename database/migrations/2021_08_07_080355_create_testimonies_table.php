@@ -18,6 +18,7 @@ class CreateTestimoniesTable extends Migration
            $table->string('full_name')->nullable();
            $table->string('comments')->nullable();
             $table->integer('rating')->nullable();
+              $table->integer('email',24)->nullable();
             $table->integer('status')->default(0);   
             $table->integer('user_id')->nullable();                  
             $table->timestamps();
