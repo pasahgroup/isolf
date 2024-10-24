@@ -106,13 +106,22 @@
 
 
 <section id="blog_group" class="blog_section">
-<div class="container">
-    <div class="search-bar bottomx" style="background-color:#345742;">
-          <form  method="POST"  action="<?php echo e(route('all-search')); ?>" enctype="multipart/form-data">
-                    <?php echo csrf_field(); ?>
-      <div class="col-sm-8 form-group">
-          <label>Search Tour Category</label>
-          <select class="form-control selectpicker" name="tour_type" id="tour_type">
+
+     <div class="container">
+
+    <div class="container top-header-area" style="background:yellow;padding:2px">
+         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#345742;margin-top:0px;margin-bottom:0px;">
+              <div class="col-lg-3 col-md-4">
+               <i href="" class="text-decoration-none">
+                    <marquee>Hello! Welcome Book with us</marquee>
+                </i>            
+ 
+            </div>
+            <div class="col-lg-5 col-md-8 text-left">
+                     <form  method="POST"  action="<?php echo e(route('all-search')); ?>" enctype="multipart/form-data">
+                  <?php echo csrf_field(); ?>
+                    <div class="input-group">
+                       <select class="form-control selectpicker" name="tour_type" id="tour_type">
             <option selected><?php echo e($title); ?></option>
             <option>Wildlife Safaris</option>
              <option>Hiking & Trekking</option>
@@ -120,18 +129,26 @@
              <option>Day Tours</option>
              <option>Historical Sites</option>
              <option>Special Offers</option>
-               <option value="group">Group Tours</option>
+              <option value="group">Group Tours</option>
                <option value="Group-scheduled">Scheduled Group Tours</option>
-             <option value="special-occasions">Special Occasions</option>
-               <option value="cultural">Cultural Tours</option>
+              <option value="special-occasions">Special Occasions</option>
+                <option value="cultural">Cultural Tours</option>
 
           </select>
-      </div>
-      <div class="col-sm-2">
-        <button class="btn btn-search btn-primary hvr-sweep-to-right">Search</button>
-      </div>
-    </form>
-    </div>
+                        
+
+                        <div class="input-group-append">                        
+                            <button class="btn btn-search btn-primary hvr-sweep-to-right">
+                                <i class="fa fa-search"> Search</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>    
   </div>
 
 <div class="banner base page-img" style="background: url('assets/img/worldmap.jpg') no-repeat center; background-size: cover">

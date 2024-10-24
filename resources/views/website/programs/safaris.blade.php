@@ -32,13 +32,37 @@
   </div>
  
 
+
+
+
+
  <div class="container">
-    <div class="search-bar bottomx" style="background-color:#345742;">
-          <form  method="POST"  action="{{ route('all-search') }}" enctype="multipart/form-data">
+
+    <div class="container top-header-area" style="background:yellow;padding:2px">
+         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#345742;margin-top:0px;margin-bottom:0px;">
+              <div class="col-lg-3 col-md-4">
+               <i href="" class="text-decoration-none">
+                    <marquee>Hello! Welcome Book with us</marquee>
+                </i>            
+ 
+            </div>
+
+            <!--   <div class="col-lg-6 col-md-7">
+                 <div class="email-address_no">
+                    <a href="mailto:info@isol.com">
+                      <i class="fa fa-envelope" style="color:pink;"></i><b style="color:#FDD43D;">  info@isol.com</b></a>
+                       <a href="https://wa.link/z5mmcd" style="padding-left:10px">
+                            <img src="../../../images/whatsapp.png" alt="" style="width:20px; height:20px;">
+                               <b style="color:#FDD43D;">(+255)753 216 263</b>
+                            </a>
+                </div>
+            </div> -->
+
+            <div class="col-lg-5 col-md-8 text-left">
+                     <form  method="POST"  action="{{ route('all-search') }}" enctype="multipart/form-data">
                   @csrf
-           <div class="col-sm-8 form-group">
-          <label>Search Tour Category</label>
-          <select class="form-control selectpicker" name="tour_type" id="tour_type">
+                    <div class="input-group">
+                       <select class="form-control selectpicker" name="tour_type" id="tour_type">
             <option selected>{{$title}}</option>
             <option>Wildlife Safaris</option>
              <option>Hiking & Trekking</option>
@@ -52,12 +76,20 @@
                 <option value="cultural">Cultural Tours</option>
 
           </select>
-      </div>
-      <div class="col-sm-2">
-        <button class="btn btn-search btn-primary hvr-sweep-to-right">Search</button>
-      </div>
-    </form>
-    </div>
+                        
+
+                        <div class="input-group-append">                        
+                            <button class="btn btn-search btn-primary hvr-sweep-to-right">
+                                <i class="fa fa-search"> Search</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>    
   </div>
 
 

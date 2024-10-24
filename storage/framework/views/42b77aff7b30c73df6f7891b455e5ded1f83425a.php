@@ -26,29 +26,7 @@
   <link href="../../img_library/main.css" rel="stylesheet">
     <link href="../../img_library/mform.css" rel="stylesheet">
     <link href="../../css/mform.css" rel="stylesheet">
-    
-    <!--   <link href="../custom/css/style.css" rel="stylesheet">
-
-        <link href="../../assets/pages/css/components.css" rel="stylesheet">
-<link href="../../assets/pages/css/slider.css" rel="stylesheet">
-  
-  <link href="../../assets/corporate/css/style-responsive.css" rel="stylesheet">
-  <link href="../../assets/corporate/css/themes/red.css" rel="stylesheet" id="style-color">
-  <link href="../../assets/corporate/css/custom.css" rel="stylesheet">
- -->
-<!--     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../../css/button.css">
-    <link rel="stylesheet" href="../../../css/custom.css">
-       <link rel="stylesheet" href="../../css/customAnimation.css">
-       <link rel="stylesheet" href="../../css/customAnimation2.css">
-        <link rel="stylesheet" href="../../css/customSportLight.css">
- -->
-
-   <!-- <link rel="stylesheet" href="../../css/css/font-mytravel.css">
-  <link rel="stylesheet" href="../../css/style-shortline.css">
-   -->
-  
-
+ 
   
 <!-- Custom css -->
  <link rel="stylesheet" href="../css/font621.min.css">
@@ -69,16 +47,12 @@
 </head>
 
 <body>
-<!-- 
-  <div class="pre-loader">
-    <div class="loading-img"></div>
-  </div>
- -->
 
-    <header class="header-area">
-   <div class="container-fluid top-header-area">
-         <div class="row align-items-center py-0 px-xl-5 d-lg-flex" style="background-color:#fafbfb;margin-top:0px;margin-bottom:0px;">
-            <div class="col-lg-2">
+
+
+  <div class="container top-header-area" style="background:yellow;padding:2px">
+         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#51934f;margin-top:0px;margin-bottom:0px;">
+              <div class="col-lg-2 col-md-4">
                 <a href="" class="text-decoration-none">
                     <span class="h3 text-uppercase text-primary bg-dark px-2">ISOL</span>
                     <span class="h3 text-uppercase text-dark bg-primary px-2 ml-n1">Tour</span>
@@ -86,18 +60,18 @@
 
             </div>
 
-              <div class="col-lg-4 col-6 text-left">
-                 <div class="email-address">
+              <div class="col-lg-4 col-md-7">
+                 <div class="email-address_no">
                     <a href="mailto:info@isol.com">
-                      <i class="fa fa-envelope" style="color:pink;"></i><span style="color:#072004;">  info@isol.com</span></a>
+                      <i class="fa fa-envelope" style="color:pink;"></i><b style="color:#FDD43D;">  info@isol.com</b></a>
                        <a href="https://wa.link/z5mmcd" style="padding-left:10px">
                             <img src="../../../images/whatsapp.png" alt="" style="width:20px; height:20px;">
-                               <span style="color:#072004;">(+255)753 216 263</span>
+                               <b style="color:#FDD43D;">(+255)753 216 263</b>
                             </a>
                 </div>
             </div>
 
-            <div class="col-lg-3 col-6 text-left">
+            <div class="col-lg-4 col-md-8 text-left">
                       <form  method="post"  action="<?php echo e(route('search-tour')); ?>" enctype="multipart/form-data">
                                   <?php echo csrf_field(); ?>
                     <div class="input-group">
@@ -112,7 +86,7 @@
             </div>
 
 
-            <div class="col-lg-3 col-6 text-right">
+            <div class="col-lg-2 col-md-4 text-right">
 <!-- btn btn-primary btn-square mr-2 -->
                       <a href="#"  class="btn btn-outline btn-primary"><i class="fab fa-twitter"></i></a>
       <a href="#"  class="btn btn-outline btn-primary" href=""><i class="fab fa-facebook-f"></i></a>
@@ -125,7 +99,7 @@
 
 
 
-
+    <header class="header-area">
         <!-- Main Header Area -->
         <div class="main-header-area" id="stickyHeader" style="background:#fdfdfd;">
            <!-- <div class="main-header-area" id="stickyHeader" style="background:#2e4432;"> -->
