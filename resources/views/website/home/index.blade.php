@@ -17,28 +17,7 @@
           <span class="main-header">Enjoy Adventure <br> Experience</span>
           <hr>
           <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.</p>
-          <br>
-          <div class="search-bar padding-20" style="background-color:rgb(97, 130, 97, 0.8);">
-            <div class="col-sm-10 row" style="padding-left:10px;padding-right:10px; ">
-              <div class="col-sm-4 form-group">
-                <label>From</label>
-                <input type="text" class="form-control datepicker" readonly>
-              </div>
-              <div class="col-sm-4 form-group">
-                <label>To</label>
-                <input type="text" class="form-control datepicker" readonly>
-              </div>
-              <div class="col-sm-4 form-group">
-                <label>Price</label>
-                <select class="form-control">
-                  <option value="">1000 - 2000</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-sm-2">
-              <button class="btn btn-search btn-primary hvr-sweep-to-right">Search</button>
-            </div>
-          </div>
+        
         </div>
       </div>
  @endforeach
@@ -52,8 +31,41 @@
           <span class="main-header">Enjoy Adventure <br> Experience</span>
           <hr>
           <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.</p>
-          <br>
-          <div class="search-bar padding-20" style="background-color:rgb(97, 130, 97, 0.8);">
+
+    <div class="top-header-area" style="background:yellow;padding:2px">
+         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#345742;margin-top:0px;margin-bottom:0px;">
+              <div class="col-lg-9 col-md-4">
+               <i href="" class="text-decoration-none">
+                    <marquee>Hello! Welcome Book with us</marquee>
+                </i>            
+ 
+            </div>
+
+
+            <div class="col-lg-3 col-md-8 text-left">
+                     <form  method="POST"  action="{{ route('all-search') }}" enctype="multipart/form-data">
+                  @csrf
+                    <div class="input-group">
+                       <select class="form-control selectpicker" name="tour_type" id="tour_type">
+            <option selected>{{$title}}</option>
+            <option>Wildlife Safaris</option>
+             <option>Hiking & Trekking</option>
+             <option>Beach Holidays</option>
+             <option>Day Tours</option>
+             <option>Historical Sites</option>
+             <option>Special Offers</option>
+              <option value="group">Group Tours</option>
+               <option value="Group-scheduled">Scheduled Group Tours</option>
+              <option value="special-occasions">Special Occasions</option>
+                <option value="cultural">Cultural Tours</option>
+
+          </select>
+                        
+
+
+
+<!-- 
+
             <div class="col-sm-10 row" style="padding-left:10px;padding-right:10px; ">
               <div class="col-sm-4 form-group">
                 <label>From</label>
@@ -69,11 +81,21 @@
                   <option value="">1000 - 2000</option>
                 </select>
               </div>
+            </div> -->
+
+                        <div class="input-group-append">                       
+                            <button class="btn btn-search btn-primary hvr-sweep-to-right">
+                                <i class="fa fa-search"> Search</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
             </div>
-            <div class="col-sm-2">
-              <button class="btn btn-search btn-primary hvr-sweep-to-right">Search</button>
-            </div>
-          </div>
+        </div>
+    </div>    
+  
         </div>
       </div>
  @endforeach
