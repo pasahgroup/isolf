@@ -19,15 +19,15 @@
 
 
 <link rel="stylesheet" href="../assetf/style.css">
- <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+ <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../../assets/corporate/css/style.css" rel="stylesheet">
 
   <!-- Custom -->
   <link href="../../img_library/main.css" rel="stylesheet">
     <link href="../../img_library/mform.css" rel="stylesheet">
     <link href="../../css/mform.css" rel="stylesheet">
- 
-  
+
+
 <!-- Custom css -->
  <link rel="stylesheet" href="../css/font621.min.css">
 
@@ -42,7 +42,7 @@
 
 
   <!-- <link href="../../assets/pages/css/animate.css" rel="stylesheet">
-  <link href="../../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet"> 
+  <link href="../../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
 -->
 </head>
 
@@ -50,13 +50,13 @@
 
 
 
-  <div class="container top-header-area" style="background:yellow;padding:2px">
-         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#51934f;margin-top:0px;margin-bottom:0px;">
+  <div class="container top-header-area" style="background:yellow;padding:1px">
+         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#6b794c;margin-top:0px;margin-bottom:0px;">
               <div class="col-lg-2 col-md-4">
                 <a href="" class="text-decoration-none">
                     <span class="h3 text-uppercase text-primary bg-dark px-2">ISOL</span>
                     <span class="h3 text-uppercase text-dark bg-primary px-2 ml-n1">Tour</span>
-                </a>            
+                </a>
 
             </div>
 
@@ -141,9 +141,9 @@
                                             <li><a href="/trekking">Hiking & Trekking</a></li>
                                             <li><a href="/holiday">Beach Holidays</a></li>
                                             <li><a href="/dayTours">Day Tours</a></li>
-                                            <li><a href="/historical-sites">Historical Sites</a></li>                                 
+                                            <li><a href="/historical-sites">Historical Sites</a></li>
                                         </ul>
-                                        
+
                                         <ul class="single-mega cn-col-4">
                                             <li class="title">Special Packages</li>
                                              <li><a href="/group">All Group Tours</a></li>
@@ -152,10 +152,10 @@
                 <li><a href="/special-occasions">Special Occasions</a></li>
                    <li><a href="/cultural">Cultural Tours</a></li>
                     <li><a href="/addons">Addons</a></li>
-                                        </ul>                                 
+                                        </ul>
                                     </div>
                                 </li>
-                               
+
 
 
 
@@ -165,10 +165,10 @@
                                          <li><a href="/whatWeOfferClient">ISOL Tour Services</a></li>
                 <li><a href="/drongo-attractions">ISOL Tour Attractios</a></li>
                 <li><a href="#">ISOL Crafts and Designing</a></li>
-                                       
+
                                     </ul>
                                 </li>
-    
+
 
 
                                  <li><a href="/safaris-gallery">Galleries</a>
@@ -184,7 +184,7 @@
                                         <li><a href="/New-Agent">Agent-Register</a></li>
                         <li><a href="/New-tourGuide">Tour Guide -Register</a></li>
                         <li><a href="/New-Partner">Partner-Register</a></li>
-                                       
+
                                     </ul>
                                 </li>
 
@@ -211,7 +211,7 @@
                                          <li><a href="/tailorForm" class="btn-outline btn-success">Create New Safari(Tailor Maide)</a></li>
                 <li><a href="/tailorClientForm" class="btn-outline btn-success">My Existing Safari-Tailor Made</a></li>
                 <li><a href="/bookingTrip" class="btn-outline btn-primary">My Existing Safari</a></li>
-                                                      
+
                                     </ul>
                                 </li>
     </ul>
@@ -234,7 +234,7 @@
    <div class="px-xl-5 pt-5">
               <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Destinations</h5>
-                           
+
                               <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="/circuitTour/Northern Circuit"><i class="fa fa-angle-right mr-2"></i>Northern Circuit</a>
                             <a class="text-secondary mb-2" href="/circuitTour/Southern Circuit"><i class="fa fa-angle-right mr-2"></i>Southern Circuit</a>
@@ -243,7 +243,7 @@
                      <a class="text-secondary mb-2" href="/circuitTour/Central Circuit"><i class="fa fa-angle-right mr-2"></i>Central Circuit</a>
                         </div>
                         <br>
- 
+
                     </div>
             <div class="col-lg-8 col-md-12">
                     <div class="col-md-4 mb-5">
@@ -253,7 +253,7 @@
                             <a class="text-secondary mb-2" href="/whatWeOfferClient"><i class="fa fa-angle-right mr-2"></i>What We offer</a>
                             <a class="text-secondary mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Accommodation-Hotels</a>
                             <a class="text-secondary mb-2" href="/accommodation-camps"><i class="fa fa-angle-right mr-2"></i>Accommodation-Camps</a>
-                  
+
                         </div>
                     </div>
                        <div class="col-md-4 mb-5">
@@ -263,14 +263,14 @@
                             <a class="text-secondary mb-2" href="/whatWeOfferClient"><i class="fa fa-angle-right mr-2"></i>Health & Vaccination</a>
                             <a class="text-secondary mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Payment Methods</a>
                             <a class="text-secondary mb-2" href="/accommodation-camps"><i class="fa fa-angle-right mr-2"></i>About Tanzania</a>
-                  
+
                         </div>
                     </div>
-                   
-                   
+
+
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Contacts</h5>
-                           
+
                            <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Address:{{$contacts->address??'Arusha'}}</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Contact No: (+255)753 216 263</a>
@@ -338,25 +338,15 @@
 
 
 
-
-
-
-
-
-    <!-- Popper js -->
-<!--     <script src="../assetf/js/popper.min.js"></script>
-
-    <script src="../assetf/js/bootstrap.min.js"></script>
-              -->        
     <script src="../assetf/js/plugins.js"></script>
     <script src="../assetf/js/classy-nav.min.js"></script>
     <script src="../assetf/js/jquery-ui.min.js"></script>
-      
+
     <script src="../assetf/js/active.js"></script>
-     <script src="../assets/js/main.js"></script> 
+     <script src="../assets/js/main.js"></script>
 
 <!-- Custom Javascript -->
  <script src="../../img_library/scripts.js" type="text/javascript"></script>
-  
+
 </body>
 </html>

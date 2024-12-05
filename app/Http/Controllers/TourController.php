@@ -43,7 +43,7 @@ class TourController extends Controller
          ->get();
           $PostcategoryImage = title::where('title', $title)
           ->first();
-         
+
          //dd('print');
         return view('website.programs.safaris',compact('safaris','title','PostcategoryImage'));
      }
@@ -138,7 +138,7 @@ if($title=="Group-scheduled")
 }
 
 else{
-        
+
         if($title=="cultural")
         {
             $title="Cultural Tour";
@@ -155,7 +155,7 @@ else{
          ->get();
           $PostcategoryImage = title::where('title', $title)
           ->first();
-         
+
          //dd($safaris);
 
         return view('website.programs.safaris',compact('safaris','title','PostcategoryImage'));
@@ -186,15 +186,15 @@ else{
           }
             else if($sliders->type==' Combined Tours'){
              $title=' Combined Tours';
-             
+
           }
             else if($sliders->type==' Historical Site'){
              $title=' Historical Sites';
-             
+
           }
             else if($sliders->type==' Day Tours'){
              $title=' Day Tours';
-             
+
           }
           else
           {
@@ -222,7 +222,7 @@ else{
 
   public function safarisSliderTourPackages($x)
     {
-      
+
           //$sliders=slider::limit(1)->first();
             $programs=program::join('attachments','programs.id','attachments.destination_id')
              ->select('programs.*','attachments.attachment')
@@ -230,7 +230,7 @@ else{
              ->where('attachments.type','programs')
             //->where('programs.id',$x)
             ->first();
-              
+
            // dd($programs->type);
           if($programs->type=='Wildlife Safaris')
           {
@@ -245,15 +245,15 @@ else{
           }
             else if($programs->type==' Combined Tours'){
              $title='Combined Tours';
-             
+
           }
             else if($programs->type==' Historical Site'){
              $title='Historical Sites';
-             
+
           }
             else if($programs->type==' Day Tours'){
              $title='Day Tours';
-             
+
           }
           else
           {
@@ -292,7 +292,7 @@ else{
             // ->where('programs.price','=<',$price)
           ->where('itineraries.tour_addon','Programs')
          ->get();
-       
+
 //dd($price);
 
 
@@ -313,7 +313,7 @@ else{
           ->where('programs.type','Hiking & Trekking')
           ->where('itineraries.tour_addon','Programs')
          ->get();
-       
+
       // dd($safaris);
 
   $PostcategoryImage = title::where('title', $title)
@@ -337,7 +337,7 @@ else{
          ->get();
           $PostcategoryImage = title::where('title', $title)
           ->first();
-           
+
     return view('website.programs.safaris',compact('safaris','title','PostcategoryImage'));
     }
 
@@ -351,7 +351,7 @@ else{
           ->where('programs.main','Program')
           ->where('programs.type','Day Tours')
           ->where('itineraries.tour_addon','Programs')
-         ->get();       
+         ->get();
 
          $PostcategoryImage = title::where('title', $title)
           ->first();
@@ -368,7 +368,7 @@ else{
           ->where('programs.type','Combined Tours')
           ->where('itineraries.tour_addon','Programs')
          ->get();
-       
+
 
   $PostcategoryImage = title::where('title', $title)
           ->first();
@@ -387,7 +387,7 @@ else{
           ->where('programs.type','Historical Site')
           ->where('itineraries.tour_addon','Programs')
          ->get();
-       
+
 
   $PostcategoryImage = title::where('title', $title)
           ->first();
@@ -405,7 +405,7 @@ else{
           ->where('programs.type','Cultural Tour')
           ->where('itineraries.tour_addon','Programs')
          ->get();
-       
+
 
   $PostcategoryImage = title::where('title', $title)
           ->first();
@@ -441,9 +441,9 @@ else{
     public function show($id)
     {
  //dd($id);
-       
+
     $tour_addons = program::where('id',$id)->first();
-        $type=$tour_addons->main; 
+        $type=$tour_addons->main;
 
         if($type=='Program')
         {
@@ -478,7 +478,7 @@ else{
             ->select('programs.*','attachments.attachment','itineraries.*')
           ->limit(3)->get();
  //dd($same_programs);
-      
+
        $datas = itinerary::join('itinerary_days','itineraries.id','itinerary_days.itinerary_id')
         ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')
         ->join('destinations','destinations.id','itinerary_days.destination_id')
@@ -498,10 +498,10 @@ else{
          if($datas == "[]"){
       return redirect()->back()->with('info','The Program has no Itinery Data');
            };
-        
+
         $get_type = program::whereid($id)->first();
         $type = $get_type->type;
-       
+
         $addons = program::join('attachments','programs.id','attachments.destination_id')
         ->select('programs.*','attachments.attachment')
         ->where('programs.main','Addon')
@@ -538,8 +538,8 @@ else{
 
            $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
         ->where('accommodation_inclusives.tour_id',$id)->get();
- //End of accommodation Inclusive  
-    
+ //End of accommodation Inclusive
+
          $buyaddons= buyaddons::join('programs','programs.id','buyaddons.program_id')
           ->where('buyaddons.program_id',$id)
          ->get();

@@ -105,7 +105,9 @@ h6 {
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 200;
-	color: #212121;
+/*	color: #212121;*/
+color:#007bff;
+
 }
 a,
 h1 a,

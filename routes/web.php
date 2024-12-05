@@ -143,7 +143,7 @@ Route::get('/New-Agent', [AgentController::class, 'NewAgent'])->name('NewAgent')
 // Route::post('/New-Agent-update/{x}', [AgentController::class, 'update'])->name('New-Agent-update');
 
 
-// Route::resource('/Tour-Guide', TourGuideController::class);
+//Route::resource('/Tour-Guide', TourGuideController::class);
 Route::get('/New-tourGuide', [TourGuideController::class, 'NewTourGuide'])->name('NewTourGuide');
 Route::resource('/Tour-Guide', TourGuideController::class);
 Route::get('/Guide-Destroy/{x}', [TourGuideController::class, 'destroy'])->name('Guide-Destroy');

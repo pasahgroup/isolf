@@ -46,7 +46,7 @@ class GrouptourController extends Controller
 
  public function group()
     {
-      
+
             $tour_category='Scheduled Group,Special Ocassions & Utalii Nyumbani Tours';
 
          $safaris = departures::join('programs','departures.tour_id','programs.id')
@@ -173,16 +173,16 @@ class GrouptourController extends Controller
 
            ->select('programs.*','attachments.attachment','itineraries.*')
           ->get()->first();
-     
+
            if($programs ==null){
               $programs = program::
-              where('programs.id',$id)->first();                        
+              where('programs.id',$id)->first();
                }
 
           $datas = itinerary::join('itinerary_days','itineraries.id','itinerary_days.itinerary_id')
-            
+
         ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')
- 
+
          ->join('destinations','destinations.id','itinerary_days.destination_id')
          ->join('programs','programs.id','itineraries.program_id')
 
@@ -193,14 +193,14 @@ class GrouptourController extends Controller
          ->where('itineraries.tour_addon','programs')
           ->where('attachments.type','Accommodation')
          //->get();
-         
+
          ->where('itineraries.program_id',$id)
-         
-        
+
+
          ->select('accommodations.*','accommodations.type',
          'itineraries.*','destinations.*','locations.*','programs.tour_name','itinerary_days.*','attachments.attachment')
          ->get();
-    
+
          if($datas == "[]"){
             $programs = program::
             join('attachments','attachments.destination_id','programs.id')
@@ -215,7 +215,7 @@ class GrouptourController extends Controller
 
       $get_type = program::whereid($id)->first();
         $type = $get_type->type;
-      
+
        // $addons = addons::join('attachments','addons.id','attachments.destination_id')
        //  ->select('addons.*','attachments.attachment')
        //  ->where('addons.type','!=',$type)
@@ -227,7 +227,7 @@ class GrouptourController extends Controller
            ->where('programs.main','addon')
          ->where('attachments.type','addon')
         ->select('programs.*','attachments.attachment','attachments.type')
-        ->groupby('programs.id')  
+        ->groupby('programs.id')
         ->latest()->limit(3)->get();
           // ->get();
 //dd($addons);
@@ -254,8 +254,8 @@ class GrouptourController extends Controller
 
            $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
         ->where('accommodation_inclusives.tour_id',$id)->get();
- //End of accommodation Inclusive  
-    
+ //End of accommodation Inclusive
+
       $buyaddons= buyaddons::join('programs','programs.id','buyaddons.program_id')
           ->where('buyaddons.program_id',$id)
          ->get();

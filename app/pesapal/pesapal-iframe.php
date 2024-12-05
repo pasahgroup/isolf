@@ -53,7 +53,14 @@ $phonenumber    =$phone;                                   // ONE of email or ph
 
 // Define the callback_url i.e the redirect url, this page that will handle the
 // response from pesapal.
-$callback_url = 'http://www.YOURDOMAIN.com/pesapal_callback.php';
+
+$protocol = isset($_SERVER['HTTPS']) && 
+$_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+$base_url = $protocol . $_SERVER['HTTP_HOST'] . '/';
+
+$callback_url =$base_url.'pesapal_callback.php';
+
+//$callback_url = 'http://www.YOURDOMAIN.com/pesapal_callback.php';
 
 // The format is standard so no editing is required. Encode the variable using
 // htmlentities.

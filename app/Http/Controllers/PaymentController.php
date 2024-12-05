@@ -147,7 +147,6 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
   public function pg($cust_id)
     {      
 
-//dd($cust_id);
       //Get customer details
 
         $cust=invoice::join('tour_equiry_forms','tour_equiry_forms.id','invoices.customer_id')
@@ -221,10 +220,11 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
     public function payConfirm(Request $request,$id)
     {   
 
-//dd(request('percent_downpayment'));
+$amount = preg_replace("/[^0-9\.]/", "",request('amount'));
 $amount_percent=request('percent_downpayment')*request('total_cost');
 
-if(request('amount')<$amount_percent)
+
+if($amount<$amount_percent)
 {
  return redirect()->back()->with('error','Down Payment must not below 30% of total booking costs.');
 }
@@ -237,6 +237,8 @@ $response_json = file_get_contents($req_url);
 // Continuing if we got a result
 if(false !== $response_json) {
 
+
+//dd(request('amount'));
     // Try/catch for json_decode operation
     try {
     // Decoding
@@ -248,7 +250,7 @@ $email=request('email');
 $phone=request('phone');
 
 $type=request('type');
-$amount=request('amount');
+$amount=$amount;
 $currency=request('currency');
 $status=1;
 

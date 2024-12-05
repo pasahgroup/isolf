@@ -32,7 +32,7 @@ class accommodationController extends Controller
              ->select('accommodations.*','locations.location_name')
             ->get();
             //dd($datas);
-        return view('admins.Accommodations.index',compact('datas'));
+        return view('admins.accommodations.index',compact('datas'));
     }
 
 //Accommodation list
@@ -59,7 +59,7 @@ class accommodationController extends Controller
     public function create()
     {
     $datas = location::get();
-  return view('admins.Accommodations.add',compact('datas'));
+  return view('admins.accommodations.add',compact('datas'));
     }
 
     /**
@@ -167,7 +167,7 @@ class accommodationController extends Controller
         ->where('accommodations.id',$id)->get();
         $attachments = attachment::where('destination_id',$id)->where('type','Accommodation')->get();
        // dd($accommodations);
-        return view('admins.Accommodations.show',compact('accommodations','attachments'));
+        return view('admins.accommodations.show',compact('accommodations','attachments'));
     }
 
 
@@ -181,7 +181,7 @@ class accommodationController extends Controller
         ->get()->first();
         //dd($accommodations->id);
              $locations = location::get();    
-               return view('admins.Accommodations.editAccommodation',compact('datas','locations','accommodations'));
+               return view('admins.accommodations.editAccommodation',compact('datas','locations','accommodations'));
     }
 
     /**

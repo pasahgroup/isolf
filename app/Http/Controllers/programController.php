@@ -9,6 +9,8 @@ use App\Models\itinerary;
 use App\Models\itinerary_day;
 use App\Models\program;
 use App\Models\specialOffer;
+use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Http\Request;
 use DB;
 

@@ -195,8 +195,7 @@
                
               <tr class="total">
                        <input type="hidden" name="total_cost" value="{{ $cust->total_cost,2}}" id="total_cost" /> 
-                <td class="price">Amount to be Paid</td>
-                <td class="price"><input type="text" name="amount" id="amount" value="{{ $cust->total_cost,2}}"/>Down Payment must not below 30% of total booking costs. not below ({{$cust->total_cost*$percent_downpayment,2}})</td>
+                <td>Amount to be Paid: <input type="text" name="amount" id="amount" value="{{ number_format($cust->total_cost,2)}}"/> Down Payment must not below 30% of total booking costs. not below ({{$cust->total_cost*$percent_downpayment,2}})</td>
               </tr>
             </table>
  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -249,9 +248,8 @@
                             <input type="hidden" name="desc" value="{{$programs->tour_name}}" /> 
                         </div>
 
-
         <div class="clearfix">          
-         <button href="/payConfirm/" class="btn btn-success pull-right hvr-sweep-to-right" type="submit">Proceed</button>        
+         <button class="btn btn-success pull-right hvr-sweep-to-right" type="submit">Proceed</button>        
         </div>
 
 

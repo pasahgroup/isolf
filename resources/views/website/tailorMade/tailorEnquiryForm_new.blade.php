@@ -100,22 +100,22 @@
                               </div>
     <div class="form-group">
                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <label for="">Adults (>16 yrs):</label>
+                                    <label for="">Adults(>16 yrs):</label>
                                     <div class="form-group">
-                                        <input type="number" class="zt-control" name="adults" min="1">                   
+                                        <input type="number" class="zt-control" name="adults" min="0" value="1">                   
                                     </div>
                                 </div>
 
                                   <div class="col-lg-4 col-md-4 col-sm-4">
                                      <label for="">Teens(13-14yrs):</label>
                                     <div class="form-group">
-                                          <input type="number" class="zt-control" name="teens" min="0">
+                                          <input type="number" class="zt-control" name="teens" min="0" value="0">
                                     </div>
                                 </div>
                                   <div class="col-lg-4 col-md-4 col-sm-4">
-                                 <label for="">Children (5-12 yrs):</label>
+                                 <label for="">Children(5-12 yrs):</label>
                                     <div class="form-group">
-                                        <input type="number" class="zt-control" name="children" min="0">
+                                        <input type="number" class="zt-control" name="children" min="0" value="0">
                                     </div>
                                 </div>
   </div>
@@ -132,7 +132,7 @@
                                   <div class="col-lg-4 col-md-4 col-sm-4">
                                  <label for="">Days:</label>
                                     <div class="form-group">
-                                           <input type="number" class="zt-control" placeholder="0" name="days" min="0">
+                                           <input type="number" class="zt-control" name="days" min="1" value="1">
                                     </div>
                                 </div>
   </div>

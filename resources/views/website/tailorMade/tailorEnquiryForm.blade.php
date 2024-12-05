@@ -86,25 +86,25 @@
                              <div class="col-6 col-md-4 col-xl-3">
                                    <label for="">Adults(>16yrs):</label>
                                     <div class="form-group">
-                                        <input type="number" class="zt-control" placeholder="0" name="adults" min="0">
+                                        <input type="number" class="zt-control" name="adults" min="0" value="1">
                                     </div>
                                 </div>
                                  <div class="col-6 col-md-4 col-xl-3">
                                     <label for="">Teens(13-14yrs):</label>
                                     <div class="form-group">
-                                        <input type="number" class="zt-control" placeholder="0" name="teens" min="0">
+                                        <input type="number" class="zt-control" placeholder="0" name="teens" min="0" value="0">
                                     </div>
                                 </div>
                                  <div class="col-6 col-md-4 col-xl-3">
-                                   <label for="">Children (5-12 yrs):</label>
+                                   <label for="">Children(5-12 yrs):</label>
                                     <div class="form-group">
-                                        <input type="number" class="zt-control" placeholder="0" name="children" min="0">
+                                        <input type="number" class="zt-control" placeholder="0" name="children" min="0" value="0">
                                     </div>
                                 </div>
                                  <div class="col-6 col-md-4 col-xl-3">
                                      <label for="">Days:</label>
                                     <div class="form-group">
-                                        <input type="number" class="zt-control" placeholder="0" name="days" min="0">
+                                        <input type="number" class="zt-control" name="days" min="1" value="1">
                                     </div>
                                 </div>
 

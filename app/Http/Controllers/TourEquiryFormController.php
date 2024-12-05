@@ -14,6 +14,7 @@ use App\Models\tailorMade;
 use App\Models\itinerary;
 use App\Models\itinerary_day;
 use App\Models\destination;
+use App\Models\accommodationInclusive;
 
 use App\Models\people_percent;
 
@@ -192,7 +193,6 @@ $id=11;
 
 
 
-
  $socialmedia = socialmedia::get();
 
 $date=date('d-M-Y');
@@ -253,8 +253,9 @@ dd('Mail sent successfully');
           $pin=request('pin');
          // dd($pin);
           
-          $trip = TourEquiryForm::
-            where('tour_equiry_forms.pin',$pin)->first();
+    $trip = TourEquiryForm::where('tour_equiry_forms.pin',$pin)->first();
+
+       //dd($trip);  
 
            if($trip==null)
            {
@@ -269,39 +270,40 @@ dd('Mail sent successfully');
              return redirect()->back()->with('error','Your PIN Number has been already Expired');
            }else
            {
-              $id=$trip->id;  
+              //$id=$trip->id;  
+              $id=$trip->tour_id;
            }
            
            $tour_addon='Programs';          
-           $programs = program::join('itineraries','itineraries.program_id','programs.id')
-            ->join('attachments','attachments.destination_id','programs.id')        
+           $programs = TourEquiryForm::join('itineraries','itineraries.program_id','tour_equiry_forms.tour_id')
+            ->join('attachments','attachments.destination_id','tour_equiry_forms.tour_id')        
           ->where('itineraries.tour_addon','Programs')
           ->where('attachments.type','Programs')
-          ->where('programs.id',$id)->first();      
-dd($programs);
+          ->where('tour_equiry_forms.tour_id',$id)->first();
 
 
            if($programs ==null){
             // tour_equiry_forms
-              $programs = tailorMade::
-              where('programs.id',$id)->first();
+              $programs = TourEquiryForm::
+              where('tour_equiry_forms.tour_id',$id)->first();
               }
+
+//dd($programs);
 
         $datas = itinerary_day::join('itineraries','itineraries.id','itinerary_days.itinerary_id')
         ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')   
-
          ->join('destinations','destinations.id','itinerary_days.destination_id') 
-         ->join('programs','programs.id','itineraries.program_id')
+         ->join('tour_equiry_forms','tour_equiry_forms.tour_id','itineraries.program_id')
                   
          ->join('attachments','attachments.destination_id','accommodations.id') 
           ->where('itineraries.tour_addon','Programs')
           ->where('itineraries.program_id',$id)          
           ->where('attachments.type','Accommodation')
-          ->where('programs.id',$id)
+          ->where('tour_equiry_forms.tour_id',$id)
        
          ->orderby('itinerary_days.id','ASC')
         
-         ->select('accommodations.accommodation_name','accommodations.accommodation_descriptions','attachments.attachment','accommodations.category','destinations.destination_name','itineraries.*','programs.first_name','programs.last_name','itinerary_days.*')
+         ->select('accommodations.accommodation_name','accommodations.accommodation_descriptions','attachments.attachment','accommodations.category','destinations.destination_name','itineraries.*','tour_equiry_forms.first_name','tour_equiry_forms.last_name','itinerary_days.*')
            ->get();
     
 //dd($datas);
@@ -313,15 +315,19 @@ dd($programs);
             // return ($programs->full_name.' Ops your tailor made still on Progess....');
           };
 
-        $basic=tailorMade::join('attachments','attachments.destination_id','programs.id')
+       //$gg=TourEquiryForm::get();     
+        
+        $basic=TourEquiryForm::join('attachments','attachments.destination_id','tour_equiry_forms.id')
         ->get();
-         
+        //dd($basic);
+
+
          $inclusives=DB::select("select id,inclusive from inclusives  where id not in(select (inclusive_id)id from accommodation_inclusives where tour_id =$id)");
         
            $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
         ->where('accommodation_inclusives.tour_id',$id)->get();
-//dd($programs);
-  $invoice_amount = invoice::where('customer_id',$id)->first(); 
+//dd($inclusives);
+  $invoice_amount = invoice::where('customer_id',$trip->id)->first(); 
 //dd($invoice_amount);
 
         return view('website.tailorMade.tailorMadeSummary',compact('datas','id','programs','basic','inclusives','assignLists','pin','invoice_amount'));
@@ -426,7 +432,8 @@ if(request('print')=="print")
     }
     else
     {
-     return redirect()->route('pg',$id)->with('success','Tour Summary Cost created successful');   
+    return redirect()->route('pg',$id)->with('success','Tour Summary Cost created successful'); 
+     //return redirect()->back()->with('info','The program has No Itinerary');  
     }
         }
         // else if ($trip->tour_type=='Group') {
@@ -778,7 +785,7 @@ $id=request('tour_id');
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TourEquiryFrom  $tourEquiryFrom
+     * @param  \App\Models\TourEquiryForm  $TourEquiryForm
      * @return \Illuminate\Http\Response
      */
 
@@ -830,10 +837,10 @@ $groupTrip=  DB::select("select sum(t1.adults)adults,sum(t1.teens)teens,sum(t1.c
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TourEquiryFrom  $tourEquiryFrom
+     * @param  \App\Models\TourEquiryForm  $TourEquiryForm
      * @return \Illuminate\Http\Response
      */
-    public function edit(TourEquiryFrom $tourEquiryFrom)
+    public function edit(TourEquiryForm $TourEquiryForm)
     {
         //
     }
@@ -842,10 +849,10 @@ $groupTrip=  DB::select("select sum(t1.adults)adults,sum(t1.teens)teens,sum(t1.c
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TourEquiryFrom  $tourEquiryFrom
+     * @param  \App\Models\TourEquiryForm  $TourEquiryForm
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TourEquiryFrom $tourEquiryFrom)
+    public function update(Request $request, TourEquiryForm $TourEquiryForm)
     {
         //
     }
@@ -853,10 +860,10 @@ $groupTrip=  DB::select("select sum(t1.adults)adults,sum(t1.teens)teens,sum(t1.c
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TourEquiryFrom  $tourEquiryFrom
+     * @param  \App\Models\TourEquiryForm  $TourEquiryForm
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TourEquiryFrom $tourEquiryFrom)
+    public function destroy(TourEquiryForm $TourEquiryForm)
     {
         //
     }

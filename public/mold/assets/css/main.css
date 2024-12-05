@@ -47,7 +47,7 @@ TABLE OF CONTENTS:
 	2.31 Image Gallery
 	2.32 Location
 	2.33 Footer
-	
+
 3.0 Partial UI
 	3.1 Trip Showcase
 	3.2 Trip Grid
@@ -4440,7 +4440,7 @@ ul.checklist [type="radio"] {
 }
 .item-grid .item-desc {
   background: #ffffff;
-  color: #4b4b4b;
+  color: #fff;
   padding: 20px 20px 15px;
   -webkit-transition: all linear 2s;
   -moz-transition: all linear 2s;
@@ -4470,10 +4470,10 @@ ul.checklist [type="radio"] {
   font-size: 30px;
 }
 .item-grid .item-desc .sub-title {
-  min-height: 20px;
+  min-height: 12px;
   margin-bottom: 15px;
   font-size: .8em;
-  color: #979797;
+  color: #fff;
   clear: both;
 }
 .item-grid .item-desc .sub-title .location {
@@ -4666,7 +4666,7 @@ ul.checklist [type="radio"] {
   min-height: 20px;
   margin-bottom: 5px;
   font-size: .8em;
-  color: #979797;
+  color: #fff;
   clear: both;
 }
 .item-list .item-desc .item-excerpt {
@@ -9866,7 +9866,7 @@ ul.color-label li.gray-300 {
   background: #a7a7a7;
 }
 ul.color-label li.gray-400 {
-  background: #979797;
+  background: #fff;
 }
 ul.color-label li.gray-500 {
   background: #888;

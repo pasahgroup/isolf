@@ -8,7 +8,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item zooming with-overlay active" style="background-image: url('http://placehold.it/1680x1050');"></div>
-          
+
         @foreach($sliders as $slides)
         <div class="item zooming with-overlay" style="background-image: url('{{URL::asset('/storage/uploads/'.$slides->attachment)}}');"></div>
 
@@ -17,7 +17,7 @@
           <span class="main-header">Enjoy Adventure <br> Experience</span>
           <hr>
           <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.</p>
-        
+
         </div>
       </div>
  @endforeach
@@ -32,13 +32,13 @@
           <hr>
           <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.</p>
 
-    <div class="top-header-area" style="background:yellow;padding:2px">
+    <div class="top-header-area" style="background:yellow;padding:1px;margin-top: 135px;">
          <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#345742;margin-top:0px;margin-bottom:0px;">
               <div class="col-lg-9 col-md-4">
                <i href="" class="text-decoration-none">
                     <marquee>Hello! Welcome Book with us</marquee>
-                </i>            
- 
+                </i>
+
             </div>
 
 
@@ -60,11 +60,11 @@
                 <option value="cultural">Cultural Tours</option>
 
           </select>
-                        
 
 
 
-<!-- 
+
+<!--
 
             <div class="col-sm-10 row" style="padding-left:10px;padding-right:10px; ">
               <div class="col-sm-4 form-group">
@@ -83,7 +83,7 @@
               </div>
             </div> -->
 
-                        <div class="input-group-append">                       
+                        <div class="input-group-append">
                             <button class="btn btn-search btn-primary hvr-sweep-to-right">
                                 <i class="fa fa-search"> Search</i>
                             </button>
@@ -94,8 +94,8 @@
 
             </div>
         </div>
-    </div>    
-  
+    </div>
+
         </div>
       </div>
  @endforeach
@@ -130,7 +130,7 @@
     <div class="container">
 
       <div class="row item">
-    
+
     @foreach ($offers_private as $special_private)
       <div class="col-sm-6 col-md-4">
  <h4><b style="background:">{{$special_private->sales_header}}-({{ $special_private->category }})</b></h4>
@@ -138,7 +138,7 @@
           <div class="single_blog listing-shot item-grid">
 <div class="listing-shot-img">
                                       <div class="listing-badge now-open"><strong>{{round($special_private->save/$special_private->price * 100),0 }}% Off</strong></div>
-                                   
+
                                 </div>
 
 
@@ -149,46 +149,60 @@
                 <a href="{{route('safaris.show',$special_private->tour_id,$offers) }}"><span class="icon-binocular"></span></a>
               </div>
             </div>
-          
-            <div class="item-desc" style="background-color:#345742;">
 
-              <div class="">
+
+              <div class="text-center" style="background-color:#b7ac78">
                 <h4 class="title"><a href="#">{{$special_private->tour_name}}</a></h4>
               </div>
-                
 
- <hr>
+
+
+  <div class="item-desc" style="background-color:#345742;">
+    <div class="item-detail">
+      <div class="left">
+        {{--
+        <div class="day"><span class="icon-sun">Dead Line: {{ $special_private->offer_deadline }}</span></div>
+        <div class="night"><span class="icon-moon"></span>{{ $special_private->offer_deadline }}</div>
+        --}}
+        <span class="text-white" style="font-size:17px"><strong>Dead Line: </strong>
+          {{--
+                               </span><sup style="text-decoration: line-through;">$ {{ number_format($special_private->price),2 }} </sup></s>
+                               --}}
+                               <br>
+                                <span style="font-size:12px;">{{$special_private->offer_deadline }} </span>
+      </div>
+      <div class="right">
+          <span class="text-yellow" style="font-size:17px;color:#f9be0d"><strong>${{ number_format($special_private->new_price),2 }} </strong> pp
+                                 </span><sup style="text-decoration: line-through;">$ {{ number_format($special_private->price),2 }} </sup></s><br>
+                                  <span style="font-size:12px;">Save ${{ number_format($special_private->save),2 }}</span>
+
+      </div>
+    </div>
+  <hr style="background-color:#fff">
               <div class="sub-title">
                 <span class="location">Tour Duration</span>
-                <span class="grade">{{ $special_private->days }} Days, {{ $special_private->days -1 }} Nights</span>
+                <span class="grade"><strong>{{ $special_private->days }} Days, {{ $special_private->days -1 }} Nights</strong></span>
               </div>
               <div class="sub-title">
                 <span class="location">Physical rating</span>
-                <span class="grade">{{ $special_private->physical_rating }}</span>
+                <span class="grade"><strong>{{ $special_private->physical_rating }}</strong></span>
               </div>
 
               <div class="sub-title">
                  <span class="location">Tour Category</span>
-                <span class="grade">{{ $special_private->category }}</span>
+                <span class="grade"><strong>{{ $special_private->category }}</strong></span>
               </div>
 
    <div class="sub-title">
-                <span class="location">Tour Code</span>
-                <span class="grade">{{ $special_private->tour_code }}</span>
-              </div>
 
+                <span class="location">Tour Code</span>
+                <span class="grade"><strong>{{ $special_private->tour_code }}</strong></span>
+              </div>
+<hr style="background-color:yellow">
               <div class="item-detail">
                 <div class="left">
-                  <div class="day"><span class="icon-sun">Dead Line:</span></div>
-                  <div class="night"><span class="icon-moonx"></span>{{ $special_private->offer_deadline }}</div>
                 </div>
                 <div class="right">
-                  
-                    <span class="text-danger" style="font-size:17px"><strong>${{ number_format($special_private->new_price),2 }} </strong> pp
-                                           </span><sup style="text-decoration: line-through;">$ {{ number_format($special_private->price),2 }} </sup></s><br>
-                                            <span style="font-size:12px;">Save ${{ number_format($special_private->save),2 }}</span>
-
-
                   <a href="{{route('safaris.show',$special_private->tour_id,$offers) }}" class="btn btn-primary hvr-sweep-to-right">Tour Details</a>
                 </div>
               </div>
@@ -206,7 +220,7 @@
           <div class="single_blog listing-shot item-grid">
 <div class="listing-shot-img">
                                       <div class="listing-badge now-open"><strong>{{round($special_group->save/$special_group->price * 100),0 }}% Off</strong></div>
-                                   
+
                                 </div>
 
 
@@ -217,7 +231,7 @@
                 <a href="{{route('safaris.show',$special_group->tour_id,$offers) }}"><span class="icon-binocular"></span></a>
               </div>
             </div>
-          
+
             <div class="item-desc" style="background-color:#345742;">
 
               <div class="">
@@ -251,7 +265,7 @@
                   <div class="night"><span class="icon-moonx"></span>{{ $special_group->offer_deadline }}</div>
                 </div>
                 <div class="right">
-                  
+
                     <span class="text-danger" style="font-size:17px"><strong>${{ number_format($special_group->new_price),2 }} </strong> pp
                                            </span><sup style="text-decoration: line-through;">$ {{ number_format($special_group->price),2 }} </sup></s><br>
                                             <span style="font-size:12px;">Save ${{ number_format($special_group->save),2 }}</span>
@@ -280,10 +294,10 @@
 
 <section class="showcase" style="background: url('assets/img/worldmap.png') no-repeat center; background-size: cover;padding-top: 30px;padding-bottom: 20px;">
    <div class="main-title">
-      <h4>Top Destinations</h4>     
+      <h4>Top Destinations</h4>
     </div>
-    
-        
+
+
     <div class="container">
 
                     <!-- BEGIN CONTENT -->
@@ -291,7 +305,7 @@
 
                         <div class="">
                          <div data-aos="fade-up">
-        
+
  <!-- Beach Holidays -->
   <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 front-carousel booking-tourPadding">
                      <h6 data-text= "" style="font-size: 20px;color: green;font-weight: 650; text-transform:lowercase;text-align: center;">Wildlife Safaris</h6>

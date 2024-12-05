@@ -177,12 +177,18 @@ $status="Active";
         ]);
 
 }
+
 //dd(request('company_name'));
 $currentPath= Route::getFacadeRoot()->current()->uri();
 $currentPath_root= $request->root();
 $uri = $request->fullUrl();
 
-//dd($currentPath_url);
+
+
+//$callback_url = 'http://www.YOURDOMAIN.com/pesapal_callback.php';
+//$callback_url = $currentPath_root.'/pesapal_callback.php';
+//dd($callback_url);
+
 //Send PIN to customer Email
 $company_name=request('company_name');
 $date=date('d-M-Y');
@@ -222,6 +228,7 @@ foreach ($files as $file){
 
     return redirect()->back()->with('success','SuccessfulSubmitted');
     }
+
 
  public function tailorForm()
     {
@@ -567,7 +574,7 @@ $adults_cost=$unit_price * $adults;
            if($tailorMades==null)
            {
             // return 'Enter your PIN No Or Your PIN No is Expired Or Not Exists';
-               return redirect()->back()->with('error','Your tailor PIN Number does not Exists');
+               return redirect()->back()->with('error','Your Tailor PIN Number does not Exists');
            }
            else
            {
@@ -595,9 +602,9 @@ $adults_cost=$unit_price * $adults;
               }
 
         $datas = itinerary_day::join('itineraries','itineraries.id','itinerary_days.itinerary_id')
-        ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')    
+        ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')   
 
-        ->join('destinations','destinations.id','itinerary_days.destination_id') 
+         ->join('destinations','destinations.id','itinerary_days.destination_id') 
          ->join('tailor_mades','tailor_mades.id','itineraries.program_id')
                   
          ->join('attachments','attachments.destination_id','accommodations.id') 
@@ -611,6 +618,8 @@ $adults_cost=$unit_price * $adults;
          ->select('accommodations.accommodation_name','accommodations.accommodation_descriptions','attachments.attachment','accommodations.category','destinations.destination_name','itineraries.*','tailor_mades.first_name','tailor_mades.last_name','itinerary_days.*')
            ->get();
     
+//dd($datas);
+
 
          if($datas == "[]"){          
             $destinations = destination::get();
@@ -619,14 +628,15 @@ $adults_cost=$unit_price * $adults;
           };
 
         $basic=tailorMade::join('attachments','attachments.destination_id','tailor_mades.id')
-        ->get();
+            ->get();
          
          $inclusives=DB::select("select id,inclusive from inclusives  where id not in(select (inclusive_id)id from accommodation_inclusives where tour_id =$id)");
         
            $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
         ->where('accommodation_inclusives.tour_id',$id)->get();
 //dd($programs);
-  $invoice_amount = invoice::where('customer_id',$id)->first();
+  $invoice_amount = invoice::where('customer_id',$id)->first(); 
+//dd($invoice_amount);
 
         return view('website.tailorMade.tailorMadeSummary',compact('datas','id','programs','basic','inclusives','assignLists','pin','invoice_amount'));
     }
