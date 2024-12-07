@@ -15,6 +15,7 @@ use App\Models\specialOffer;
 use App\Models\slider;
 use App\Models\people_percent;
 use App\Models\bank;
+use Carbon\Carbon;
 
 use App\Models\Tourcostsummary;
 use App\Models\buyaddons;
@@ -28,7 +29,7 @@ use App\Models\accommodationInclusive;
 use Illuminate\Http\Request;
 use DB;
     include_once(app_path().'/pesapal/oauth.php');
-       // include_once(app_path().'/pesapal/pesapal-iframe.php');   
+       // include_once(app_path().'/pesapal/pesapal-iframe.php');
 
 class PaymentController extends Controller
 {
@@ -39,16 +40,16 @@ class PaymentController extends Controller
      */
     // include(app_path().'/includes/config.php');
       // include_once(app_path().'/pesapal/oauth.php');
-      // include(app_path().'/pesapal/pesapal-iframe.php');   
+      // include(app_path().'/pesapal/pesapal-iframe.php');
 
     public function index()
     {
         //
     }
 
-  
+
  public function pgtm($cust_id)
-    {      
+    {
 
 //dd($cust_id);
       //Get customer details
@@ -56,9 +57,9 @@ class PaymentController extends Controller
         $cust=invoice::join('tailor_mades','tailor_mades.id','invoices.customer_id')
         ->where('invoices.customer_id',$cust_id)
         ->select('invoices.*','tailor_mades.children','tailor_mades.teens','tailor_mades.adults','tailor_mades.pin','tailor_mades.first_name','tailor_mades.last_name','tailor_mades.email','tailor_mades.phone')->first();
-     
 
-        $id=$cust_id; 
+
+        $id=$cust_id;
         //dd($cust);
 
          $discounts=specialOffer::where('tour_id',$id)->first();
@@ -90,7 +91,7 @@ class PaymentController extends Controller
        //  ->join('destinations','destinations.id','itinerary_days.destination_id')
        //  ->join('programs','programs.id','itineraries.program_id')
        //  ->join('attachments','accommodations.id','attachments.destination_id')
-        
+
        //  ->orderby('itinerary_days.id','ASC')
        //  ->where('itineraries.tour_addon','tailor_made')
        //  ->where('itineraries.program_id',$id)
@@ -118,7 +119,7 @@ class PaymentController extends Controller
             $destinations = destination::get();
             return view('admins.itinerary.add',compact('programs','accommodations','destinations','tour_addon'));
         };
-       
+
        $basic = Tourcostsummary::
        where('status','Basic')
        ->get();
@@ -145,16 +146,16 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
 
 
   public function pg($cust_id)
-    {      
+    {
 
       //Get customer details
 
         $cust=invoice::join('tour_equiry_forms','tour_equiry_forms.id','invoices.customer_id')
         ->where('invoices.customer_id',$cust_id)
         ->select('invoices.*','tour_equiry_forms.children','tour_equiry_forms.teens','tour_equiry_forms.adults','tour_equiry_forms.pin','tour_equiry_forms.first_name','tour_equiry_forms.last_name','tour_equiry_forms.email','tour_equiry_forms.phone')->first();
-     
 
-        $id=$cust->tour_id; 
+
+        $id=$cust->tour_id;
 
          $discounts=specialOffer::where('tour_id',$id)->first();
          $tourInvoice=invoice::where('tour_id',$id)->first();
@@ -177,7 +178,7 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
         ->join('destinations','destinations.id','itinerary_days.destination_id')
         ->join('programs','programs.id','itineraries.program_id')
         ->join('attachments','accommodations.id','attachments.destination_id')
-        
+
         ->orderby('itinerary_days.id','ASC')
         ->where('itineraries.tour_addon','programs')
         ->where('itineraries.program_id',$id)
@@ -192,7 +193,7 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
             $destinations = destination::get();
             return view('admins.itinerary.add',compact('programs','accommodations','destinations','tour_addon'));
         };
-       
+
        $basic = Tourcostsummary::
        where('status','Basic')
        ->get();
@@ -218,7 +219,8 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
 
 
     public function payConfirm(Request $request,$id)
-    {   
+    {
+ $current_date=Carbon::now();
 
 $amount = preg_replace("/[^0-9\.]/", "",request('amount'));
 $amount_percent=request('percent_downpayment')*request('total_cost');
@@ -266,24 +268,41 @@ $base_price=($response_object->rates->TZS/$response_object->rates->$currency);
  // $defaultCurrency2=($response_object->rates->$currency);
     $to_bepaid = round(($amount * $base_price), 2);
      //dd($to_bepaid);
-    
+
+
+     $invoice_update=DB::statement('update invoices set total_amount_paid=total_amount_paid+"'.$amount.'" where id="'.$id.'"');
+   $invoice_update2=DB::statement('update invoices set amount_remain="'.$amount.'" where id="'.$id.'"');
+
+     $customer_data = invoice::where('id',$id)->first();//dd($customer_data);
+//Amount paid backup data
+$addon =  payment::updateOrCreate(
+     [
+        'customer_id'=>$customer_data->customer_id,
+      ],[
+        'tour_id'=>$customer_data->tour_id,
+        'amount_paid'=>$amount,
+        'amount_carry_forward'=>$customer_data->amount_remain,
+'currency'=>request('currency'),
+'payee_date'=>$current_date
+]);
+
     }
     catch(Exception $e) {
         // Handle JSON parse error...
     }
 }
- 
+
  //return response()->json(['url' => redirect('https://payments.pesapal.com/palatialtours',compact(['first_name','status']));
 //return redirect('https://payments.pesapal.com/palatialtours',compact('status'));
 
-return view('website.pesapal.pesapal',compact('first_name','last_name','currency','to_bepaid','desc','email','phone','type'));  
-    
+return view('website.pesapal.pesapal',compact('first_name','last_name','currency','to_bepaid','desc','email','phone','type'));
+
 
     }
 
 
       public function payInvoice($cust_id)
-    {      
+    {
 
       //Get customer details
       //dd('ping');
@@ -292,7 +311,7 @@ return view('website.pesapal.pesapal',compact('first_name','last_name','currency
         ->where('invoices.customer_id',$cust_id)
         ->select('invoices.*','tour_equiry_forms.children','tour_equiry_forms.teens','tour_equiry_forms.adults','tour_equiry_forms.pin')->first();
        // dd($cust);
-        $id=$cust->tour_id;   
+        $id=$cust->tour_id;
 
          $discounts=specialOffer::where('tour_id',$id)->first();
          $tourInvoice=invoice::where('tour_id',$id)->first();
@@ -313,7 +332,7 @@ return view('website.pesapal.pesapal',compact('first_name','last_name','currency
         ->join('destinations','destinations.id','itinerary_days.destination_id')
         ->join('programs','programs.id','itineraries.program_id')
         ->join('attachments','accommodations.id','attachments.destination_id')
-        
+
         ->orderby('itinerary_days.id','ASC')
         ->where('itineraries.tour_addon','programs')
         ->where('itineraries.program_id',$id)
@@ -328,7 +347,7 @@ return view('website.pesapal.pesapal',compact('first_name','last_name','currency
             $destinations = destination::get();
             return view('admins.itinerary.add',compact('programs','accommodations','destinations','tour_addon'));
         };
-       
+
        $basic = Tourcostsummary::
        where('status','Basic')
        ->get();
@@ -359,14 +378,14 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
     {
        $cust_id=$id;
        $cust=invoice::where('customer_id',$cust_id)->first();
-     
+
         if($cust==null)
         {
             return redirect()->back()->with('info','Tour ID is null ...! Trace 2 Payment controller');
 
         }
         else{
-               $id=$cust->tour_id;  
+               $id=$cust->tour_id;
  if($id==0)
         {
             return redirect()->back()->with('info','Tour ID is 0 ...! Trace  Payment controller');
@@ -391,7 +410,7 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
 
  //dd($programs);
 
-      
+
            if($programs ==null){
               $programs = program::
               join('invoices','programs.id','invoices.tour_id')
@@ -411,24 +430,24 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
         ->where('attachments.type','Accommodation')
         ->select('accommodations.accommodation_name','attachments.attachment','accommodations.accommodation_descriptions','accommodations.category','destinations.destination_name','itineraries.*','programs.tour_name','itinerary_days.*')
         ->get();
-      
+
          if($datas == "[]"){
             $programs = program::
             join('attachments','attachments.destination_id','programs.id')
            ->where('attachments.type','Programs')
            ->where('programs.id',$id)->first();
-          
+
             $accommodations = accommodation::get();
             $destinations = destination::get();
-            
+
             return redirect()->back()->with('info','Itinerary not specified');
 
             // return view('admins.itinerary.add',compact('programs','accommodations','destinations','tour_addon'));
-             
+
             };
 
              //dd($datas);
-  
+
      $inclusives=DB::select("select id,inclusive from inclusives  where id not in(select (inclusive_id)id from accommodation_inclusives where tour_id =$id)");
     $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
         ->where('accommodation_inclusives.tour_id',$id)->get();
@@ -459,7 +478,7 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
 
  public function privatePay(Request $request,$z)
     {
-     
+
       $tailorCustomer = invoice::
         where('id',$z)->first();
 
@@ -495,7 +514,7 @@ $basicCount=DB::select("select * from(select count(d.start_date)date_count,DATE_
    {
      $toupdatef = invoice::where('id',$z)->update([
             'payee_status'=>'In due'
-        ]);  
+        ]);
     return redirect()->back()->with('success','Itinerary created successful');
    }
 
@@ -510,7 +529,7 @@ else
 
  public function groupPay(Request $request,$z)
     {
-     
+
       $tailorCustomer = invoice::
         where('id',$z)
         ->first();
@@ -549,7 +568,7 @@ else
    {
      $toupdatef = invoice::where('id',$z)->update([
             'payee_status'=>'In due'
-        ]);  
+        ]);
 
         return redirect()->back()->with('success','Itinerary created successful');
    }
@@ -559,7 +578,7 @@ else
 {
     return 'The Invoice is alredy paid...!';
 }
-        
+
 //return redirect()->back()->with('success','Itinerary created successful');
 }
 

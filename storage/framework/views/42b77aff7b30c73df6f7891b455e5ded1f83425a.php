@@ -6,7 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="author" content="Buruhani Wawa">
+
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <meta content="Experienced hiking and Tour Safaris" name="description">
+  <meta content="Palatial Tours" name="keywords">
+  <meta content="Buruhani Wawa" name="author">
+
+
   <title><?php echo e($title ?? 'ISOL Tours'); ?></title>
   <link rel="icon" type="image/png" href="../mold/assets/img/favicon.png" />
 
@@ -16,7 +26,7 @@
   <link rel="stylesheet" href="../mold/assets/font/iconfont/iconstyle.css" media="all">
   <link rel="stylesheet" href="../mold/assets/font/font-awesome/css/font-awesome.css" media="all">
   <link rel="stylesheet" href="../mold/assets/css/main.css" media="all" id="maincss">
-
+  <link rel="stylesheet" href="../../css/style-shortline.css">
 
 <link rel="stylesheet" href="../assetf/style.css">
  <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,9 +55,7 @@
   <link href="../../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
 -->
 </head>
-
 <body>
-
 
 
   <div class="container top-header-area" style="background:yellow;padding:1px">
@@ -62,11 +70,11 @@
 
               <div class="col-lg-4 col-md-7">
                  <div class="email-address_no">
-                    <a href="mailto:info@isol.com">
-                      <i class="fa fa-envelope" style="color:pink;"></i><b style="color:#FDD43D;">  info@isol.com</b></a>
+                    <a href="mailto:info@isoltours.com">
+                      <i class="fa fa-envelope" style="color:pink;"></i><b style="color:#FDD43D;">  info@isoltours.com</b></a>
                        <a href="https://wa.link/z5mmcd" style="padding-left:10px">
                             <img src="../../../images/whatsapp.png" alt="" style="width:20px; height:20px;">
-                               <b style="color:#FDD43D;">(+255)753 216 263</b>
+                               <b style="color:#FDD43D;">(+255)653 223 318</b>
                             </a>
                 </div>
             </div>

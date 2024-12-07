@@ -151,7 +151,7 @@
             </div>
 
 
-              <div class="text-center" style="background-color:#b7ac78">
+              <div class="text-center" style="background-color:#f2fde6;border-radius:100px">
                 <h4 class="title"><a href="#">{{$special_private->tour_name}}</a></h4>
               </div>
 
@@ -160,14 +160,7 @@
   <div class="item-desc" style="background-color:#345742;">
     <div class="item-detail">
       <div class="left">
-        {{--
-        <div class="day"><span class="icon-sun">Dead Line: {{ $special_private->offer_deadline }}</span></div>
-        <div class="night"><span class="icon-moon"></span>{{ $special_private->offer_deadline }}</div>
-        --}}
-        <span class="text-white" style="font-size:17px"><strong>Dead Line: </strong>
-          {{--
-                               </span><sup style="text-decoration: line-through;">$ {{ number_format($special_private->price),2 }} </sup></s>
-                               --}}
+
                                <br>
                                 <span style="font-size:12px;">{{$special_private->offer_deadline }} </span>
       </div>
@@ -178,6 +171,8 @@
 
       </div>
     </div>
+
+
   <hr style="background-color:#fff">
               <div class="sub-title">
                 <span class="location">Tour Duration</span>

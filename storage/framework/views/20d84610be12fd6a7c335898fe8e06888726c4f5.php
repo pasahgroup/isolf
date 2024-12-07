@@ -150,7 +150,7 @@
             </div>
 
 
-              <div class="text-center" style="background-color:#b7ac78">
+              <div class="text-center" style="background-color:#f2fde6;border-radius:100px">
                 <h4 class="title"><a href="#"><?php echo e($special_private->tour_name); ?></a></h4>
               </div>
 
@@ -159,9 +159,7 @@
   <div class="item-desc" style="background-color:#345742;">
     <div class="item-detail">
       <div class="left">
-        
-        <span class="text-white" style="font-size:17px"><strong>Dead Line: </strong>
-          
+
                                <br>
                                 <span style="font-size:12px;"><?php echo e($special_private->offer_deadline); ?> </span>
       </div>
@@ -172,6 +170,8 @@
 
       </div>
     </div>
+
+
   <hr style="background-color:#fff">
               <div class="sub-title">
                 <span class="location">Tour Duration</span>

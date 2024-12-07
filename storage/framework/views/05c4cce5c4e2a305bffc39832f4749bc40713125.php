@@ -7,8 +7,8 @@
       <div class="page-img-txt container">
         <div class="row">
           <div class="col-sm-8">
-            <h1 class="main-head" style="text-transform: lowercase;"><?php echo e($title?? ''); ?></h1>   
-            
+            <h1 class="main-head" style="text-transform: lowercase;"><?php echo e($title?? ''); ?></h1>
+
             <div class="author-img">
               <img src="<?php echo e(URL::asset('/storage/uploads/'.$PostcategoryImage->attachment)); ?>" alt="">
             </div>
@@ -29,33 +29,18 @@
     </div>
 <?php endif; ?>
   </div>
- 
-
-
-
 
 
  <div class="container">
-
     <div class="container top-header-area" style="background:yellow;padding:2px">
          <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#345742;margin-top:0px;margin-bottom:0px;">
               <div class="col-lg-3 col-md-4">
                <i href="" class="text-decoration-none">
                     <marquee>Hello! Welcome Book with us</marquee>
-                </i>            
- 
+                </i>
+
             </div>
 
-            <!--   <div class="col-lg-6 col-md-7">
-                 <div class="email-address_no">
-                    <a href="mailto:info@isol.com">
-                      <i class="fa fa-envelope" style="color:pink;"></i><b style="color:#FDD43D;">  info@isol.com</b></a>
-                       <a href="https://wa.link/z5mmcd" style="padding-left:10px">
-                            <img src="../../../images/whatsapp.png" alt="" style="width:20px; height:20px;">
-                               <b style="color:#FDD43D;">(+255)753 216 263</b>
-                            </a>
-                </div>
-            </div> -->
 
             <div class="col-lg-5 col-md-8 text-left">
                      <form  method="POST"  action="<?php echo e(route('all-search')); ?>" enctype="multipart/form-data">
@@ -75,9 +60,9 @@
                 <option value="cultural">Cultural Tours</option>
 
           </select>
-                        
 
-                        <div class="input-group-append">                        
+
+                        <div class="input-group-append">
                             <button class="btn btn-search btn-primary hvr-sweep-to-right">
                                 <i class="fa fa-search"> Search</i>
                             </button>
@@ -88,98 +73,84 @@
 
             </div>
         </div>
-    </div>    
+    </div>
   </div>
 
 
   <div class="banner base page-img" style="background: url('assets/img/worldmap.jpg') no-repeat center; background-size: cover">
      <div class="container-fluid">
 
-      <div class="line-box">   
+      <div class="line-box">
         <div class="line-title">    <?php echo e($title?? ''); ?></div>
 
     <div class="row">
-        <?php $__currentLoopData = $safaris; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $safari): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>  
-        <div class="col-sm-6 col-md-3">
-          <div class="item-grid">
-            <div class="item-img" style="background-image: url(<?php echo e(URL::asset('/storage/uploads/'.$safari->attachment)); ?>);" style="background-size:cover; background-position:center">
-              <div class="item-overlay">
-                <a href="/safaris/<?php echo e($safari->id); ?>"><span class="icon-binocular"></span></a>
-              </div>
-            </div>
-          
-            <div class="item-desc" style="background-color:#345742;">
+        <?php $__currentLoopData = $safaris; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $safari): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <div class="col-sm-3 col-md-3">
+            <div class="single_blog listing-shot item-grid">
+    <div class="listing-shot-img">
 
-              <div class="">
-                <span class=""></span>
-                <h4 class="title"><a href="/safaris/<?php echo e($safari->id); ?>"><?php echo e($safari->tour_name); ?></a></h4>
-              </div>
+                                        <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205"><strong>$<?php echo e(number_format($safari->price),2); ?></strong></div>
 
- <hr>
-              <div class="sub-title">
-                <span class="location">Tour Duration</span>
-                <span class="grade"><?php echo e($safari->days); ?> Days, <?php echo e($safari->days -1); ?> Nights</span>
-              </div>
-              <div class="sub-title">
-                <span class="location">Physical rating</span>
-                <span class="grade"><?php echo e($safari->physical_rating); ?></span>
-              </div>
-   <div class="sub-title">
-                <span class="location">Tour Category</span>
-                <span class="grade"><?php echo e($safari->category); ?></span>
-              </div>
+                                  </div>
 
-              <div class="item-detail">
-                <div class="left">
-                  <div class="day"><span class="icon-sunx">Code:</span><?php echo e($safari->tour_code); ?></div>
-                  <!-- <div class="night"><span class="icon-moon"></span>2 Nights</div> -->
-                </div>
-                <div class="right">
-                  <div class="price">From $<?php echo e(number_format($safari->price),2); ?></div>
-                  <a href="/safaris/<?php echo e($safari->id); ?>" class="btn btn-primary hvr-sweep-to-right">Book</a>
+
+              <div class="item-img" style="background-image: url(<?php echo e(URL::asset('/storage/uploads/'.$safari->attachment)); ?>);" style="background-size:cover; background-position:center">
+                <div class="item-overlay">
+                  <a href="/safaris/<?php echo e($safari->id); ?>"><span class="icon-binocular"></span></a>
                 </div>
               </div>
-              
+
+
+                <div class="text-center" style="background-color:#f2fde6;border-radius:100px">
+                                  <div class="text-center" style="font-size:18px;">
+                      <a class="Main-Text">
+                        <strong class="demo-3">
+                      <?php echo e($safari->tour_name); ?>
+
+                    </strong>
+                  </a>
+                      <div class="Extra-Text">
+                            <a class="text-center" style="font-size:18px;"><strong><?php echo e($safari->tour_name); ?></strong></a>
+                      </div>
+                      </div>
+                </div>
+                      <div class="sub-title">
+                        <span style="font-size:14px;color:#fff;padding-left:5%" class="float-left"><strong>Tour Duration</strong></span>
+                        <span class="grade" style="font-size:14px;color:#f9be0d" class="float-right"><strong class="float-right" style="font-size:16px;color:#f9be0d;padding-right:5%"><?php echo e($safari->days); ?> Days, <?php echo e($safari->days -1); ?> Nights</strong></span>
+                      </div>
+    <div class="item-desc" style="background-color:#345742;">
+    <hr style="background-color:#fff">
+                <div class="sub-title">
+                  <span class="location">Physical rating</span>
+                  <span class="grade"><strong><?php echo e($safari->physical_rating); ?></strong></span>
+                </div>
+
+                <div class="sub-title">
+                   <span class="location">Tour Category</span>
+                  <span class="grade"><strong><?php echo e($safari->category); ?></strong></span>
+                </div>
+
+     <div class="sub-title">
+
+                  <span class="location">Tour Code</span>
+                  <span class="grade"><strong><?php echo e($safari->tour_code); ?></strong></span>
+                </div>
+    <hr style="background-color:yellow">
+                <div class="item-detail">
+                  <div class="left">
+                  </div>
+                  <div class="right">
+                    <a href="/safaris/<?php echo e($safari->id); ?>" class="btn btn-primary hvr-sweep-to-right">Tour Details</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
     </div>
       </div>
     </div>
- 
-
-
-<!--   <div class="banner supported-by" style="background: url('assets/img/bg1.jpeg') no-repeat center; background-size: cover">
-    <ul class="supported-list">
-      <li>
-        <a href="#">
-          <img src="assets/img/supported_by/logo_2.png" alt="" data-rjs="2">
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="assets/img/supported_by/logo_1.png" alt="" data-rjs="2">
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="assets/img/supported_by/logo_3.png" alt="" data-rjs="2">
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="assets/img/supported_by/logo_4.png" alt="" data-rjs="2">
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="assets/img/supported_by/logo_5.png" alt="" data-rjs="2">
-        </a>
-      </li>
-    </ul>
-  </div> -->
-
    <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('website.layouts.apps', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\isolf\resources\views/website/programs/safaris.blade.php ENDPATH**/ ?>

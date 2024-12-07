@@ -8,7 +8,7 @@
            <div class="col-md-12">
              <p><strong>{{$programs->tour_name}}</strong></p>
            </div>
-        
+
 <div class="col-md-12">
          @if($message = Session::get('success'))
   <div class="alert alert-success">
@@ -24,7 +24,7 @@
     <span aria-hidden="true">&times;</span></button>
     <strong>Ops!: </strong> {{$message}}
   </div>
-  @endif   
+  @endif
 
  @if($message = Session::get('error'))
   <div class="alert alert-danger">
@@ -54,7 +54,7 @@
               </tr>
             </thead>
             <tbody>
-              
+
               <tr>
                 <td>
                  Adults
@@ -63,15 +63,15 @@
     @foreach ($peoplePercents as $percent)
     @if($percent->percent_name==="Adults")
       {{$percent->percent}}
-    @endif  
+    @endif
     @endforeach
-               
+
                 </td>
                   <td>
                      @foreach ($peoplePercents as $percent)
     @if($percent->percent_name==="Adults")
       {{number_format(($percent->percent/100)*($cust->unit_price),2)}}
-    @endif  
+    @endif
     @endforeach
                   </td>
                 <td>
@@ -92,13 +92,13 @@
                 <td>   @foreach ($peoplePercents as $percent)
     @if($percent->percent_name==="Teens")
       {{$percent->percent}}
-    @endif  
+    @endif
     @endforeach </td>
                   <td>
                                     @foreach ($peoplePercents as $percent)
     @if($percent->percent_name==="Teens")
       {{number_format(($percent->percent/100)*($cust->unit_price),2)}}
-    @endif  
+    @endif
     @endforeach
                   </td>
                 <td>
@@ -118,14 +118,14 @@
                 <td>   @foreach ($peoplePercents as $percent)
     @if($percent->percent_name==="Children")
       {{$percent->percent}}
-    @endif  
+    @endif
     @endforeach </td>
                   <td>
 
   @foreach ($peoplePercents as $percent)
     @if($percent->percent_name==="Children")
       {{number_format(($percent->percent/100)*($cust->unit_price),2)}}
-    @endif  
+    @endif
     @endforeach
 
                   </td>
@@ -192,15 +192,15 @@
               </tr>
  <form  method="post"  action="{{ route('payConfirm',$cust->id) }}" enctype="multipart/form-data">
           @csrf
-               
+
               <tr class="total">
-                       <input type="hidden" name="total_cost" value="{{ $cust->total_cost,2}}" id="total_cost" /> 
-                <td>Amount to be Paid: <input type="text" name="amount" id="amount" value="{{ number_format($cust->total_cost,2)}}"/> Down Payment must not below 30% of total booking costs. not below ({{$cust->total_cost*$percent_downpayment,2}})</td>
+                       <input type="hidden" name="total_cost" value="{{ $cust->total_cost,2}}" id="total_cost" />
+                <td>Amount to be Paid: <input type="text" name="amount" id="amount" value="{{ number_format($cust->total_cost,2)}}"/> Down Payment must not below 30% of total booking costs. not below (${{$cust->total_cost*$percent_downpayment,2}})</td>
               </tr>
             </table>
  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
    <label class="fieldlabels">Select Currency: *</label>
-                          <input class="form-control" list="currencies" name="currency" id="currency" required>
+                        <input class="form-control" list="currencies" name="currency" id="currency" value="{{ $cust->currency}}" required>
     <datalist id="currencies">
          <option value="{{ $cust->currency}}" selected>{{ $cust->currency}}</option>
                         <option value="KES">KES</option>
@@ -212,51 +212,51 @@
                                  <option value="TZS">TZS</option>
                                   <option value="ZMW">ZMW</option>
                                    <option value="RWF">RWF</option>
-    </datalist> 
+    </datalist>
                         </div>
 
           </div>
         </div>
 
-  
+
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> <input type="hidden" name="first_name" value="{{$cust->first_name}}" />
                         </div>
                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <input type="hidden" name="last_name" value="{{$cust->last_name}}" /> 
+                        <input type="hidden" name="last_name" value="{{$cust->last_name}}" />
                         </div>
-  
-                        
+
+
 
                           <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <input type="hidden" name="reference" value="{{$cust->id}}" /> 
+                        <input type="hidden" name="reference" value="{{$cust->id}}" />
                         </div>
                           <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <input type="hidden" name="type" value="MERCHANT" /> 
+                        <input type="hidden" name="type" value="MERCHANT" />
                         </div>
-               
-                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">   <input type="hidden" name="email" value="{{$cust->email}}" /> 
+
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">   <input type="hidden" name="email" value="{{$cust->email}}" />
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                       <input type="hidden" name="desc" value="{{$cust->phone}}" /> 
+                       <input type="hidden" name="desc" value="{{$cust->phone}}" />
                         </div>
                          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                       <input type="hidden" name="percent_downpayment" value="{{$percent_downpayment}}" id="percent_downpayment" /> 
+                       <input type="hidden" name="percent_downpayment" value="{{$percent_downpayment}}" id="percent_downpayment" />
                         </div>
 
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                       
-                            <input type="hidden" name="desc" value="{{$programs->tour_name}}" /> 
+
+                            <input type="hidden" name="desc" value="{{$programs->tour_name}}" />
                         </div>
 
-        <div class="clearfix">          
-         <button class="btn btn-success pull-right hvr-sweep-to-right" type="submit">Proceed</button>        
+        <div class="clearfix">
+         <button class="btn btn-success pull-right hvr-sweep-to-right" type="submit">Proceed</button>
         </div>
 
 
 
       </form>
       </div>
-                
+
   </section>
   <script src="../../assetff/js/jquery/jquery-2.2.4.min.js"></script>
 @endsection

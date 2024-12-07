@@ -93,6 +93,7 @@ if($title=="Special Offers")
           ->where('programs.type',$title)
           ->where('itineraries.tour_addon','Programs')
          ->get();
+
           $PostcategoryImage = title::where('title', $title)
           ->first();
 
@@ -387,7 +388,7 @@ else{
           ->where('programs.type','Historical Site')
           ->where('itineraries.tour_addon','Programs')
          ->get();
-
+         
 
   $PostcategoryImage = title::where('title', $title)
           ->first();
