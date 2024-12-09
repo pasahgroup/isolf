@@ -9,12 +9,12 @@
 </style>
 
 <style type="text/css">
-    
+
     .booking-btn {
   border: 0px solid #647545;
   padding: 10px 38px;
   color:#fff;
-  display: block;  
+  display: block;
   /*background-color: #3f403d;*/
   /*background-color: #2e4432;*/
   background-color: #2e4432;
@@ -34,7 +34,7 @@
   border: 0px solid #647545;
   padding: 1px 2px;
   color:#fff;
-  display: block;  
+  display: block;
   /*background-color: #3f403d;*/
   /*background-color: #2e4432;*/
   background-color: #2e4432;
@@ -56,7 +56,7 @@
      <?php if(isset($PostcategoryImage->attachment)): ?>
   background-image:url(<?php echo e(URL::asset('/storage/uploads/'.$PostcategoryImage->attachment)); ?>);
     <?php endif; ?>
-    
+
    height: 80%;
     position: relative;
     background-repeat: no-repeat;
@@ -73,9 +73,9 @@
                         <h2>Special Offers</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#"> 
+                                <li class="breadcrumb-item"><a href="#">
                                     Home
-                                
+
                                 </a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Special Offers</li>
                             </ol>
@@ -87,8 +87,8 @@
     </section>
 
  <section class="ws-section-spacing bg-gray">
-    <div class="container-fluid">   
-    <div class="row"> 
+    <div class="container-fluid">
+    <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <p><b>
           <?php if(isset($PostcategoryImage->body)): ?>
@@ -96,7 +96,7 @@
           <?php endif; ?>
         </b>
         </p>
-         
+
     </div>
        </div>
     </div>
@@ -114,8 +114,8 @@
               <div class="col-lg-3 col-md-4">
                <i href="" class="text-decoration-none">
                     <marquee>Hello! Welcome Book with us</marquee>
-                </i>            
- 
+                </i>
+
             </div>
             <div class="col-lg-5 col-md-8 text-left">
                      <form  method="POST"  action="<?php echo e(route('all-search')); ?>" enctype="multipart/form-data">
@@ -135,9 +135,9 @@
                 <option value="cultural">Cultural Tours</option>
 
           </select>
-                        
 
-                        <div class="input-group-append">                        
+
+                        <div class="input-group-append">
                             <button class="btn btn-search btn-primary hvr-sweep-to-right">
                                 <i class="fa fa-search"> Search</i>
                             </button>
@@ -148,259 +148,253 @@
 
             </div>
         </div>
-    </div>    
+    </div>
   </div>
 
+
+
+
 <div class="banner base page-img" style="background: url('assets/img/worldmap.jpg') no-repeat center; background-size: cover">
-     <div class="container-fluid">
 
-      <div class="line-box">   
-        <div class="row">
-        <div class="line-title">    <?php echo e($title?? ''); ?></div>
+  <div>
+  <div class="container-fluid">
+   <div class="row">
+                  
+                  <div class="col-lg-12 col-md-12 col-sm-12 masonry ">
+                      <div class="package-detail">
+  <div class="tab" id="myTabContent">
+      <button class="tablink" onclick="openPage('tabP', this, 'orange')" id="defaultOpen" >Private Tour Offers</button>
+      <button class="tablink" onclick="openPage('tabG', this, 'orange')">Group Tour Offers</button>
 
-<!-- <div class="container-fluid"> -->
- 
-                
-                <div class="col-lg-12 col-md-12 col-sm-12 masonry ">
-                    <div class="package-detail">
-<div class="tab" id="myTabContent">
-    <button class="tablink" onclick="openPage('tabP', this, 'orange')" id="defaultOpen" >Private Tour Offers</button>
-    <button class="tablink" onclick="openPage('tabG', this, 'orange')">Group Tour Offers</button>
-                                    
-                    </div>
-                    <div id="tabP" class="tabcontent">
-                    <hr>
-                          
-                           <?php if($offers_private): ?>
-       
-  <section class="featured-properties-area section-padding-100-50" style="padding-bottom:0px;"> 
-    <div class="container-fluid" style="padding-bottom:0px;">  
-            
-        <h3 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3 section-heading wow fadeInUp" style="color:#b76b0b;"> <?php if($offers_private !='[]'): ?>
-                    PRIVATE TOUR OFFERS: 
-                    <?php endif; ?> Special Offers</span></h3>
+                      </div>
+                      <div id="tabP" class="tabcontent">
+                      <hr>
 
-      
-      <div class="px-xl-5 pb-3">     
-<div class="col-md-12 col-sm-12 pb-1" style="background-color:#4c7149">
-  
-   
-                                <?php $__currentLoopData = $offers_private; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $special_private): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                             <?php if($offers_private): ?>
+    <section class="featured-properties-area section-padding-100-50" style="padding-bottom:0px;">
+      <div class="container-fluid" style="padding-bottom:0px;">
 
- <div class="col-lg-3 col-md-3">
-    
-       <h5><b style="background:"><?php echo e($special_private->sales_header); ?></b></h5>
-            <div class="col-lg-12 col-md-12 col-sm-12 pb-1" style="background-color:#f3f4f4">
+          <h3 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3 section-heading wow fadeInUp" style="color:#b76b0b;"> <?php if($offers_private !='[]'): ?>
+                      PRIVATE TOUR OFFERS:
+                      <?php endif; ?> Special Offers</span></h3>
 
-<div class="single_blog listing-shot">
-                <div class="product-item bg-light mb-4">
-                   <div class="listing-shot-img">
-              <div class="listing-badge now-open"><strong><?php echo e(round($special_private->save/$special_private->price * 100),0); ?>% Off</strong></div>
-                                                                   
-                                                               
-
-             <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="<?php echo e(URL::asset('/storage/uploads/'.$special_private->attachment)); ?>" alt="" style="height:250px;">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-squarex" href="/safaris"><i class="fa fa-search"> <?php echo e($special_private->tour_name); ?></i></a>
-                        </div>
-                    </div>
+        <div class="px-xl-5 pb-3">
+  <div class="col-md-12 col-sm-12 pb-1" style="background-color:#">
 
 
- <div class="text-center" style="background-color:#4c7149;">
-                        <a class="h6 text-decoration-none text-truncate" href="/safaris" style="font-size:20px;"><strong> <?php echo e($special_private->tour_name); ?></strong></a>                      
-                    </div>
-                </div>
-                 </div>
-
-  <b>  <div class="col-md-5 col-sm-5 col-xs-5 header-btn" style="border-right:0px solid rgba(71,85,95,.11);height:0px; ">
-    <strong style="background-color:#2e352b;">Dead Line: <b class="text-danger"><?php echo e($special_private->offer_deadline); ?></b></strong>
-  </div></b>
-
- <b class="float-right">  
-  <div class="header-btn">
- <span class="text-danger" style="font-size:17px"><strong>$<?php echo e(number_format($special_private->new_price),2); ?> </strong> pp
-</span><s style=""><sup>$ <?php echo e(number_format($special_private->price),2); ?> </sup></s><br>
-   <span style="font-size:12px;">Save $<?php echo e(number_format($special_private->save),2); ?></span>
-
-</div></b>
+                                  <?php $__currentLoopData = $offers_private; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $special_private): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
+                                  <div class="col-sm-6 col-md-3">
+                              <h4><b style="background:"><?php echo e($special_private->sales_header); ?>-(<?php echo e($special_private->category); ?>)</b></h4>
 
+                                      <div class="single_blog listing-shot item-grid">
+                              <div class="listing-shot-img">
+                                                                  <div class="listing-badge now-open"><strong><?php echo e(round($special_private->save/$special_private->price * 100),0); ?>% Off</strong></div>
 
-
-               </div>
-
-<div>Tour Duration:         
-                                                                  <strong class="float-right"><?php echo e($special_private->days); ?> Days, <?php echo e($special_private->days -1); ?> Nights</strong>
-                                                                                              
-                                                                                              </div>
-
-<div>Physical Rating:          <strong class="float-right"><?php echo e($special_private->physical_rating); ?></strong></div>
-<div>Tour Category:          <strong class="float-right"><?php echo e($special_private->category); ?></strong></div>
-<div>Physical Rating:          <strong class="float-right"><?php echo e($special_private->tour_code); ?></strong></div>
-
-
-<hr>
-                                        <div class="text-right">
-                                    <a href="<?php echo e(route('safaris.show',$special_private->tour_id)); ?>" class="booking-btn text-center"><b>Read more</b></a>
-                                                                        </div>
-            </div>
-
-</div>
-
-
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-        </div>  
-
-    </div>
-</div>
-</section>
-
-            <div class="row">
-            <div class="col-md-12" data-aos="fade-up">
-                                 
-                <?php if($offers_private =='[]'): ?>
-                    <h4>No any Private Offered at this moment</h4>
-                <?php endif; ?>
-            </div>
-        </div>
-        </div>
-<?php endif; ?>
-
-
-
-<div id="tabG" class="tabcontent">
-                              
-
-<?php if($offers_group): ?>
-  
-  <section class="featured-properties-area section-padding-100-50" style="padding-bottom:0px;"> 
-    <div class="container" style="padding-bottom:0px;">  
-            
-       <h3 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3 section-heading wow fadeInUp" style="color:#b76b0b;"> <?php if($offers_private !='[]'): ?>
-                    GROUP TOUR OFFERS: 
-                    <?php endif; ?> Special Offers</span></h3>
-
-      
-      <div class="px-xl-5 pb-3">     
-<div class="col-md-12 col-sm-12 pb-1" style="background-color:#4c7149">
-  
-   
-                    <?php $__currentLoopData = $offers_group; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $special_group): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-     <div class="col-lg-4 col-md-12">
-         <h4><b style="background:"><?php echo e($special_group->sales_header); ?></b></h4>
-                                                <div class="single_blog listing-shot">
-
-                                                                <div class="listing-shot-img">
-                                <div class="listing-badge now-open"><strong><?php echo e(round($special_group->save/$special_group->price * 100),0); ?>% Off</strong></div>
-                                        <div class="blog_image">
-                                        <img src="<?php echo e(URL::asset('/storage/uploads/'.$special_group->attachment)); ?>" class="img-responsive" alt="<?php echo e($special_group->tour_name); ?>" style="width:100%;">
-                                                                        </div>
-                                                                </div>
-                          
-
-                        <div class="text-center" style="background-color:#4c7149;">
-                        <a class="h6 text-decoration-none text-truncate" href="/safaris" style="font-size:20px;"><?php echo e($special_group->tour_name); ?></a>                     
-                    </div>
-                                                                 
-                                                        <div class="blog-text">
-                                                        <div class="row">
-
-                                    <div class="col-md-7 col-sm-7 col-xs-7 header-btn" style="border-right:1px solid rgba(71,85,95,.11);height:0px;">
-                                <strong style="background-color:#2e352b;">Dead Line: <b class="text-danger"><?php echo e($special_group->offer_deadline); ?></b></strong>
                                                             </div>
 
-                <div class="col-md-5 col-sm-5 col-xs-5 header-btn">
-                <span class="text-danger" style="font-size:17px"><strong>$<?php echo e(number_format($special_group->new_price),2); ?> </strong> pp
-              </span><s style=""><sup>$ <?php echo e(number_format($special_group->price),2); ?> </sup></s><br>
-                                                                                        <span style="font-size:12px;">Save $<?php echo e(number_format($special_group->save),2); ?></span>
-
-                                                                                 </div>
-                                                                        </div>
-
-                   <div class="col-md-12 col-sm-12 col-xs-12 text-left booking-btn-gray">
-                     <div class="row">
-             <div class="col-md-6 col-sm-6 col-xs-6"  style="border-right:1px solid rgba(255,255,0,.5)">
-                                                                                         Tour Duration:
-                                                                                        </div>
-
-                                                                                             <div class="col-md-6 col-sm-6 col-xs-6" style="font-size:14px;">
-                                                                                                     <strong><?php echo e($special_group->days); ?> Days, <?php echo e($special_group->days -1); ?> Nights</strong>
-                                                                                                </div>
-                                                                                         </div>
-
-                                                                                             <div class="row">
-                                                                                             <div class="col-md-6 col-sm-6 col-xs-6"  style="border-right:1px solid rgba(255,255,0,.5)">
-                                                                                             <span> Physical Rating: </span>
-                                                                                         </div>
 
 
-                                                                                             <div class="col-md-5 col-sm-5 col-xs-5" style="font-size:14px;">
-                                                                                                     <strong><?php echo e($special_group->physical_rating); ?></strong>
-                                                                                                </div>
-                                                                                             </div>
-                                                                                                <div class="row">
-                                                                                                    <div class="col-md-6 col-sm-6 col-xs-6" style="border-right:1px solid rgba(255,255,0,.5)">
-                                                                                             <span> Tour Category: </span></div>
+
+                                        <div class="item-img" style="background-image: url(<?php echo e(URL::asset('/storage/uploads/'.$special_private->attachment)); ?>);" style="background-size:cover; background-position:center">
+                                          <div class="item-overlay">
+                                            <a href="<?php echo e(route('safaris.show',$special_private->tour_id,$offers)); ?>"><span class="icon-binocular"></span></a>
+                                          </div>
+                                        </div>
 
 
-                                                                                             <div class="col-md-6 col-sm-6 col-xs-6" style="font-size:14px;">
-                                                                                                     <strong><?php echo e($special_group->category); ?></strong>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                                    <div class="row">
-                                                                                                    <div class="col-md-6 col-sm-6 col-xs-6" style="border-right:1px solid rgba(255,255,0,.5)">
-                                                                                             <span> Tour Code: </span>
-       </div>
+                                          <div class="text-center" style="background-color:#f2fde6;border-radius:100px">
+                                            <h4 class="title"><a href="#"><?php echo e($special_private->tour_name); ?></a></h4>
+                                          </div>
 
-                                                                                             <div class="col-md-6 col-sm-6 col-xs-6" style="font-size:14px;">
-                                                                                                     <strong><?php echo e($special_group->tour_code); ?></strong>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                         </div>
 
-                                                            <div class="row">
-                                                                        <div class="col-md-12 col-sm-12 col-xs-12 text-right booking-btn-gray">
-    <a href="<?php echo e(route('grouptour.show',$special_group->tour_id,$offers)); ?>" class="booking-btn text-center"><b>View Details</b></a>
-                                                                        </div>
-                                                                            </div>
-                                                                </div>
+
+                              <div class="item-desc" style="background-color:#345742;">
+                                <div class="item-detail">
+                                  <div class="left">
+
+                                                           <br>
+                                                            <span style="font-size:12px;"><?php echo e($special_private->offer_deadline); ?> </span>
+                                  </div>
+                                  <div class="right">
+                                      <span class="text-yellow" style="font-size:17px;color:#f9be0d"><strong>$<?php echo e(number_format($special_private->new_price),2); ?> </strong> pp
+                                                             </span><sup style="text-decoration: line-through;">$ <?php echo e(number_format($special_private->price),2); ?> </sup></s><br>
+                                                              <span style="font-size:12px;">Save $<?php echo e(number_format($special_private->save),2); ?></span>
+
+                                  </div>
+                                </div>
+
+
+                              <hr style="background-color:#fff">
+                                          <div class="sub-title">
+                                            <span class="location">Tour Duration</span>
+                                            <span class="grade"><strong><?php echo e($special_private->days); ?> Days, <?php echo e($special_private->days -1); ?> Nights</strong></span>
+                                          </div>
+                                          <div class="sub-title">
+                                            <span class="location">Physical rating</span>
+                                            <span class="grade"><strong><?php echo e($special_private->physical_rating); ?></strong></span>
+                                          </div>
+
+                                          <div class="sub-title">
+                                             <span class="location">Tour Category</span>
+                                            <span class="grade"><strong><?php echo e($special_private->category); ?></strong></span>
+                                          </div>
+
+                               <div class="sub-title">
+
+                                            <span class="location">Tour Code</span>
+                                            <span class="grade"><strong><?php echo e($special_private->tour_code); ?></strong></span>
+                                          </div>
+                              <hr style="background-color:yellow">
+                                          <div class="item-detail">
+                                            <div class="left">
+                                            </div>
+                                            <div class="right">
+                                              <a href="<?php echo e(route('safaris.show',$special_private->tour_id,$offers)); ?>" class="btn btn-primary hvr-sweep-to-right">Read More</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+          </div>
+
+      </div>
+  </div>
+  </section>
+
+              <div class="row">
+              <div class="col-md-12" data-aos="fade-up">
+                  <?php if($offers_private =='[]'): ?>
+                      <h4>No any Private Offered at this moment</h4>
+                  <?php endif; ?>
+              </div>
+          </div>
+          </div>
+  <?php endif; ?>
+
+
+
+  <div id="tabG" class="tabcontent">
+  <?php if($offers_group): ?>
+
+    <section class="featured-properties-area section-padding-100-50" style="padding-bottom:0px;">
+      <div class="container-fluid" style="padding-bottom:0px;">
+
+         <h3 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3 section-heading wow fadeInUp" style="color:#b76b0b;"> <?php if($offers_private !='[]'): ?>
+                      GROUP TOUR OFFERS:
+                      <?php endif; ?> Special Offers</span></h3>
+
+
+        <div class="px-xl-5 pb-3">
+  <div class="col-md-12 col-sm-12 pb-1" style="background-color:#4c7149">
+
+
+                      <?php $__currentLoopData = $offers_group; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $special_group): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                      <div class="col-sm-6 col-md-3">
+                      <h4><b style="background:"><?php echo e($special_group->sales_header); ?>-(<?php echo e($special_group->category); ?>)</b></h4>
+
+                          <div class="single_blog listing-shot item-grid">
+                      <div class="listing-shot-img">
+                                                      <div class="listing-badge now-open"><strong><?php echo e(round($special_group->save/$special_group->price * 100),0); ?>% Off</strong></div>
 
                                                 </div>
-                                        </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
-        </div>  
 
-    </div>
+
+                            <div class="item-img" style="background-image: url(<?php echo e(URL::asset('/storage/uploads/'.$special_group->attachment)); ?>);" style="background-size:cover; background-position:center">
+                              <div class="item-overlay">
+                                <a href="<?php echo e(route('grouptour.show',$special_group->tour_id,$offers)); ?>"><span class="icon-binocular"></span></a>
+                              </div>
+                            </div>
+
+
+                              <div class="text-center" style="background-color:#f2fde6;border-radius:100px">
+                                <h4 class="title"><a href="#"><?php echo e($special_group->tour_name); ?></a></h4>
+                              </div>
+
+
+
+                      <div class="item-desc" style="background-color:#345742;">
+                      <div class="item-detail">
+                      <div class="left">
+
+                                               <br>
+                                                <span style="font-size:12px;"><?php echo e($special_group->offer_deadline); ?> </span>
+                      </div>
+                      <div class="right">
+                          <span class="text-yellow" style="font-size:17px;color:#f9be0d"><strong>$<?php echo e(number_format($special_group->new_price),2); ?> </strong> pp
+                                                 </span><sup style="text-decoration: line-through;">$ <?php echo e(number_format($special_group->price),2); ?> </sup></s><br>
+                                                  <span style="font-size:12px;">Save $<?php echo e(number_format($special_group->save),2); ?></span>
+
+                      </div>
+                      </div>
+
+
+                      <hr style="background-color:#fff">
+                              <div class="sub-title">
+                                <span class="location">Tour Duration</span>
+                                <span class="grade"><strong><?php echo e($special_group->days); ?> Days, <?php echo e($special_group->days -1); ?> Nights</strong></span>
+                              </div>
+                              <div class="sub-title">
+                                <span class="location">Physical rating</span>
+                                <span class="grade"><strong><?php echo e($special_group->physical_rating); ?></strong></span>
+                              </div>
+
+                              <div class="sub-title">
+                                 <span class="location">Tour Category</span>
+                                <span class="grade"><strong><?php echo e($special_group->category); ?></strong></span>
+                              </div>
+
+                      <div class="sub-title">
+
+                                <span class="location">Tour Code</span>
+                                <span class="grade"><strong><?php echo e($special_group->tour_code); ?></strong></span>
+                              </div>
+                      <hr style="background-color:yellow">
+                              <div class="item-detail">
+                                <div class="left">
+                                </div>
+                                <div class="right">
+                                    <a href="<?php echo e(route('grouptour.show',$special_group->tour_id,$offers)); ?>" class="btn btn-primary hvr-sweep-to-right">Tour Details</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+          </div>
+
+      </div>
+  </div>
   </section>
 
 
+            <div class="row">
+              <div class="col-md-12" data-aos="fade-up">
+                  <?php if($offers_group =='[]'): ?>
+                      <h4>No any Group Offered at this moment</h4>
+                  <?php endif; ?>
+              </div>
+          </div>
+              <?php endif; ?>
+                              </div>
 
-
-          <div class="row">
-            <div class="col-md-12" data-aos="fade-up">                 
-                <?php if($offers_group =='[]'): ?>
-                    <h4>No any Group Offered at this moment</h4>
-                <?php endif; ?>
-            </div>
-        </div>
-            <?php endif; ?>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-   </div>
- </div>
-</div>
-
+                          </div>
+                      </div>
+                  </div>
+     </div>
 </section>
 
-<script>    
+<script>
 function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
   var i, tabcontent, tablinks;

@@ -174,7 +174,6 @@ Route::get('/editOthers/{x}', [PostBodyController::class, 'editOthers'])->name('
 //What We Offer
 Route::resource('/Service',ServiceController::class);
 Route::get('/whatWeOffer', [ServiceController::class, 'whatWeOffer'])->name('whatWeOffer');
-//Route::get('/addWhatWeOffer', [PostBodyController::class, 'addWhatWeOffer'])->name('addWhatWeOffer');
 Route::get('/editWhatWeOffer/{x}', [ServiceController::class, 'editWhatWeOffer'])->name('editWhatWeOffer');
 Route::get('/whatWeOfferClient', [ServiceController::class, 'whatWeOfferClient'])->name('whatWeOfferClient');
 Route::get('/whatWeOffer-Destroy/{x}', [ServiceController::class, 'destroy'])->name('whatWeOffer-Destroy');

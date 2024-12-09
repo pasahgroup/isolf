@@ -146,8 +146,9 @@
               </div>
             </div>
           </div>
-     @endforeach
+     @endforeach  
       </div>
+        {!! $safaris->links() !!}
     </div>
       </div>
     </div>

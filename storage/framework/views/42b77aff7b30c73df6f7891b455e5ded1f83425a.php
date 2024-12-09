@@ -236,7 +236,7 @@
   <!-- <footer id="footer"> -->
 
   <footer class="footer-area section-padding-100-0 bg-img gradient-background-overlay" style="background-image: url(../assetf/img/bg-img/cta.jpg); color:yellow;">
-    <div class="container">
+    <div class="container-fluid">
 
 
    <div class="px-xl-5 pt-5">
@@ -340,11 +340,6 @@
             $('.equal-height > div').deasil_equalHeight();
           });
   </script>
-
-
-
-
-
 
     <script src="../assetf/js/plugins.js"></script>
     <script src="../assetf/js/classy-nav.min.js"></script>

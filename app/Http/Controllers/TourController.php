@@ -40,11 +40,12 @@ class TourController extends Controller
           ->where('programs.main','Program')
           ->where('programs.type','Wildlife Safaris')
           ->where('itineraries.tour_addon','Programs')
-         ->get();
+         ->paginate(4);
+
           $PostcategoryImage = title::where('title', $title)
           ->first();
 
-         //dd('print');
+        // dd($safaris);
         return view('website.programs.safaris',compact('safaris','title','PostcategoryImage'));
      }
 
@@ -53,32 +54,36 @@ class TourController extends Controller
  public function allSearch(Request $request)
     {
        $dataG=[];
-
        //$title='Wildlife Safaris';
          $title=request('tour_type');
+           $offers='Offers';
         //dd($title);
 
 if($title=="Special Offers")
 {
+//dd('print');
 
   $offers_private = specialOffer::join('programs','programs.id','special_offers.tour_id')
         ->join('attachments','attachments.destination_id','programs.id')
-        ->select('special_offers.id','special_offers.*','programs.tour_name','programs.days','programs.category','programs.type',
+        ->select('special_offers.*','programs.tour_name','programs.days','programs.category','programs.type',
         'programs.price','programs.id as program_id','programs.physical_rating','attachments.attachment')
         ->where('special_offers.status','Active')
          ->where('programs.category','Private')
         ->where('attachments.type','Programs')
         ->groupby('attachments.destination_id')
-        ->get();
+         ->paginate(4);
 
+//dd($offers_private);
         $offers_group = specialOffer::join('programs','programs.id','special_offers.tour_id')
         ->join('attachments','attachments.destination_id','programs.id')
          ->join('departures','departures.tour_id','programs.id')
+         ->select('special_offers.*','programs.tour_name','programs.days','programs.category','programs.type',
+         'programs.price','programs.id as program_id','programs.physical_rating','attachments.attachment')
         ->where('special_offers.status','Active')
          ->where('programs.category','Group')
         ->where('attachments.type','Programs')
         ->groupby('attachments.destination_id')
-        ->get();
+         ->paginate(4);
 
         $PostcategoryImage = title::where('title','Special Offers')
           ->first();
@@ -92,12 +97,12 @@ if($title=="Special Offers")
           ->where('programs.main','Program')
           ->where('programs.type',$title)
           ->where('itineraries.tour_addon','Programs')
-         ->get();
+         ->paginate(4);
 
           $PostcategoryImage = title::where('title', $title)
           ->first();
 
-        return view('website.programs.offers',compact('offers_group','offers_private','PostcategoryImage','title','safaris'));
+        return view('website.programs.offers',compact('offers_group','offers_private','PostcategoryImage','title','safaris','offers'));
 }elseif($title=="group" || $title=="special-occasions" || $title=="Group-scheduled")
 
 {
@@ -120,21 +125,21 @@ if($title=="Group-scheduled")
 
          $safaris = departures::join('programs','departures.tour_id','programs.id')
        ->join('attachments','attachments.destination_id','programs.id')
-        ->select('departures.*','programs.*','attachments.attachment')
+        ->select('departures.group_tour_category','departures.tour_id','programs.*','attachments.attachment')
         ->where('departures.status','Active')
         // ->where('departures.group_tour_category','GS')
           ->whereIn('departures.group_tour_category',$dataG)
         ->where('attachments.type','Programs')
         ->groupby('departures.group_tour_category')
          ->groupby('departures.tour_id')
-        ->get();
+         ->paginate(4);
 
 
 //dd($safaris);
     $PostcategoryImage = title::where('title','Scheduled Group Tours')
           ->first();
          // dd($PostcategoryImage);
-           return view('website.programs.grouptour',compact('safaris','tour_category','PostcategoryImage','title'));
+           return view('website.programs.grouptour',compact('safaris','tour_category','PostcategoryImage','title','offers'));
 
 }
 
@@ -153,13 +158,13 @@ else{
           ->where('programs.main','Program')
           ->where('programs.type',$title)
           ->where('itineraries.tour_addon','Programs')
-         ->get();
+         ->paginate(4);
           $PostcategoryImage = title::where('title', $title)
           ->first();
 
          //dd($safaris);
 
-        return view('website.programs.safaris',compact('safaris','title','PostcategoryImage'));
+        return view('website.programs.safaris',compact('safaris','title','PostcategoryImage','offers'));
     }
      }
 
@@ -292,10 +297,7 @@ else{
            ->where('programs.type',request('tours'))
             // ->where('programs.price','=<',$price)
           ->where('itineraries.tour_addon','Programs')
-         ->get();
-
-//dd($price);
-
+         ->paginate(4);
 
   $PostcategoryImage = title::where('title', $title)
           ->first();
@@ -313,7 +315,7 @@ else{
           ->where('programs.main','Program')
           ->where('programs.type','Hiking & Trekking')
           ->where('itineraries.tour_addon','Programs')
-         ->get();
+         ->paginate(4);
 
       // dd($safaris);
 
@@ -335,7 +337,8 @@ else{
           ->where('programs.main','Program')
           ->where('programs.type','Beach Holidays')
           ->where('itineraries.tour_addon','Programs')
-         ->get();
+         ->paginate(4);
+
           $PostcategoryImage = title::where('title', $title)
           ->first();
 
@@ -352,7 +355,7 @@ else{
           ->where('programs.main','Program')
           ->where('programs.type','Day Tours')
           ->where('itineraries.tour_addon','Programs')
-         ->get();
+         ->paginate(4);
 
          $PostcategoryImage = title::where('title', $title)
           ->first();
@@ -368,7 +371,7 @@ else{
           ->where('programs.main','Program')
           ->where('programs.type','Combined Tours')
           ->where('itineraries.tour_addon','Programs')
-         ->get();
+         ->paginate(4);
 
 
   $PostcategoryImage = title::where('title', $title)
@@ -387,8 +390,8 @@ else{
           ->where('programs.main','Program')
           ->where('programs.type','Historical Site')
           ->where('itineraries.tour_addon','Programs')
-         ->get();
-         
+      ->paginate(4);
+
 
   $PostcategoryImage = title::where('title', $title)
           ->first();
@@ -398,6 +401,7 @@ else{
 
  public function culturalTours()    {
          $title="Cultural Tours";
+
          $safaris = program::join('attachments','programs.id','attachments.destination_id')
          ->join('itineraries','programs.id','itineraries.program_id')
          ->select('programs.*','attachments.attachment')
@@ -405,7 +409,7 @@ else{
           ->where('programs.main','Program')
           ->where('programs.type','Cultural Tour')
           ->where('itineraries.tour_addon','Programs')
-         ->get();
+         ->paginate(4);
 
 
   $PostcategoryImage = title::where('title', $title)

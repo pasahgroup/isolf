@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+
              // Using view composer to set following variables globally
            view()->composer('*',function($view) {
     $view->with('percent_downpayment',0.3);
@@ -38,5 +39,6 @@ class AppServiceProvider extends ServiceProvider
             // $view->with('company', myCompany::where('status','Active')->first());
         });
         //Schema::defaultStringLength(191);
+          Paginator::useBootstrap();
     }
 }

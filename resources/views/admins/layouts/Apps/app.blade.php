@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Palatial Tour</title>
+  <title>ISOL Tours</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -47,7 +47,7 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
-   
+
         <div>
     <!-- Content Header (Page header) -->
          @if($message = Session::get('success'))
@@ -64,7 +64,7 @@
     <span aria-hidden="true">&times;</span></button>
     <strong>Ops!: </strong> {{$message}}
   </div>
-  @endif   
+  @endif
 
  @if($message = Session::get('error'))
   <div class="alert alert-danger">
@@ -72,8 +72,8 @@
     <span aria-hidden="true">&times;</span></button>
     <strong>Sorry!: </strong> {{$message}}
   </div>
-  @endif     
-</div> 
+  @endif
+</div>
       </li>
 
 
@@ -106,14 +106,14 @@
 
  <li class="nav-item dropdown">
          <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="">    
+          <i class="">
 
            @isset(auth()->user()->photo)
                <div class="logo mr-auto"><img src="{{ URL::asset('/storage/user/'.auth()->user()->photo)?? 0}}" width="60" height="40">
           </div>
- @endisset      
-          
-          </i>         
+ @endisset
+
+          </i>
         </a>
 
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -145,7 +145,7 @@
           </a>
           <div class="dropdown-divider"></div>
           <a href="/logout" class="dropdown-item dropdown-footer"><i class="fas fa-power-off" style="color: red;"></i> <b class="text-danger">Logout</b></a>
-         
+
         </div>
       </li>
      </ul>
@@ -157,7 +157,7 @@
     <!-- Brand Logo -->
     <a href="/dashboard" class="brand-link">
       <img src="../../img/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"><b>Palatial Tour</b></span>
+      <span class="brand-text font-weight-light"><b>ISOL Tours</b></span>
     </a>
 
     <!-- Sidebar -->
@@ -167,13 +167,13 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-   
+
           <li class="nav-item">
             <a href="/dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                @isset(auth()->user()->role)
-              
+
                 @if(Auth::user()->role == 'Admin' || Auth::user()->role =='accountant' || Auth::user()->role =='NMB' || Auth::user()->role =='owner' || Auth::user()->role =='Cultural')
                 Dashboard
                 @endif
@@ -279,23 +279,23 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>Program-Slider</p>
                 </a>
-              </li>       
+              </li>
                         <li class="nav-item">
                 <a href="/quickLink" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Page Content</p>
                 </a>
-              </li>    
+              </li>
           <li class="nav-item">
                 <a href="/PostCategory" class="nav-link">
                   <i class="fas fa-minus"></i>
                   <p>Page Type</p>
                 </a>
-              </li>                
+              </li>
 
             </ul>
           </li>
-          
+
             {{-- Opportunities --}}
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -337,7 +337,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-          
+
               <li class="nav-item">
                 <a href="/PostBody" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -404,7 +404,7 @@
                   <i class="fas fa-plus"></i>
                   <p>Create Page</p>
                 </a>
-              </li> 
+              </li>
             </ul>
           </li>
 
@@ -459,7 +459,7 @@
                   <p>Bank</p>
                 </a>
               </li>
-             
+
                <li class="nav-item">
                 <a href="/percent" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -489,12 +489,12 @@
                 Locations
              </p>
             </a>
-          </li>        
+          </li>
             </ul>
           </li>
-      
+
  {{-- User --}}
-                
+
       <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-eye"></i>
@@ -511,10 +511,10 @@
                 User List
              </p>
             </a>
-          </li>          
+          </li>
             </ul>
-          </li> 
-               @endif      
+          </li>
+               @endif
          {{-- Other --}}
 
           <li class="nav-item">
@@ -541,9 +541,9 @@
                 Testimonies
              </p>
             </a>
-          </li> 
+          </li>
             </ul>
-          </li>           
+          </li>
 
    {{-- Quick Link--}}
         <!--   <li class="nav-item">
@@ -560,23 +560,23 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>Quick Link</p>
                 </a>
-              </li>           
+              </li>
             </ul>
-          </li>  -->       
+          </li>  -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
-  
+
 @yield('contents')
 
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.1.0
     </div>
-    <strong>Copyright &copy; 2021 <a href="#">Palatial Tour</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2024 <a href="#">ISOL Tours</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

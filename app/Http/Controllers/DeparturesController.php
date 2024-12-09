@@ -24,13 +24,15 @@ class DeparturesController extends Controller
         ->select('departures.id','departures.*','programs.tour_name','programs.days','programs.category','programs.type','programs.price','programs.id as program_id')
             ->get();
 
+
+
          $tours = program::join('attachments','attachments.destination_id','programs.id')
         ->select('programs.*','attachments.attachment')
         ->where('attachments.type','Programs')
         // ->where('programs.category','Group')
         ->get();
 
- //dd($datas);
+ //dd($tours);
 
         return view('admins.sales.departures.departure',compact('datas','tours'));
     }

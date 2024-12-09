@@ -123,13 +123,15 @@
   </div>
 
 
+
   <section class="showcase" style="background: url('assets/img/worldmap.png') no-repeat center; background-size: cover;padding-top: 30px;padding-bottom: 20px;">
+
     <div class="main-title">
       <h4>Special Offers</h4>
     </div>
     <div class="container">
 
-      <div class="row item">
+      <div class="item">
 
     @foreach ($offers_private as $special_private)
       <div class="col-sm-6 col-md-4">
@@ -209,71 +211,79 @@
 
 
 @foreach ($offers_group as $special_group)
-      <div class="col-sm-6 col-md-4">
- <h4><b style="background:">{{$special_group->sales_header}}-({{ $special_group->category }})</b></h4>
 
-          <div class="single_blog listing-shot item-grid">
+<div class="col-sm-6 col-md-4">
+<h4><b style="background:">{{$special_group->sales_header}}-({{ $special_group->category }})</b></h4>
+
+    <div class="single_blog listing-shot item-grid">
 <div class="listing-shot-img">
-                                      <div class="listing-badge now-open"><strong>{{round($special_group->save/$special_group->price * 100),0 }}% Off</strong></div>
+                                <div class="listing-badge now-open"><strong>{{round($special_group->save/$special_group->price * 100),0 }}% Off</strong></div>
 
-                                </div>
-
-
+                          </div>
 
 
-            <div class="item-img" style="background-image: url({{URL::asset('/storage/uploads/'.$special_group->attachment)}});" style="background-size:cover; background-position:center">
-              <div class="item-overlay">
-                <a href="{{route('safaris.show',$special_group->tour_id,$offers) }}"><span class="icon-binocular"></span></a>
-              </div>
-            </div>
-
-            <div class="item-desc" style="background-color:#345742;">
-
-              <div class="">
-                <span class=""></span>
-                <h4 class="title"><a href="{{route('safaris.show',$special_group->tour_id,$offers) }}">{{$special_group->tour_name}}</a></h4>
-              </div>
-
- <hr>
-              <div class="sub-title">
-                <span class="location">Tour Duration</span>
-                <span class="grade">{{ $special_group->days }} Days, {{ $special_group->days -1 }} Nights</span>
-              </div>
-              <div class="sub-title">
-                <span class="location">Physical rating</span>
-                <span class="grade">{{ $special_group->physical_rating }}</span>
-              </div>
-
-              <div class="sub-title">
-                 <span class="location">Tour Category</span>
-                <span class="grade">{{ $special_group->category }}</span>
-              </div>
-
-   <div class="sub-title">
-                <span class="location">Tour Code</span>
-                <span class="grade">{{ $special_group->tour_code }}</span>
-              </div>
-
-              <div class="item-detail">
-                <div class="left">
-                  <div class="day"><span class="icon-sun">Dead Line:</span></div>
-                  <div class="night"><span class="icon-moonx"></span>{{ $special_group->offer_deadline }}</div>
-                </div>
-                <div class="right">
-
-                    <span class="text-danger" style="font-size:17px"><strong>${{ number_format($special_group->new_price),2 }} </strong> pp
-                                           </span><sup style="text-decoration: line-through;">$ {{ number_format($special_group->price),2 }} </sup></s><br>
-                                            <span style="font-size:12px;">Save ${{ number_format($special_group->save),2 }}</span>
 
 
-                  <a href="{{route('safaris.show',$special_group->tour_id,$offers) }}" class="btn btn-primary hvr-sweep-to-right">Tour Details</a>
+      <div class="item-img" style="background-image: url({{URL::asset('/storage/uploads/'.$special_group->attachment)}});" style="background-size:cover; background-position:center">
+        <div class="item-overlay">
+          <a href="{{route('grouptour.show',$special_group->tour_id,$offers) }}"><span class="icon-binocular"></span></a>
+        </div>
+      </div>
 
-                  <!-- <a href="{{route('grouptour.show',$special_group->tour_id,$offers) }}" class="btn btn-primary hvr-sweep-to-right">Tour Details</a> -->
-                </div>
-              </div>
-            </div>
+
+        <div class="text-center" style="background-color:#f2fde6;border-radius:100px">
+          <h4 class="title"><a href="#">{{$special_group->tour_name}}</a></h4>
+        </div>
+
+
+
+<div class="item-desc" style="background-color:#345742;">
+<div class="item-detail">
+<div class="left">
+
+                         <br>
+                          <span style="font-size:12px;">{{$special_group->offer_deadline }} </span>
+</div>
+<div class="right">
+    <span class="text-yellow" style="font-size:17px;color:#f9be0d"><strong>${{ number_format($special_group->new_price),2 }} </strong> pp
+                           </span><sup style="text-decoration: line-through;">$ {{ number_format($special_group->price),2 }} </sup></s><br>
+                            <span style="font-size:12px;">Save ${{ number_format($special_group->save),2 }}</span>
+
+</div>
+</div>
+
+
+<hr style="background-color:#fff">
+        <div class="sub-title">
+          <span class="location">Tour Duration</span>
+          <span class="grade"><strong>{{ $special_group->days }} Days, {{ $special_group->days -1 }} Nights</strong></span>
+        </div>
+        <div class="sub-title">
+          <span class="location">Physical rating</span>
+          <span class="grade"><strong>{{ $special_group->physical_rating }}</strong></span>
+        </div>
+
+        <div class="sub-title">
+           <span class="location">Tour Category</span>
+          <span class="grade"><strong>{{ $special_group->category }}</strong></span>
+        </div>
+
+<div class="sub-title">
+
+          <span class="location">Tour Code</span>
+          <span class="grade"><strong>{{ $special_group->tour_code }}</strong></span>
+        </div>
+<hr style="background-color:yellow">
+        <div class="item-detail">
+          <div class="left">
+          </div>
+          <div class="right">
+              <a href="{{route('grouptour.show',$special_group->tour_id,$offers) }}" class="btn btn-primary hvr-sweep-to-right">Tour Details</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 @endforeach
 
       </div>
@@ -288,42 +298,36 @@
 
 
 <section class="showcase" style="background: url('assets/img/worldmap.png') no-repeat center; background-size: cover;padding-top: 30px;padding-bottom: 20px;">
-   <div class="main-title">
+   <div class="main-title line-box">
       <h4>Top Destinations</h4>
     </div>
 
-
     <div class="container">
-
                     <!-- BEGIN CONTENT -->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                         <div class="">
                          <div data-aos="fade-up">
-
  <!-- Beach Holidays -->
   <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 front-carousel booking-tourPadding">
                      <h6 data-text= "" style="font-size: 20px;color: green;font-weight: 650; text-transform:lowercase;text-align: center;">Wildlife Safaris</h6>
 
   <div id="myCarousel4p" class="carousel_no slide" data-ride="carousel">
     <!-- Indicators -->
-   <!--  <ol class="carousel-indicators">
-      <li data-target="#myCarousel3" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel3" data-slide-to="1"></li>
-      <li data-target="#myCarousel3" data-slide-to="2"></li>
-    </ol> -->
-
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
          <div class="package-list-wrap ">
                                         <img src="{{URL::asset('/storage/uploads/'.$popular_safari->attachment)}}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
-                                         <span class="off-box">{{ $popular_safari->days  }} Days: ${{number_format($popular_safari->price),2 }}</span>
+                                      <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $popular_safari->days  }} Days: ${{number_format($popular_safari->price),2 }}/=</strong></div>
+
+
+
         <div class="package-list-content">
       <h3 class="package-list-title">
-      <p>{{ $popular_safari->tour_name }}</p>
+      <p class="text-white">{{ $popular_safari->tour_name }}</p>
                           </h3>
-   <a class="package-list-button" href="{{ route('safaris-slider-packages',$popular_safari->id) }}">Explore More</a>
+   <a class="btn btn-primary hvr-sweep-to-right" href="{{ route('safaris-slider-packages',$popular_safari->id) }}" style="background-color:#6c471e;">Explore More</a>
                                           </div>
                                         </div>
       </div>
@@ -333,12 +337,13 @@
            @foreach ($popular_safarif as $safaris)                        <div class="item">
                           <div class="package-list-wrap ">
                                         <img src="{{URL::asset('/storage/uploads/'.$safaris->attachment) }}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
-                                            <span class="off-box">{{ $safaris->days  }} Days: ${{number_format($safaris->price),2 }}</span>
+                                             <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $safaris->days  }} Days: ${{number_format($safaris->price),2 }}/=</strong></div>
+
         <div class="package-list-content">
       <h3 class="package-list-title">
-      <p>{{ $safaris->tour_name }}</p>
+      <p class="text-white">{{ $safaris->tour_name }}</p>
                           </h3>
-   <a class="package-list-button" href="{{ route('safaris-slider-packages',$safaris->id) }}">Explore More</a>
+   <a class="btn btn-primary hvr-sweep-to-right" href="{{ route('safaris-slider-packages',$safaris->id) }}" style="background-color:#6c471e;">Explore More</a>
                                           </div>
                                         </div>
                       </div>
@@ -372,12 +377,13 @@
          <div class="package-list-wrap ">
 
                                         <img src="{{URL::asset('/storage/uploads/'.$popular_trekking->attachment)}}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
-                                        <span class="off-box">{{ $popular_trekking->days  }} Days: ${{number_format($popular_trekking->price),2 }}</span>
+             <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $popular_trekking->days  }} Days: ${{number_format($popular_trekking->price),2 }}/=</strong></div>
+
         <div class="package-list-content">
       <h3 class="package-list-title">
-      <p>{{ $popular_trekking->tour_name }}</p>
+      <p class="text-white">{{ $popular_trekking->tour_name }}</p>
                           </h3>
-   <a class="package-list-button" href="{{ route('safaris-slider-packages',$popular_trekking->id) }}">Explore More</a>
+   <a class="btn btn-primary hvr-sweep-to-right" href="{{ route('safaris-slider-packages',$popular_trekking->id) }}" style="background-color:#6c471e;">Explore More</a>
                                           </div>
                                         </div>
       </div>
@@ -390,12 +396,13 @@
 
 
                                         <img src="{{URL::asset('/storage/uploads/'.$trekking->attachment) }}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
-                                             <span class="off-box">{{ $trekking->days  }} Days: ${{number_format($trekking->price),2 }}</span>
+                                                                                       <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $trekking->days  }} Days: ${{number_format($trekking->price),2 }}/=</strong></div>
+
         <div class="package-list-content">
       <h3 class="package-list-title">
-      <p>{{ $trekking->tour_name }}</p>
+      <p class="text-white">{{ $trekking->tour_name }}</p>
                           </h3>
-   <a class="package-list-button" href="{{ route('safaris-slider-packages',$trekking->id) }}">Explore More</a>
+   <a class="btn btn-primary hvr-sweep-to-right" href="{{ route('safaris-slider-packages',$trekking->id) }}" style="background-color:#6c471e;">Explore More</a>
                                           </div>
                                         </div>
                       </div>
@@ -419,23 +426,20 @@
 
     <div id="myCarousel3p" class="carousel_no slide" data-ride="carousel">
         <!-- Indicators -->
-     <!--  <ol class="carousel-indicators">
-            <li data-target="#myCarousel3" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel3" data-slide-to="1"></li>
-            <li data-target="#myCarousel3" data-slide-to="2"></li>
-        </ol> -->
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
                  <div class="package-list-wrap ">
                                                                                 <img src="{{URL::asset('/storage/uploads/'.$popular_holiday->attachment)}}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
-                                                                                 <span class="off-box">{{ $popular_holiday->days  }} Days: ${{number_format($popular_holiday->price),2 }}</span>
+                                                                                <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $popular_holiday->days  }} Days: ${{number_format($popular_holiday->price),2 }}/=</strong></div>
+
+
                 <div class="package-list-content">
                         <h3 class="package-list-title">
-            <p>{{ $popular_holiday->tour_name }}</p>
+            <p class="text-white">{{ $popular_holiday->tour_name }}</p>
                                                     </h3>
-     <a class="package-list-button" href="{{ route('safaris-slider-packages',$popular_holiday->id) }}">Explore More</a>
+     <a class="btn btn-primary hvr-sweep-to-right" href="{{ route('safaris-slider-packages',$popular_holiday->id) }}" style="background-color:#6c471e;">Explore More</a>
                                                                                     </div>
                                                                                 </div>
             </div>
@@ -446,12 +450,12 @@
                                                 <div class="item">
                                                     <div class="package-list-wrap ">
                                                                                 <img src="{{URL::asset('/storage/uploads/'.$holidays->attachment) }}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
-                                                                                 <span class="off-box">{{ $holidays->days  }} Days: ${{number_format($holidays->price),2 }}</span>
+                                                                                  <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $holidays->days  }} Days: ${{number_format($holidays->price),2 }}/=</strong></div>
                 <div class="package-list-content">
                     <h3 class="package-list-title">
-            <p>{{ $holidays->tour_name }}</p>
+            <p class="text-white">{{ $holidays->tour_name }}</p>
                                                     </h3>
-     <a class="package-list-button" href="{{ route('safaris-slider-packages',$holidays->id) }}">Explore More</a>
+     <a class="btn btn-primary hvr-sweep-to-right" href="{{ route('safaris-slider-packages',$holidays->id) }}" style="background-color:#6c471e;">Explore More</a>
                                                                                     </div>
                                                                                 </div>
                                             </div>

@@ -75,6 +75,8 @@ class saleController extends Controller
 
     public function offers()
     {
+        $offers='offers';
+
       $offers_private = specialOffer::join('programs','programs.id','special_offers.tour_id')
         ->join('attachments','attachments.destination_id','programs.id')
         ->select('special_offers.id','special_offers.*','programs.tour_name','programs.days','programs.category','programs.type',
@@ -94,11 +96,10 @@ class saleController extends Controller
         ->groupby('attachments.destination_id')
         ->get();
 
+//dd($offers_group);
         $PostcategoryImage = title::where('title','Special Offers')
           ->first();
-
-
-        return view('website.offers.offers',compact('offers_group','offers_private','PostcategoryImage'));
+        return view('website.offers.offers',compact('offers_group','offers_private','PostcategoryImage','offers'));
     }
 
     /**
