@@ -58,8 +58,8 @@
 <body>
 
 
-  <div class="container top-header-area" style="background:yellow;padding:1px">
-         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#6b794c;margin-top:0px;margin-bottom:0px;">
+  <div class="container top-header-area" style="background:#000;padding:1px">
+         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#fff;margin-top:0px;margin-bottom:0px;">
               <div class="col-lg-2 col-md-4">
                 <a href="" class="text-decoration-none">
                     <span class="h3 text-uppercase text-primary bg-dark px-2">ISOL</span>
