@@ -71,10 +71,10 @@
               <div class="col-lg-4 col-md-7">
                  <div class="email-address_no">
                     <a href="mailto:info@isoltours.com">
-                      <i class="fa fa-envelope" style="color:pink;"></i><b style="color:#FDD43D;">  info@isoltours.com</b></a>
+                      <i class="fa fa-envelope" style="color:pink;"></i><b style="color:#000;">  info@isoltours.com</b></a>
                        <a href="https://wa.link/z5mmcd" style="padding-left:10px">
                             <img src="../../../images/whatsapp.png" alt="" style="width:20px; height:20px;">
-                               <b style="color:#FDD43D;">(+255)653 223 318</b>
+                               <b style="color:#000;">(+255)653 223 318</b>
                             </a>
                 </div>
             </div>
