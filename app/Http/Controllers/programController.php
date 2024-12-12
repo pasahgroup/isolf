@@ -27,7 +27,7 @@ class programController extends Controller
         ->select('programs.*','attachments.attachment')
         ->where('attachments.type','Programs')
          ->orWhere('attachments.type','Addon')
-        ->get();
+          ->paginate(15);
         return view('admins.programs.index',compact('datas'));
     }
 
@@ -67,7 +67,7 @@ class programController extends Controller
            $storeType=request('edit');
             $itDaysBefore=itinerary::where('program_id',request('id'))
              ->where('tour_addon',$type)
-             ->get()->first();  
+             ->get()->first();
 
           $program =  program::UpdateOrCreate(
             [   'tour_name'=>request('tour_name')],
@@ -94,11 +94,11 @@ class programController extends Controller
         //Update Price offer,Get Discount value first
          $discount=specialOffer::where('tour_id',$program->id)
          ->get()->first();
-         
+
          if($discount !=null)
          {
          $newPrice=request('price')-$discount->discount;
-              $offerUpdate = specialOffer::where('tour_id',$program->id)             
+              $offerUpdate = specialOffer::where('tour_id',$program->id)
              ->update([
             'new_price'=> $newPrice
         ]);
@@ -111,13 +111,13 @@ class programController extends Controller
              ->update([
             'days'=>request('days')
         ]);
-        
+
          //Get ItenaryID
           $it=itinerary::where('program_id',$program->id)
              ->where('tour_addon', $type)
              ->get()->first();
        //End of Update Itenary day
-          
+
          //End of delete
             if(request('attachment')){
                 $attach = request('attachment');
@@ -134,11 +134,11 @@ class programController extends Controller
                      //upload the image
                      $path = $attached->storeAs('public/uploads/', $imageToStore);
 
-       
+
            $id = attachment::where('destination_id', '=', $program->id)
             ->where('type', $type)
             ->get()->first();
-           
+
           if($id !=null)
             {
              $toupdate = attachment::where('destination_id',$program->id)
@@ -154,7 +154,7 @@ class programController extends Controller
                 'attachment'=>$imageToStore,
                 'type'=> $type
                 ]
-                );          
+                );
          }
         }
       }
@@ -164,15 +164,15 @@ class programController extends Controller
         }else{
         return redirect()->route('inclusive.show',$program->id)->with('success','Created successfuly');
         }
-      
+
     }
 
 //Edit program
     public function editProgram($id)
     {
 
-       $tour_addons = program::where('id', $id)->first();       
-        $type=$tour_addons->main; 
+       $tour_addons = program::where('id', $id)->first();
+        $type=$tour_addons->main;
 
         if($type=='Program')
         {
@@ -187,9 +187,9 @@ class programController extends Controller
         ->select('programs.*','attachments.attachment')
         ->where('programs.id',$id)
         ->where('attachments.type',$tour_addon)
-        ->get()->first(); 
-        
-    return view('admins.programs.editProgram',compact('tours')); 
+        ->get()->first();
+
+    return view('admins.programs.editProgram',compact('tours'));
      }
     /**
      * Display the specified resource.
@@ -198,10 +198,10 @@ class programController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {     
-          
-         $tour_addons = program::where('id', $id)->first();       
-        $type=$tour_addons->main; 
+    {
+
+         $tour_addons = program::where('id', $id)->first();
+        $type=$tour_addons->main;
 
         if($type=='Program')
         {
@@ -226,31 +226,31 @@ class programController extends Controller
         ->select('accommodations.accommodation_name','destinations.destination_name','itineraries.*','itinerary_days.itinerary_id','programs.tour_name','itinerary_days.*')
         ->get();
 
-      
+
        $datasf=itinerary::where('program_id',$id)
       ->get()->first();
-       
+
         $accommodations = accommodation::get();
         $destinations = destination::get();
 
           if($datas == "[]"){
            $programs = program::where('id',$id)->first();
-           //dd($programs); 
+           //dd($programs);
             return view('admins.Itinerary.add',compact('programs','accommodations','destinations','tour_addon','id'));
            };
 
-      
+
        $unfilledDays=itinerary_day::where('itinerary_id',$datasf->id)
         ->where('accommodation_id',0)
         ->count();
 
         $filledDays=itinerary_day::where('itinerary_id',$datasf->id)
         ->where('accommodation_id','!=',0)
-        ->count();            
+        ->count();
        // dd($datas);
         return view('admins.Itinerary.addEdit',compact('datas','id','programs','tour_addon','accommodations','destinations','unfilledDays','filledDays'));
-       } 
-  
+       }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -260,7 +260,7 @@ class programController extends Controller
      */
     public function edit($id)
     {
-     
+
     }
 
     /**
@@ -284,7 +284,7 @@ class programController extends Controller
         $type='Addon';
         }
 
-         $tour_addon='programs'; 
+         $tour_addon='programs';
            $storeType=request('edit');
 
             $accommodations = accommodation::get();
@@ -292,7 +292,7 @@ class programController extends Controller
 
            $itDaysBefore=itinerary::where('program_id',request('id'))
              ->where('tour_addon', $type)
-             ->get()->first();                 
+             ->get()->first();
 
 
               $program = program::where('id',request('id'))
@@ -322,16 +322,16 @@ class programController extends Controller
              {
                  return redirect()->route('programs.show',$id)->with('success','Itinerary created successful');
              }
-           
+
 
         //Update Price offer,Get Discount value first
          $discount=specialOffer::where('tour_id',$id)
          ->get()->first();
-         
+
          if($discount !=null)
          {
          $newPrice=request('price')-$discount->discount;
-              $offerUpdate = specialOffer::where('tour_id',$id)             
+              $offerUpdate = specialOffer::where('tour_id',$id)
              ->update([
             'new_price'=> $newPrice
         ]);
@@ -344,16 +344,16 @@ class programController extends Controller
              ->update([
             'days'=>request('days')
         ]);
-        
-                 
+
+
 
          //Get ItenaryID
           $it=itinerary::where('program_id',$id)
              ->where('tour_addon', $type)
              ->get()->first();
        //End of Update Itenary day
-            
-             $itDefDays=request('days')-$itDaysBefore->days;           
+
+             $itDefDays=request('days')-$itDaysBefore->days;
              if($itDefDays<0)
              {
                 $itDefDays=$itDefDays * -1;
@@ -363,22 +363,22 @@ class programController extends Controller
               $im=itinerary_day::
               where('itinerary_id',$it->id)
               ->max('id');
-    
+
              //Deleting Existing days in itenary days
              if($im !=null)
              {
-                 DB::statement("delete from itinerary_days where id=$im");           
+                 DB::statement("delete from itinerary_days where id=$im");
              }
              $i +=1;
-                }                 
+                }
              }
              else
              {
                 //Count rows in itenaries_day
-                    $itenaries_dayCount=itinerary_day::where('itinerary_id',$itDaysBefore->id) 
-                    ->count();        
+                    $itenaries_dayCount=itinerary_day::where('itinerary_id',$itDaysBefore->id)
+                    ->count();
                     $itenaries_dayCount=$itenaries_dayCount+1;
-              
+
                 $def=request('days')-$itenaries_dayCount;
                 //dd($def);
                     //Add days to the itenaries_day table
@@ -386,7 +386,7 @@ class programController extends Controller
       while($z<=$def)
             {
          $program =  itinerary_day::create(
-            [  
+            [
                 'itinerary_id'=>$itDaysBefore->id,
                 'day'=>$itenaries_dayCount,
                 'itinerary_title'=>'nill',
@@ -396,9 +396,9 @@ class programController extends Controller
             ]);
            $z +=1;
           $itenaries_dayCount +=1;
-           }  
+           }
         }
- 
+
                     //End of delete
             if(request('attachment')){
                 $attach = request('attachment');
@@ -419,7 +419,7 @@ class programController extends Controller
            $idf = attachment::where('destination_id', '=', $id)
             ->where('type', $type)
             ->first();
-           
+
           if($idf !=null)
             {
              $toupdate = attachment::where('destination_id',$id)
@@ -436,7 +436,7 @@ class programController extends Controller
                 'attachment'=>$imageToStore,
                 'type'=> $type
                 ]
-                );          
+                );
          }
         }
       }
@@ -463,7 +463,7 @@ class programController extends Controller
               DB::statement("delete from special_offers where tour_id=$id");
                DB::statement("delete from attachments where destination_id=$id and type='Programs'");
             return redirect()->route('programs.index')->with('info','Program removed successfully');
-        }    
+        }
         else{
             return redirect()->route('programs.index')->with('error','Widget not exists');
         }

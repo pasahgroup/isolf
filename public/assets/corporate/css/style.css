@@ -68,7 +68,7 @@
   border-radius: 6px;
 /*  background: #fff;*/
 
-background: #6a5b32;
+background: #345742;
 
   padding: 0;
   display: inline-block;
@@ -207,7 +207,7 @@ background: #6a5b32;
 .booking-btn-gray {
   border: 1px solid #1d730b;
     padding: 2px 15px;
-  color:#ffffff;
+  color:#000;
   display: block;
   background-color:gray;
   transition: all ease-in-out 0.5s;
@@ -1694,7 +1694,7 @@ steps block and steps block elements
 .pagination > li > a, .pagination > li > span,
 .pagination > li:first-child > a, .pagination > li:first-child > span,
 .pagination > li:last-child > a, .pagination > li:last-child > span {
-	border-radius: 25px !important;
+	border-radius: 1px !important;
 	border: none;
 	color: #868c93;
 }

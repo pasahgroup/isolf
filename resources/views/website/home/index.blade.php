@@ -479,4 +479,73 @@
         </div>
 
 </section>
+
+<hr>
+<div>
+
+
+    <ul class="supported-list">
+ @foreach ($wildlife as $wild)
+      <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
+
+
+        <div class="col-sm-12 col-md-12">
+            <div class="single_blog listing-shot item-grid">
+                  <div class="item-overlay">
+             <img src="{{URL::asset('/storage/attraction/'.$wild->attachment) }}" class="img-fluid" alt="No Image" style="height:120px;" alt="">
+
+                <a href="#"><span class="text-white justify">{{$wild->attraction_title}}</span></a>
+                </div>
+
+            </div>
+          </div>
+      </li>
+    @endforeach
+
+    @foreach ($culture as $cult)
+        <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
+          <div class="col-sm-12 col-md-12">
+              <div class="single_blog listing-shot item-grid">
+                    <div class="item-overlay">
+               <img src="{{URL::asset('/storage/attraction/'.$cult->attachment) }}" class="img-fluid" alt="No Image" style="height:120px;" alt="">
+
+                    <a href="#"><span class="text-white justify">{{$cult->attraction_title}}</span></a>
+                  </div>
+
+              </div>
+            </div>
+         </li>
+       @endforeach
+
+       @foreach ($historical as $hist)
+              <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
+                <div class="col-sm-12 col-md-12">
+                    <div class="single_blog listing-shot item-grid">
+                          <div class="item-overlay">
+                     <img src="{{URL::asset('/storage/attraction/'.$hist->attachment) }}" class="img-fluid" alt="No Image" style="height:120px;" alt="">
+
+                              <a href="#"><span class="text-white justify">{{$hist->attraction_title}}</span></a>
+                        </div>
+
+                    </div>
+                  </div>
+            </li>
+          @endforeach
+
+       @foreach ($geographical as $geo)
+          <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
+            <div class="col-sm-12 col-md-12">
+                <div class="single_blog listing-shot item-grid">
+                      <div class="item-overlay">
+                 <img src="{{URL::asset('/storage/attraction/'.$geo->attachment) }}" class="img-fluid" alt="No Image" style="height:120px;" alt="">
+
+                      <a href="#"><span class="text-white justify">{{$geo->attraction_title}}</span></a>
+                    </div>
+
+                </div>
+              </div>
+            </li>
+          @endforeach
+    </ul>
+  </div>
 @endsection

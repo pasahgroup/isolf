@@ -1,8 +1,78 @@
 @extends('website.layouts.apps')
 @section('content')
+
+
+<style>
+.tooltip {
+  /* triangle dimension */
+  --b: 2em; /* base */
+  --h: 1em; /* height */
+
+  --p: 50%; /* triangle position (0%:left 100%:right) */
+  --r: 1.2em; /* the radius */
+  --c: #4ECDC4;
+
+  border-radius: var(--r) var(--r) min(var(--r),100% - var(--p) - var(--b)/2) min(var(--r),var(--p) - var(--b)/2)/var(--r);
+  clip-path: polygon(0 100%,0 0,100% 0,100% 100%,
+    min(100%,var(--p) + var(--b)/2) 100%,
+    var(--p) calc(100% + var(--h)),
+    max(0%  ,var(--p) - var(--b)/2) 100%);
+  background: var(--c);
+  border-image: conic-gradient(var(--c) 0 0) fill 0/
+    var(--r) calc(100% - var(--p) - var(--b)/2) 0 calc(var(--p) - var(--b)/2)/
+    0 0 var(--h) 0;
+}
+
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  gap: 20px;
+  place-content: center;
+  text-align: center;
+  background: #f2f2f2;
+}
+.tooltip {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: sans-serif;
+  padding: 1em;
+  max-width: 25ch;
+}
+</style>
   <!-- Add Class carousel-fade just to fade transition -->
   <div class="carousel slide carousel-fade full-heightx stick-top" id="carousel"  style="min-height: 610px;">
     <!-- Wrapper for slides -->
+
+
+
+
+
+
+    <input type="range" step=".01" value=".5" min="0" max="1">
+    <div class="tooltip">This is a simple Tooltip with a gradient coloration and with border radius </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="carousel-inner" role="listbox">
       <div class="item zooming with-overlay active" style="background-image: url('http://placehold.it/1680x1050');"></div>
       <div class="item zooming with-overlay" style="background-image: url('http://placehold.it/1680x1050');"></div>
@@ -11,7 +81,7 @@
       <div class="item zooming with-overlay" style="background-image: url('http://placehold.it/1680x1050');"></div>
       <div class="item zooming with-overlay" style="background-image: url('http://placehold.it/1680x1050');"></div>
       <div class="item zooming with-overlay" style="background-image: url('http://placehold.it/1680x1050');"></div>
-      
+
       <div class="carousel-caption full-width center-txt">
         <div class="container">
           <h3 class="main-header">Enjoy Adventure <br> Experience</h3>
@@ -42,7 +112,7 @@
         </div>
       </div>
 
-      
+
     </div>
 
     <!-- Controls -->
@@ -441,6 +511,12 @@
           $(window).resize(function(){
             $('.equal-height > div').deasil_equalHeight();
           });
+  </script>
+
+  <script>
+  document.querySelector('input').addEventListener('input', e => {
+    e.target.nextElementSibling.style.setProperty("--p", (100*e.target.value)+"%");
+ });
   </script>
 
 </body>

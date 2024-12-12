@@ -89,7 +89,7 @@
             <div class="single_blog listing-shot item-grid">
     <div class="listing-shot-img">
 
-                                        <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205"><strong>$<?php echo e(number_format($safari->price),2); ?></strong></div>
+                                        <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205"><strong class="icon-dollar"><?php echo e(number_format($safari->price,2)); ?>/=</strong></div>
 
                                   </div>
 
@@ -146,7 +146,7 @@
               </div>
             </div>
           </div>
-     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
+     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
         <?php echo $safaris->links(); ?>
 

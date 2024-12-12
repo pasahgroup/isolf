@@ -478,6 +478,75 @@
         </div>
 
 </section>
+
+<hr>
+<div>
+
+
+    <ul class="supported-list">
+ <?php $__currentLoopData = $wildlife; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $wild): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+      <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
+
+
+        <div class="col-sm-12 col-md-12">
+            <div class="single_blog listing-shot item-grid">
+                  <div class="item-overlay">
+             <img src="<?php echo e(URL::asset('/storage/attraction/'.$wild->attachment)); ?>" class="img-fluid" alt="No Image" style="height:120px;" alt="">
+
+                <a href="#"><span class="text-white justify"><?php echo e($wild->attraction_title); ?></span></a>
+                </div>
+
+            </div>
+          </div>
+      </li>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+    <?php $__currentLoopData = $culture; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cult): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
+          <div class="col-sm-12 col-md-12">
+              <div class="single_blog listing-shot item-grid">
+                    <div class="item-overlay">
+               <img src="<?php echo e(URL::asset('/storage/attraction/'.$cult->attachment)); ?>" class="img-fluid" alt="No Image" style="height:120px;" alt="">
+
+                    <a href="#"><span class="text-white justify"><?php echo e($cult->attraction_title); ?></span></a>
+                  </div>
+
+              </div>
+            </div>
+         </li>
+       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+       <?php $__currentLoopData = $historical; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hist): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+              <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
+                <div class="col-sm-12 col-md-12">
+                    <div class="single_blog listing-shot item-grid">
+                          <div class="item-overlay">
+                     <img src="<?php echo e(URL::asset('/storage/attraction/'.$hist->attachment)); ?>" class="img-fluid" alt="No Image" style="height:120px;" alt="">
+
+                              <a href="#"><span class="text-white justify"><?php echo e($hist->attraction_title); ?></span></a>
+                        </div>
+
+                    </div>
+                  </div>
+            </li>
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+       <?php $__currentLoopData = $geographical; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $geo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
+            <div class="col-sm-12 col-md-12">
+                <div class="single_blog listing-shot item-grid">
+                      <div class="item-overlay">
+                 <img src="<?php echo e(URL::asset('/storage/attraction/'.$geo->attachment)); ?>" class="img-fluid" alt="No Image" style="height:120px;" alt="">
+
+                      <a href="#"><span class="text-white justify"><?php echo e($geo->attraction_title); ?></span></a>
+                    </div>
+
+                </div>
+              </div>
+            </li>
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </ul>
+  </div>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('website.layouts.apps', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\isolf\resources\views/website/home/index.blade.php ENDPATH**/ ?>

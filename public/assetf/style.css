@@ -11,7 +11,7 @@
 ################################################## */
 /* ##### Index of Stylesheet #####
 
-:: 1.0 Import Fonts 
+:: 1.0 Import Fonts
 :: 2.0 Import All CSS
 :: 3.0 Base CSS
 :: 4.0 Preloader Area CSS
@@ -30,7 +30,7 @@
 :: 17.0 About Us Area CSS
 :: 18.0 Team Member Area CSS
 :: 19.0 Listings Area CSS
-:: 20.0 Blog Area CSS 
+:: 20.0 Blog Area CSS
 :: 21.0 Contact Area CSS
 :: 22.0 Shortcode Area CSS
 
@@ -258,7 +258,7 @@ img {
   /*background: rgba(0, 0, 0, 0.9);*/
     /*background:red;*/
   background: -webkit-linear-gradient(top, black 0%, rgba(0, 0, 0, 0.9) 90%, rgba(0, 0, 0, 0) 100%);
-  background: linear-gradient(to bottom, #496a48 0%, rgba(0.1, 1, 0, 0.9) 90%, rgba(0, 0, 0, 0.9) 100%); 
+  background: linear-gradient(to bottom, #496a48 0%, rgba(0.1, 1, 0, 0.9) 90%, rgba(0, 0, 0, 0.9) 100%);
   /*background: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.9) 90%, rgba(0, 0, 0, 0) 100%);*/
 }
 
@@ -610,7 +610,7 @@ img {
   position: relative;
   z-index: 1;
   /*width: 100%;*/
-  height: 87vh; 
+  height: 87vh;
    /*height: 400px; */
 }
   @media only screen and (min-width: 992px) and (max-width: 1000px) {
@@ -1082,7 +1082,7 @@ img {
         color: #7d7d7d; }
 
 .footer-widget-area .widget-title {
-  margin-bottom: 2px; 
+  margin-bottom: 2px;
 }
   .footer-widget-area .widget-title h6 {
     font-size: 19px;
@@ -1575,7 +1575,7 @@ img {
 .pagination .page-link {
   padding: 0;
   margin-left: 3px;
-  line-height: 20px;
+  line-height: 12px;
   color: #323232;
   border: none;
   width: 20px;

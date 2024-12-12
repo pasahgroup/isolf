@@ -226,13 +226,28 @@ else{
            return view('website.programs.safaris-slider',compact('safaris','sliders','title','PostcategoryImage'));
      }
 
-  public function safarisSliderTourPackages($x)
+  public function safarisSliderTourPackages($id)
     {
+    //  dd($x);
 
           //$sliders=slider::limit(1)->first();
+          $discounts=specialOffer::where('tour_id',$id)->first();
+
+          $tour_addons = program::where('id',$id)->first();
+              $type=$tour_addons->main;
+
+              if($type=='Program')
+              {
+               $tour_addon='Programs';
+              }
+              else
+              {
+              $tour_addon='Addon';
+              }
+
             $programs=program::join('attachments','programs.id','attachments.destination_id')
              ->select('programs.*','attachments.attachment')
-            ->where('programs.id',$x)
+            ->where('programs.id',$id)
              ->where('attachments.type','programs')
             //->where('programs.id',$x)
             ->first();
@@ -265,7 +280,21 @@ else{
           {
           $title='No Title';
           }
+
+
+
+
         $title='Palatial Tours'.$title;
+
+        $same_programs = program::
+                  join('itineraries','itineraries.program_id','programs.id')
+                 ->join('attachments','programs.id','attachments.destination_id')
+                 ->where('attachments.type', $tour_addon)
+                ->where('itineraries.tour_addon', $tour_addon)
+                ->where('programs.type',$programs->type)
+                 ->where('programs.id','!=',$id)
+                   ->select('programs.*','attachments.attachment','itineraries.*')
+                 ->paginate(3);
          $safaris = program::join('attachments','programs.id','attachments.destination_id')
          ->join('itineraries','programs.id','itineraries.program_id')
          ->select('programs.*','attachments.attachment')
@@ -273,10 +302,74 @@ else{
           ->where('programs.main','Program')
           ->where('programs.type',$programs->type)
           ->where('itineraries.tour_addon','Programs')
-         ->get();
+           ->paginate(3);
+
+         $datas = itinerary::join('itinerary_days','itineraries.id','itinerary_days.itinerary_id')
+          ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')
+          ->join('destinations','destinations.id','itinerary_days.destination_id')
+          ->join('programs','programs.id','itineraries.program_id')
+           ->join('locations','destinations.location_id','locations.id')
+          ->join('attachments','accommodations.id','attachments.destination_id')
+          ->orderby('itinerary_days.id','ASC')
+          ->where('itineraries.tour_addon', $tour_addon)
+          ->where('itineraries.program_id',$id)
+          ->where('attachments.type','Accommodation')
+          ->select('accommodations.*','accommodations.type',
+          'itineraries.*','destinations.*','locations.*','programs.tour_name','itinerary_days.*','attachments.attachment')
+          ->get();
+
+    //dd($tour_addon);
+
+           if($datas == "[]"){
+        return redirect()->back()->with('info','The Program has no Itinery Data');
+             };
+             $inclusives=DB::select("select id,inclusive from inclusives  where id not in(select (inclusive_id)id from accommodation_inclusives where tour_id =$id)");
+             $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
+          ->where('accommodation_inclusives.tour_id',$id)->get();
+      //End of accommodation Inclusive
+
+           $buyaddons= buyaddons::join('programs','programs.id','buyaddons.program_id')
+            ->where('buyaddons.program_id',$id)
+           ->get();
+
+
+           $get_type = program::whereid($id)->first();
+           $type = $get_type->type;
+
+           $addons = program::join('attachments','programs.id','attachments.destination_id')
+           ->select('programs.*','attachments.attachment')
+           ->where('programs.main','Addon')
+           ->where('attachments.type','Addon')
+           ->latest()->limit(3)->get();
+
+           $addondatas = addons::
+           join('attachments','addons.id','attachments.destination_id')
+           ->join('itineraries','itineraries.program_id','addons.id')
+           ->join('itinerary_days','itineraries.id','itinerary_days.itinerary_id')
+           ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')
+           ->join('destinations','destinations.id','itinerary_days.destination_id')
+           ->select('addons.*','attachments.attachment')
+           ->where('addons.type','!=',$type)
+           ->where('itineraries.tour_addon','Addon')
+           ->where('attachments.type','accommodation')
+           ->get();
+
+          $basic = Tourcostsummary::
+          where('status','Basic')
+          ->where('program',$programs->tour_name?? '')
+          ->get();
+           $comfort = Tourcostsummary::
+          where('status','Comfort')
+          ->where('program',$programs->tour_name?? '')
+          ->get();
+           $luxury = Tourcostsummary::
+          where('status','Deluxe')
+          ->where('program',$programs->tour_name?? '')
+          ->get();
+
       $PostcategoryImage = title::where('title', $title)
           ->first();
-           return view('website.programs.safaris-slider-packages',compact('safaris','programs','title','PostcategoryImage'));
+           return view('website.programs.safaris-slider-packages',compact('safaris','programs','title','PostcategoryImage','discounts','datas','inclusives','assignLists','same_programs','addons','buyaddons'));
      }
 
 
@@ -472,7 +565,6 @@ else{
 // {
 // $programs->type="";
 // }
-
  $same_programs = program::
            join('itineraries','itineraries.program_id','programs.id')
           ->join('attachments','programs.id','attachments.destination_id')
@@ -481,7 +573,7 @@ else{
          ->where('programs.type',$programs->type)
           ->where('programs.id','!=',$id)
             ->select('programs.*','attachments.attachment','itineraries.*')
-          ->limit(3)->get();
+          ->paginate(3);
  //dd($same_programs);
 
        $datas = itinerary::join('itinerary_days','itineraries.id','itinerary_days.itinerary_id')
@@ -550,7 +642,9 @@ else{
          ->get();
 
 
+
 // Send Email to clint
+//dd($discounts);
 
         return view('website.tour.tourSummary',compact('datas','id','programs','basic','comfort','luxury','buyaddons','addons','addondatas','discounts','inclusives','assignLists','same_programs'));
     }

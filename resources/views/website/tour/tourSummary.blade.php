@@ -482,42 +482,71 @@
       <div class="row item">
 
  @foreach($same_programs as $extra_prog)
-        <div class="col-sm-6 col-md-4">
-          <div class="item-grid">
-            <div class="item-img" style="background-image: url('{{URL::asset('/storage/uploads/'.$extra_prog->attachment)}}');">
-              <div class="item-overlay">
-                <a href=""><span class="icon-binocular"></span></a>
-              </div>
-            </div>
-            <div class="item-desc" style="background-color:#345742;">
-              <div class="item-info">
-                <span class="icon-hard"></span>
-                <h4 class="title"><a href="">{{$extra_prog->tour_name}}</a></h4>
-              </div>
 
-              <div class="sub-title">
-                <span class="location">Tour Category: {{$extra_prog->category}}</span>
-                <span class="grade"> Physical rating: {{$extra_prog->style}}</span>
-              </div>
 
-              <div class="item-detail">
-                <div class="left">
-                  <div class="day"><span class="icon-sun"></span>{{$extra_prog->days}} Days, {{$extra_prog->days -1}}  Night(s)</div>
-                  <div class="night"><span class="icon-moon"></span>Tour Code: {{$extra_prog->tour_code}}</div>
-                </div>
-                <div class="right">
+ <div class="col-sm-4 col-md-4">
+     <div class="single_blog listing-shot item-grid">
+<div class="listing-shot-img">
 
-                  <div class="price"><span class="icon-dollar">{{number_format($extra_prog->price,2)}}</span></div>
-                  <a href="/safaris/{{$extra_prog->id}}" class="btn btn-primary hvr-sweep-to-right">Book Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                                 <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205"><strong class="icon-dollar">{{ number_format($extra_prog->price,2) }}</strong></div>
 
+                           </div>
+
+
+       <div class="item-img" style="background-image: url({{URL::asset('/storage/uploads/'.$extra_prog->attachment)}});" style="background-size:cover; background-position:center">
+         <div class="item-overlay">
+           <a href="/safaris/{{$extra_prog->id}}"><span class="icon-binocular"></span></a>
+         </div>
+       </div>
+
+
+         <div class="text-center" style="background-color:#f2fde6;border-radius:100px">
+                           <div class="text-center" style="font-size:18px;">
+               <a class="Main-Text">
+                 <strong class="demo-3">
+               {{ $extra_prog->tour_name }}
+             </strong>
+           </a>
+               <div class="Extra-Text">
+                     <a class="text-center" style="font-size:18px;"><strong>{{ $extra_prog->tour_name }}</strong></a>
+               </div>
+               </div>
+         </div>
+               <div class="sub-title">
+                 <span style="font-size:14px;color:#fff;padding-left:5%" class="float-left"><strong>Tour Duration</strong></span>
+                 <span class="grade" style="font-size:14px;color:#f9be0d" class="float-right"><strong class="float-right" style="font-size:16px;color:#f9be0d;padding-right:5%">{{ $extra_prog->days }} Days, {{ $extra_prog->days -1 }} Nights</strong></span>
+               </div>
+<div class="item-desc" style="background-color:#345742;">
+<hr style="background-color:#fff">
+         <div class="sub-title">
+           <span class="location">Physical rating</span>
+           <span class="grade"><strong>{{ $extra_prog->physical_rating }}</strong></span>
+         </div>
+
+         <div class="sub-title">
+            <span class="location">Tour Category</span>
+           <span class="grade"><strong>{{ $extra_prog->category }}</strong></span>
+         </div>
+
+<div class="sub-title">
+
+           <span class="location">Tour Code</span>
+           <span class="grade"><strong>{{ $extra_prog->tour_code }}</strong></span>
+         </div>
+<hr style="background-color:yellow">
+         <div class="item-detail">
+           <div class="left">
+           </div>
+           <div class="right">
+             <a href="/safaris/{{$extra_prog->id}}" class="btn btn-primary hvr-sweep-to-right">Tour Details</a>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
 @endforeach
-
       </div>
+      {!! $same_programs->links()!!}
     </div>
 
 
@@ -702,15 +731,37 @@
                                  </div>
 
 
- <div class="col-md-12">
-        <div class="form-group">
-            <label for="">Tour type:</label>
-                   <input type="hidden" class="form-control" placeholder=""  name="tour_id" value="{{$programs->program_id}}" readonly="true">
-          <input type="text" class="form-control" placeholder=""  name="tour_type" value="{{$programs->category}}" readonly="true">
-        </div>
-    </div>
+                                 <input type="hidden" class="form-control" name="tour_id" value="{{$programs->program_id}}" readonly="true">
+                          <input type="hidden" class="form-control" placeholder=""  name="tour_type" value="{{$programs->category}}" readonly="true">
 
 
+                          <div class="col-md-6">
+
+                                             <label for="">Tour Addon:</label>
+
+                                                                    <select class="selectpicker search-fields form-control" name="addon">
+                          <option value="0" selected>None</option>
+                          @foreach ($addons as $addon)
+                        <option value="{{ $addon->price }}">{{ $addon->addon_name }} - {{ $addon->days }} days / ${{ $addon->price }}</option>
+                          @endforeach
+                        </select>
+                                            </div>
+
+                           <div class="col-md-6">
+
+                                               <label for="">Accommodation:</label>
+
+                                                   <select class="form-control" name="accomodation">
+                                                        <option value="0">--Select Accomodation--</option>
+                                                        <option>Basic</option>
+                                                         <option>Comfort</option>
+                                                          <option>Deluxe</option>
+                                                           <option>Mix</option>
+                                                            <option>Not Sure</option>
+
+                                                    </select>
+
+                                            </div>
 
                         </div>
 
@@ -727,33 +778,7 @@
 
 
 
-              <div class="col-md-6">
 
-                                 <label for="">Tour Addon:</label>
-
-                                                        <select class="selectpicker search-fields form-control" name="addon">
-              <option value="0" selected>None</option>
-              @foreach ($addons as $addon)
-            <option value="{{ $addon->price }}">{{ $addon->addon_name }} - {{ $addon->days }} days / ${{ $addon->price }}</option>
-              @endforeach
-          </select>
-                                </div>
-
-               <div class="col-md-6">
-
-                                   <label for="">Accommodation:</label>
-
-                                       <select class="form-control" name="accomodation">
-                                            <option value="0">--Select Accomodation--</option>
-                                            <option>Basic</option>
-                                             <option>Comfort</option>
-                                              <option>Deluxe</option>
-                                               <option>Mix</option>
-                                                <option>Not Sure</option>
-
-                                        </select>
-
-                                </div>
     <div class="col-md-12">
                 <div class="form-group">
                     <label for="">  Additional Information we should know?</label>
@@ -764,25 +789,31 @@
 
 
      <div class="col-md-12">
-        <div class="form-group">
             <label for=""> How did you hear about us?:</label>
+</div>
 
-       <div class="form-group">
-           <label for="facebook">Facebook
+     <div class="col-md-2">
+           <label for="facebook">Facebook  </label>
           <input id="facebook" type="checkbox" class="zt-control"  name="hear[]" value="Facebook">
-        </label>
-        <label for="instagram">Instagram
+
+      </div>
+
+      <div class="col-md-1">
+        <label for="instagram">Instagram  </label>
           <input id="instagram" type="checkbox" class="zt-control"  name="hear[]" value="Instagram">
-        </label>
-          <label for="google">Google
+      </div>
+
+<div class="col-md-1">
+          <label for="google">Google </label>
           <input id="google" type="checkbox" class="zt-control"  name="hear[]" value="Google">
-        </label>
-          <label for="mouth">Word of Mouth
+      </div>
+
+      <div class="col-md-6">
+          <label for="mouth">Word of Mouth </label>
           <input  id="mouth" type="checkbox" class="zt-control"  name="hear[]" value="Word of Mouth">
-        </label>
         </div>
-        </div>
-  </div>
+
+
 
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="form-group">
@@ -965,18 +996,38 @@
                                         <input type="number" class="zt-control" name="children" min="0" value="0">
                                     </div>
                                  </div>
+
+
+
+                                 <div class="col-md-6">                       
+                                                    <label for="">Tour Addon:</label>
+                                                                           <select class="selectpicker search-fields form-control" name="addon">
+                                 <option value="0" selected>None</option>
+                                 @foreach ($addons as $addon)
+                               <option value="{{ $addon->price }}">{{ $addon->addon_name }} - {{ $addon->days }} days / ${{ $addon->price }}</option>
+                                 @endforeach
+                             </select>
+                                                   </div>
+
+                                  <div class="col-md-6">
+                                                      <label for="">Accommodation:</label>
+                                                          <select class="form-control" name="accomodation">
+                                                               <option value="0">--Select Accomodation--</option>
+                                                               <option>Basic</option>
+                                                                <option>Comfort</option>
+                                                                 <option>Deluxe</option>
+                                                                  <option>Mix</option>
+                                                                   <option>Not Sure</option>
+
+                                                           </select>
+
+                                                   </div>
   </div>
 
-<div class="row">
- <div class="col-md-12">
-        <div class="form-group">
-            <label for="">Tour type:</label>
-                   <input type="hidden" class="form-control" placeholder=""  name="tour_id" value="{{$programs->program_id}}" readonly="true">
-          <input type="text" class="form-control" placeholder=""  name="tour_type" value="{{$programs->category}}" readonly="true">
-        </div>
-    </div>
 
-                                 </div>
+  <input type="hidden" class="form-control" placeholder=""  name="tour_id" value="{{$programs->program_id}}" readonly="true">
+<input type="hidden" class="form-control" placeholder=""  name="tour_type" value="{{$programs->category}}" readonly="true">
+
 
 
                         </div>
@@ -994,34 +1045,6 @@
 </div>
 
 
-
-              <div class="col-md-6">
-
-                                 <label for="">Tour Addon:</label>
-
-                                                        <select class="selectpicker search-fields form-control" name="addon">
-              <option value="0" selected>None</option>
-              @foreach ($addons as $addon)
-            <option value="{{ $addon->price }}">{{ $addon->addon_name }} - {{ $addon->days }} days / ${{ $addon->price }}</option>
-              @endforeach
-          </select>
-                                </div>
-
-               <div class="col-md-6">
-
-                                   <label for="">Accommodation:</label>
-
-                                       <select class="form-control" name="accomodation">
-                                            <option value="0">--Select Accomodation--</option>
-                                            <option>Basic</option>
-                                             <option>Comfort</option>
-                                              <option>Deluxe</option>
-                                               <option>Mix</option>
-                                                <option>Not Sure</option>
-
-                                        </select>
-
-                                </div>
     <div class="col-md-12">
                 <div class="form-group">
                     <label for="">  Additional Information we should know?</label>

@@ -1,129 +1,220 @@
 
-  @extends('admins.layouts.Apps.app')
-  @section('contents')
-  <style type="text/css">
-    .red{
-      color: red;
-    }
-  </style>
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Programs Page</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Programs Page</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+@extends('admins.layouts.Apps.app')
+@section('contents')
+<style type="text/css">
+  .red{
+    color: red;
+  }
+</style>
 
-    <!-- Main content -->
-    <section class="content">
 
-      <!-- Default box -->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Programs</h3>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-          <div class="card-tools">
-            <a href="{{ route('programs.create') }}" class="btn btn-primary" >
-              <i class="fas fa-plus"></i> Program
-            </a>
-          </div>
-        </div>
-        <div class="card-body">
-            <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Program</th>
-                    <th>Days</th>
-                     <th>Cost</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Type</th>
-                    <th>Style</th>
-                    <th>Main</th>
-                    <th>Tour Code</th>
-                    <th>Photo</th>
-                   <th>Popular Experience</th>
-                     <th>Tour Circuit</th>
-                    <th>Overview</th>
-                    <th>Highlight</th>
-                    <th>SEO</th>
-                    <th>Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                      @foreach ($datas as $data)
-                  <tr>
-                    <td>{{ $data->id }}</td>
-                    <td><a href="{{ route('inclusive.show',$data->id) }}">{{ $data->tour_name }}<inclusive.show/a></td>
-                    <td><a href="{{ route('programs.show',$data->id) }}">{{ $data->days }}</a></td>
-                     
-                    <td>{{ $data->cost }}<span class="badge"> {{ $data->currency}}</span></td>
-                    <td>{{ $data->price }}<span class="badge"> {{ $data->currency }}</span></td>
-                    <td>{{ $data->category }}</td>
-                    <td>{{ $data->type }}</td>
-                    <td>{{ $data->style }}</td>
-                     <td>{{ $data->main }}</td>
-                     <td>{{ $data->tour_code }}</td>
-                      <td><div class="logo mr-auto"><img src="{{ URL::asset('/storage/uploads/'.$data->attachment) }}" width="60" height="40"></div></td>
-                    <td>{{ $data->popular_experience }}</td>                    
-                    <td>{{ $data->tour_circuit }}</td>
-                    <td>{{ $data->overview }}</td>
-                    <td>{{ $data->tour_highlight }}</td>
-                    <td>{{ $data->seo }}</td>
-                    <td><a role="button" href="{{ route('editProgram',$data->id) }}"><i class="fa fa-edit"></i></a> 
-                      <a role="button" href="/destroyf/{{$data->id}} " onclick="return confirm('Are you sure? You want to delete {{ $data->tour_name}}','Inclusive')"><i class="fa fa-trash red"></i></a></td>
-                  </tr>
-                  @endforeach
 
-                  </tbody>
-                  <tfoot>
-                   <tr>
-                    <th>#</th>
-                    <th>Program</th>
-                    <th>Days</th>
-                     <th>Cost</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Type</th>
-                    <th>Style</th>
-                    <th>Main</th>
-                     <th>Tour Code</th>
-                     <th>Photo</th>
-                    <th>Popular Experience</th>
-                    <th>Tour Circuit</th>
-                    <th>Overview</th>
-                    <th>Highlight</th>
-                    <th>SEO</th>
-                    <th>Action</th>
-                  </tr>
-                  </tfoot>
-                </table>
-              </div>
 
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
-        <!-- /.card-footer-->
+
+
+
+<style>
+@charset "UTF-8";
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+.pcs:after {
+  content: " pcs";
+}
+
+.cur:before {
+  content: "$";
+}
+
+.per:after {
+  content: "%";
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0.2em 2em;
+}
+
+table {
+  width: 100%;
+}
+table th {
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+table th, table td {
+  padding: 0.4em;
+}
+
+table.fold-table > tbody > tr.view td, table.fold-table > tbody > tr.view th {
+  cursor: pointer;
+}
+table.fold-table > tbody > tr.view td:first-child,
+table.fold-table > tbody > tr.view th:first-child {
+  position: relative;
+  padding-left: 20px;
+}
+table.fold-table > tbody > tr.view td:first-child:before,
+table.fold-table > tbody > tr.view th:first-child:before {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: 9px;
+  height: 16px;
+  margin-top: -8px;
+  font: 16px fontawesome;
+  color: #999;
+  content: "";
+  transition: all 0.3s ease;
+}
+table.fold-table > tbody > tr.view:nth-child(4n-1) {
+  background: #eee;
+}
+table.fold-table > tbody > tr.view:hover {
+  background: #000;
+}
+table.fold-table > tbody > tr.view.open {
+  background: tomato;
+  color: white;
+}
+table.fold-table > tbody > tr.view.open td:first-child:before, table.fold-table > tbody > tr.view.open th:first-child:before {
+  transform: rotate(-180deg);
+  color: #333;
+}
+table.fold-table > tbody > tr.fold {
+  display: none;
+}
+table.fold-table > tbody > tr.fold.open {
+  display: table-row;
+}
+
+.fold-content {
+  padding: 0.5em;
+}
+.fold-content h3 {
+  margin-top: 0;
+}
+.fold-content > table {
+  border: 2px solid #ccc;
+}
+.fold-content > table > tbody tr:nth-child(even) {
+  background: #eee;
+}
+</style>
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+       <!-- Main content -->
+    <section class=" container-fluid content">
+
+
+    <div class="input-group"> <span class="input-group-addon">Filter</span>
+          <input id="filter" type="text" class="form-control" placeholder="--search here...">
       </div>
-      <!-- /.card -->
 
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+<table class="fold-table table-bordered table-striped" id="myTable">
+  <thead>
+    <tr>
+      <th>Program</th><th>Days</th><th>Costs</th><th>Price</th><th>Tour code</th><th>Category</th><th>Type</th>
+    </tr>
+  </thead>
+    <tbody class="searchable">
+
+      @foreach ($datas as $data)
+    <tr class="view">
+      <td>{{ $data->tour_name }}</td>
+      <td><a href="{{ route('programs.show',$data->id) }}">{{ $data->days }}</a></td>
+<td>{{ number_format($data->cost,2) }}<span class="badge"> {{ $data->currency}}</span></td>
+  <td>{{ number_format($data->price,2) }}<span class="badge"> {{ $data->currency }}</span></td>
+        <td>{{ $data->tour_code }}</td>
+      <td>{{ $data->category }}</td>
+      <td>{{ $data->type }}</td>
+
+    </tr>
+    <tr class="fold">
+      <td colspan="7">
+        <div class="fold-content">
+          <strong>{{ $data->tour_name }}</strong>
+          <p><strong>Tour highlight:</strong> {{ $data->tour_highlight }}</p>
+          <table>
+            <thead>
+              <tr style="background-color:#fdfdfd">
+                <th>Company ID</th><th>Main</th><th>Photo</th><th>Popular Experience</th><th>Circuit</th><th>Overview</th><th>SEO</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="searchable">
+              <tr>
+                <td>{{ $data->id }}</td>
+                  <td>{{ $data->main }}</td>
+                <td><div class="logo mr-auto"><img src="{{ URL::asset('/storage/uploads/'.$data->attachment) }}" style="width:80px;height:50px"></div></td>
+                <td>{{ $data->popular_experience }}</td>
+                <td>{{ $data->tour_circuit }}</td>
+                <td>{{ $data->overview }}</td>
+                <td>{{ $data->seo }}</td>
+                <td>
+                  <p>
+                  <a role="button" href="{{ route('editProgram',$data->id) }}"><i class="fa fa-edit"></i> Edit</a>
+                </p>
+<p>
+                  <a href="{{ route('inclusive.show',$data->id) }}"><i class="fas fa-solid fa-bars"></i> Inclusive</a></p>
+                  <p>
+                  <a role="button" href="/destroyf/{{$data->id}} " onclick="return confirm('Are you sure? You want to delete {{ $data->tour_name}}','Inclusive')"><i class="fas fa-trash red"></i> Delete</a>
+</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </td>
+    </tr>
+@endforeach
+  </tbody>
+</table>
+<br>
+{!! $datas->links()!!}
+</section>
+</div>
+<script>
+$(function(){
+  $(".fold-table tr.view").on("click", function(){
+    $(this).toggleClass("open").next(".fold").toggleClass("open");
+  });
+});
+</script>
+
+<script>
+
+
+$(document).ready(function () {
+    (function ($) {
+
+        $('#filter').keyup(function () {
+
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+    }(jQuery));
+
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+</script>
 @endsection

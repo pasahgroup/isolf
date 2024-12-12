@@ -106,7 +106,7 @@
 </hr>
 --}}
 
-<duv>
+<div>
 <div class="container-fluid">
  <div class="row">
                 {{-- start of tabs --}}

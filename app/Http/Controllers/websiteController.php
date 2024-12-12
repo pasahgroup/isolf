@@ -55,7 +55,7 @@ class websiteController extends Controller
         ->where('attachments.type','Programs')
         ->groupby('attachments.destination_id')
         ->limit(3)->latest()->get();
-  
+
 
         $offers_group = specialOffer::join('programs','programs.id','special_offers.tour_id')
         ->join('attachments','attachments.destination_id','programs.id')
@@ -68,10 +68,10 @@ class websiteController extends Controller
         ->where('attachments.type','Programs')
         ->groupby('attachments.destination_id')
         ->limit(3)->latest()->get();
-  
+
   $popular_safari = program::
   join('attachments','attachments.destination_id','programs.id')
- 
+
   ->select('programs.*','attachments.attachment')
   //->orwhere('programs.type','Wildlife Safaris')
  // ->orwhere('programs.type','Combined Tours')
@@ -89,9 +89,9 @@ class websiteController extends Controller
   //->orwhere('programs.type','Combined Tours')
   //->orwhere('programs.type','Day Tours')
    ->whereIn('programs.type',array('Day Tours','Combined Tours','Wildlife Safaris'))
-   
+
   // ->whereNotIn('programs.id',array($popular_safari->id))//When Add limit for $popular_safari enable it
- 
+
   // ->where('programs.popular_experience','Yes')
   ->where('attachments.type','Programs')
   // ->offset(1)
@@ -127,7 +127,7 @@ class websiteController extends Controller
   ->where('attachments.type','Programs')
   // ->offset(1)
   ->limit(8)->get();
-  
+
    $popular_historical = program::join('attachments','attachments.destination_id','programs.id')
  ->select('programs.*','attachments.attachment')
   ->where('programs.type','Historical Site')
@@ -169,8 +169,8 @@ class websiteController extends Controller
            ->where('programs.category','Private')
           ->where('itineraries.tour_addon','Programs')
           ->limit(6)->latest()->get();
-  
-         //Slider part         
+
+         //Slider part
           $slidersf = slider::join('programs','programs.id','sliders.tour_id')
           ->where('sliders.status','1')
           ->select('sliders.*','programs.tour_name')
@@ -186,15 +186,15 @@ class websiteController extends Controller
         // ->count();
 
           //dd($sliders);
-        
+
            $slidersCount = slider::join('programs','programs.id','sliders.tour_id')
            ->where('sliders.status','1')
           ->count();
-          
-          
+
+
          $quickLinkSliderCount=quicklink::where('slider','Yes')
          ->count();
-         $quickLinkSliders = quicklink::where('slider','Yes')         
+         $quickLinkSliders = quicklink::where('slider','Yes')
          ->get();
          $slidersCount=$quickLinkSliderCount;
         //  $slidersCount= $slidersCount + $quickLinkSliderCount;
@@ -212,7 +212,7 @@ class websiteController extends Controller
 
            $welcome_message = quickLink::where('page_type','Welcome message')
               ->limit(1)->get();
-     
+
          $testimonies_one = Testimony::join('attachments','attachments.destination_id','testimonies.id')
         ->select('testimonies.*','attachments.attachment')
         ->where('attachments.type','Testimonies')
@@ -225,8 +225,8 @@ class websiteController extends Controller
         ->where('testimonies.status','1')
         // ->offset(1)
         ->limit(8)->latest()->get();
-    
-       
+
+
      //Seach Engine
        // $seo = title::where('title','What We Offer')->first();
        $title = "Palatial Tour Tanzania";
@@ -270,7 +270,7 @@ class websiteController extends Controller
           ->limit(1)->first();
 
 
-//dd($slider_first);
+//dd($wildlife);
 
          return view('website.home.index',compact('offers_private','sliderCount','slider_first','offers_group','popular_safarif','popular_trekking','popular_trekkingf','popular_safari','popular_holiday','popular_holidayf','popular_historicalf','popular_historical','place_to_visit','sliders','slidersf','slidersCount','testimonies','offers','welcome_message','scheduledGroupTours','datasLink','title','description','keywords','contacts','testimonies_one','quickLinkSliders','historical_first','historical','geographical_first','geographical','culture_first','culture','wildlife_first','wildlife'));
     }
@@ -290,7 +290,7 @@ class websiteController extends Controller
  // dd(request('search'));
 $search=request('search');
 $searchPrice=request('price');
- 
+
  // dd(request('search2'));
 
 
@@ -356,13 +356,13 @@ $title=$safarisCount." Result(s) from search";
   $PostcategoryImage = title::where('title', $title)
           ->first();
 
-  
-   return view('website.programs.safaris',compact('safaris','title','PostcategoryImage','safarisCount')); 
+
+   return view('website.programs.safaris',compact('safaris','title','PostcategoryImage','safarisCount'));
     }
 
 
 
-    
+
     public function circuitTour($circuit_name)
     {
  $circuitTour = program::
@@ -402,7 +402,7 @@ $title=$safarisCount." Result(s) from search";
     {
 
    $popularExperiences = program::
-  join('attachments','attachments.destination_id','programs.id') 
+  join('attachments','attachments.destination_id','programs.id')
   ->select('programs.*','attachments.attachment')
    ->where('programs.popular_experience','Yes')
   ->where('attachments.type','Programs')

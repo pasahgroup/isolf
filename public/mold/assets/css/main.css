@@ -4893,7 +4893,7 @@ ul.trip-overview li {
   clear: both;
   display: block;
   border-bottom: 1px dashed #e6e6e6;
-  padding: 15px 10px;
+  padding: 5px 1px;
 }
 ul.trip-overview li:last-child {
   border-bottom: 0px;
