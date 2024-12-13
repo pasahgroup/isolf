@@ -81,7 +81,7 @@
      <div class="container-fluid">
 
       <div class="line-box">
-        <div class="line-title">    <?php echo e($title?? ''); ?></div>
+        <div class="line-title"><?php echo e($title?? ''); ?></div>
 
     <div class="row">
         <?php $__currentLoopData = $safaris; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $safari): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

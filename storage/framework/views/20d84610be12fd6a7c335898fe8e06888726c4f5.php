@@ -1,4 +1,16 @@
+
 <?php $__env->startSection('content'); ?>
+
+<style>
+   .wrap {
+     width: 264px;
+     border: 1px solid #ccc;
+     padding: 5px;
+     margin-bottom: 2px;
+     word-wrap: normal;
+   }
+ </style>
+
 
 <body>
 
@@ -9,27 +21,77 @@
       <div class="item zooming with-overlay active" style="background-image: url('http://placehold.it/1680x1050');"></div>
 
         <?php $__currentLoopData = $sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $slides): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="item zooming with-overlay" style="background-image: url('<?php echo e(URL::asset('/storage/uploads/'.$slides->attachment)); ?>');"></div>
+        <div class="item zooming with-overlay" style="background-image: url('<?php echo e(URL::asset('/storage/uploads/'.$slides->attachment)); ?>');">
 
       <div class="carousel-caption full-width center-txt">
         <div class="container">
-          <span class="main-header">Enjoy Adventure <br> Experience</span>
+          <span class="main-header">Enjoy Adventurevvv bnm <br> Experience</span>
           <hr>
           <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.</p>
 
         </div>
       </div>
+      </div>
  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
  <?php $__currentLoopData = $quickLinkSliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $quickSliderf): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="item zooming with-overlay" style="background-image: url('<?php echo e(URL::asset('/storage/uploads/'.$quickSliderf->attachment)); ?>');"></div>
+        <div class="item zooming with-overlay" style="background-image: url('<?php echo e(URL::asset('/storage/uploads/'.$quickSliderf->attachment)); ?>');">
 
       <div class="carousel-caption full-width center-txt">
         <div class="container">
+
+
+
+                                              <div class="col-lg-4 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
+
+
+                                                  <div class="rounded p-5">
+                                                      <h4 class="text-white">Book Your Ride</h4>
+
+              <form class="book--form row gx-3 gy-4 g-md-4" method="post" action="#">
+                                      <?php echo csrf_field(); ?>
+                                                          <div class="row"  style="border:solid 1px">
+                                                                <div class="col-12">
+                                      <div class="input-group">
+
+                          <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
+                          <span class="fas fa-map-marker-alt"></span>
+                          <span class="ms-1"><?php echo app('translator')->get('Program'); ?></span>
+                                                          </div>
+                                                          <select class="form-select wrap" aria-label="Default select example">
+                                                               <option>--select the tour--</option>
+                                                               <?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($prog->id); ?>"><?php echo e($prog->id); ?>:<?php echo e($prog->tour_name); ?></option>
+                                                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                                              </select>
+                                                                  </div>
+                                                              </div>
+<br>
+                                                              <div class="col-12">
+                                                                  <div class="input-group">
+                                   <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
+                               <span class="fas fa-calendar-alt"></span><span class="ms-1">Travel Date</span>
+                                                           </div>
+                                  <input class="form-control" type="date" name="pick_time" id='dateAndTimePicker' class="form-control form--control pick_time" required>
+
+                              </div>
+                                                              </div>
+                                                              <div class="col-12">
+                                              <button href="" class="btn btn-primary rounded-pill d-flex justify-content-center btn-light w-100 py-2" style="margin-bottom:0px;">Ok</button>
+                                                              </div>
+                                                          </div>
+                                                      </form>
+
+                                                  </div>
+
+
+                                              </div>
+
+
           <span class="main-header">Enjoy Adventure <br> Experience</span>
           <hr>
-          <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.</p>
+          <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.  <?php echo e($quickSliderf->id); ?></p>
 
     <div class="top-header-area" style="background:yellow;padding:1px;margin-top: 135px;">
          <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#345742;margin-top:0px;margin-bottom:0px;">
@@ -60,29 +122,7 @@
 
           </select>
 
-
-
-
-<!--
-
-            <div class="col-sm-10 row" style="padding-left:10px;padding-right:10px; ">
-              <div class="col-sm-4 form-group">
-                <label>From</label>
-                <input type="text" class="form-control datepicker" readonly>
-              </div>
-              <div class="col-sm-4 form-group">
-                <label>To</label>
-                <input type="text" class="form-control datepicker" readonly>
-              </div>
-              <div class="col-sm-4 form-group">
-                <label>Price</label>
-                <select class="form-control">
-                  <option value="">1000 - 2000</option>
-                </select>
-              </div>
-            </div> -->
-
-                        <div class="input-group-append">
+                      <div class="input-group-append">
                             <button class="btn btn-search btn-primary hvr-sweep-to-right">
                                 <i class="fa fa-search"> Search</i>
                             </button>
@@ -96,6 +136,7 @@
     </div>
 
         </div>
+      </div>
       </div>
  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -151,9 +192,14 @@
               </div>
             </div>
 
+            <!-- <div class="container">
+                    <div class="tooltip">Hover over me3
+                        <span class="tooltiptext">Please like and subscribe to my channel3 :)</span>
+                    </div>
+                </div> -->
 
               <div class="text-center" style="background-color:#f2fde6;border-radius:100px">
-                <h4 class="title"><a href="#"><?php echo e($special_private->tour_name); ?></a></h4>
+                <h4 class="title"><a href="#"><?php echo e($special_private->tour_name); ?> bbb</a></h4>
               </div>
 
 
@@ -206,8 +252,6 @@
           </div>
         </div>
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
 
 <?php $__currentLoopData = $offers_group; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $special_group): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 

@@ -82,7 +82,7 @@
      <div class="container-fluid">
 
       <div class="line-box">
-        <div class="line-title">    {{$title?? ''}}</div>
+        <div class="line-title">{{$title?? ''}}</div>
 
     <div class="row">
         @foreach ($safaris as $safari)

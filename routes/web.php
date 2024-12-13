@@ -145,6 +145,8 @@ Route::get('/New-Agent', [AgentController::class, 'NewAgent'])->name('NewAgent')
 
 //Route::resource('/Tour-Guide', TourGuideController::class);
 Route::get('/New-tourGuide', [TourGuideController::class, 'NewTourGuide'])->name('NewTourGuide');
+Route::get('/New-booking', [TourGuideController::class, 'NewBooking'])->name('NewBooking');
+
 Route::resource('/Tour-Guide', TourGuideController::class);
 Route::get('/Guide-Destroy/{x}', [TourGuideController::class, 'destroy'])->name('Guide-Destroy');
 

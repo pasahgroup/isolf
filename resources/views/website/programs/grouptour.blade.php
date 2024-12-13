@@ -77,7 +77,6 @@
 
 <div class="banner base page-img" style="background: url('assets/img/worldmap.jpg') no-repeat center; background-size: cover">
      <div class="container-fluid">
-
       <div class="line-box">
         <div class="row">
         <div class="line-title" style="color:#b76b0b;">    {{$title?? ''}} Tours</div>
@@ -165,10 +164,11 @@
 
         </div>
   {!! $safaris->links() !!}
-    </div>
+   </div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
-
-
-
 @endsection

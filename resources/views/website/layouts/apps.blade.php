@@ -36,7 +36,10 @@
   <link href="../../img_library/main.css" rel="stylesheet">
     <link href="../../img_library/mform.css" rel="stylesheet">
     <link href="../../css/mform.css" rel="stylesheet">
+    <link href="../../css/tooltip.css" rel="stylesheet">
 
+      <link href="../../tooltip/demo.css" rel="stylesheet">
+        <link href="../../tooltip/tooltips.css" rel="stylesheet">
 
 <!-- Custom css -->
  <link rel="stylesheet" href="../css/font621.min.css">

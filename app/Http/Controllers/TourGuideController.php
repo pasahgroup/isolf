@@ -36,8 +36,16 @@ class TourGuideController extends Controller
     {
        $socialmedias = socialmedia::get();
        $tailorMades = tailorMade::get();
-       return view('website.agents.tourGuide',compact('tailorMades','socialmedias'));   
+       return view('website.agents.tourGuide',compact('tailorMades','socialmedias'));
     }
+
+    public function NewBooking()
+   {
+     dd('booking');
+      $socialmedias = socialmedia::get();
+      $tailorMades = tailorMade::get();
+      return view('website.agents.tourGuide',compact('tailorMades','socialmedias'));
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -47,7 +55,7 @@ class TourGuideController extends Controller
      */
     public function store(Request $request)
     {
-      $hear_from = request('hear');     
+      $hear_from = request('hear');
       $pin=rand(1111111, 9999999);
 
 
@@ -65,18 +73,18 @@ class TourGuideController extends Controller
         return redirect()->back()
             ->withErrors($validator)
             ->withInput();
-   
+
     }else
     {
 
-  
+
        if(request('photo')){
-                $attach = request('photo');             
+                $attach = request('photo');
                 foreach($attach as $attached){
 
                      // Get filename with extension
                      $fileNameWithExt = $attached->getClientOriginalName();
-              
+
                      // Just Filename
                      $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
                      // Get just Extension
@@ -92,7 +100,7 @@ class TourGuideController extends Controller
         'phone'=>request('phone'),
         'email'=>request('email'),
         'birth'=>request('birth'),
-        'nationality'=>request('nationality'),      
+        'nationality'=>request('nationality'),
         'language'=>request('language'),
         'other_language'=>request('other_language'),
        'photo'=>$imageToStore,
@@ -113,7 +121,7 @@ class TourGuideController extends Controller
         $tourhearfrom = tourEquerySocialMedia::create([
         'tour_equery_id'=>$guides->id,
         'social_name'=>$hears,
-        'from_name'=>'tourGuides'        
+        'from_name'=>'tourGuides'
         ]);
         }
      }
@@ -121,7 +129,7 @@ class TourGuideController extends Controller
     }
 }
 return redirect()->back()->with('info','Error on submittion of information');
-  
+
     }
 
     /**
@@ -165,11 +173,11 @@ return redirect()->back()->with('info','Error on submittion of information');
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {       
+    {
         $delete = tourGuide::where('id',$id)->first();
         if($delete->delete()){
          return redirect()->back()->with('success','Tour Guide' .'".$delete->first_name."'. '".$delete->last_name."'.' removed successfully');
-        }    
+        }
         else{
             return redirect()->back()->with('error','Tour Guide' . '".$delete->first_name."'. '".$delete->last_name."'.' not exists');
         }

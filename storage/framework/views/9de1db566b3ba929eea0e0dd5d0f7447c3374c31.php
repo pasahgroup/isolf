@@ -1,7 +1,6 @@
-
 <!-- <link rel="stylesheet" href="../../../css/bootstrap431.css"> -->
-@extends('website.layouts.apps')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <!-- <link rel="stylesheet" href="../../../css/mform.css"> -->
 
 <div class="container">
@@ -14,32 +13,34 @@
                 <h4 id="heading">Tour Guide Registration Form</h4>
                 <p>Fill all form field to go to next step</p>
 
-       @if ($errors->any())
+       <?php if($errors->any()): ?>
     <div class="alert alert-danger">
         <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li><?php echo e($error); ?></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </ul>
     </div>
-@endif
+<?php endif; ?>
 
-    @if($message = Session::get('success'))
+    <?php if($message = Session::get('success')): ?>
   <div class="alert alert-success">
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
     <span aria-hidden="true">&times;</span></button>
-    <strong>Well!: </strong> {{$message}}
+    <strong>Well!: </strong> <?php echo e($message); ?>
+
   </div>
-  @endif
-   @if($message = Session::get('info'))
+  <?php endif; ?>
+   <?php if($message = Session::get('info')): ?>
   <div class="alert alert-danger">
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
     <span aria-hidden="true">&times;</span></button>
-    <strong>Ops!: </strong> {{$message}}
+    <strong>Ops!: </strong> <?php echo e($message); ?>
+
   </div>
-  @endif
-                    <form  method="post" id="msform" action="{{ route('Tour-Guide.store') }}" enctype="multipart/form-data">
-                          @csrf
+  <?php endif; ?>
+                    <form  method="post" id="msform" action="<?php echo e(route('Tour-Guide.store')); ?>" enctype="multipart/form-data">
+                          <?php echo csrf_field(); ?>
                     <!-- progressbar -->
                     <ul id="progressbar">
                       <li class="active" id="personal"><strong>Personal Details</strong></li>
@@ -199,14 +200,15 @@
            </div>
        <br>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        @foreach($socialmedias as $media)
+        <?php $__currentLoopData = $socialmedias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $media): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                   <label for="">{{$media->social_name}}
+                                   <label for=""><?php echo e($media->social_name); ?>
+
                                     <div class="form-group">
-                                       <input id="facebook" type="checkbox"  name="hear[]" value="{{$media->social_name}}">
+                                       <input id="facebook" type="checkbox"  name="hear[]" value="<?php echo e($media->social_name); ?>">
                                     </div></label>
                                 </div>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                               </div>
 
 
@@ -333,4 +335,6 @@ return false;
 
 });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('website.layouts.apps', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\isolf\resources\views/website/agents/tourGuide.blade.php ENDPATH**/ ?>
