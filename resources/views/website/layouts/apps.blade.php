@@ -20,66 +20,6 @@
   <title>{{$title ?? 'ISOL Tours'}}</title>
   <link rel="icon" type="image/png" href="../mold/assets/img/favicon.png" />
 
-
-<!-- <style>
-spann{
-    background:#F8F8F8;
-    border: 5px solid #DFDFDF;
-    color: #717171;
-    font-size: 13px;
-    height: 30px;
-    letter-spacing: 1px;
-    line-height: 30px;
-    position: relative;
-    text-align: center;
-    text-transform: uppercase;
-    top: -80px;
-    left:-30px;
-    display:none;
-    padding:0 20px;
-
-}
-spann:after{
-    content:'';
-    position:absolute;
-    bottom:-10px;
-    width:10px;
-    height:10px;
-    border-bottom:5px solid #dfdfdf;
-    border-right:5px solid #dfdfdf;
-    background:#f8f8f8;
-    left:50%;
-    margin-left:-10px;
-    -moz-transform:rotate(45deg);
-    -webkit-transform:rotate(45deg);
-    transform:rotate(45deg);
-}
-p{
-    margin:100px;
-    float:left;
-    position:relative;
-    cursor:pointer;
-}
-
-p:hover span{
-    display:block;
-}
-</style> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <link rel="stylesheet" href="../mold/assets/css/min/bootstrap.min.css" media="all">
   <link rel="stylesheet" href="../mold/assets/css/jqueryui.css" media="all">
   <link rel="stylesheet" href="../mold/vendor/animate-css/animate.css" media="all">
@@ -98,8 +38,8 @@ p:hover span{
     <link href="../../css/mform.css" rel="stylesheet">
     <link href="../../css/tooltip.css" rel="stylesheet">
 
-      <link href="../../tooltip/demo.css" rel="stylesheet">
-        <link href="../../tooltip/tooltips.css" rel="stylesheet">
+      <link href="../../tooltip/tooltip.css" rel="stylesheet">
+        <link href="../../tooltip/tooltip.css" rel="stylesheet">
 
 <!-- Custom css -->
  <link rel="stylesheet" href="../css/font621.min.css">
