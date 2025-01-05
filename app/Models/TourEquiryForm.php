@@ -28,6 +28,7 @@ class TourEquiryForm extends Model
           'pin',
           'status',
         'additional_information',
-       'hear_about_us'
+       'hear_about_us',
+       'date_created'
     ];
 }

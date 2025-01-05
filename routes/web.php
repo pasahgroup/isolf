@@ -145,7 +145,7 @@ Route::get('/New-Agent', [AgentController::class, 'NewAgent'])->name('NewAgent')
 
 //Route::resource('/Tour-Guide', TourGuideController::class);
 Route::get('/New-tourGuide', [TourGuideController::class, 'NewTourGuide'])->name('NewTourGuide');
-Route::get('/New-booking', [TourGuideController::class, 'NewBooking'])->name('NewBooking');
+Route::post('/new-booking', [TourGuideController::class, 'NewBooking'])->name('new-booking');
 
 Route::resource('/Tour-Guide', TourGuideController::class);
 Route::get('/Guide-Destroy/{x}', [TourGuideController::class, 'destroy'])->name('Guide-Destroy');
@@ -229,7 +229,7 @@ Route::post('search-tour', [websiteController::class, 'searchTour'])->name('sear
 
 Route::get('/attachmentTailorMade/{x}', [TailorMadeController::class, 'attachmentTailorMade'])->name('attachmentTailorMade');
 
-Route::post('/clientTailorMade', [TailorMadeController::class, 'clientTailorMade'])->name('clientTailorMade');
+Route::post('/clientTailorMade/{p}', [TailorMadeController::class, 'clientTailorMade'])->name('clientTailorMade');
 Route::POST('/viewTrip', [TourEquiryFormController::class, 'viewTrip'])->name('viewTrip');
 Route::get('/viewTripf/{x}', [TourEquiryFormController::class, 'viewTripf'])->name('viewTripf');
 

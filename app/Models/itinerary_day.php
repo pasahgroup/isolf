@@ -17,6 +17,8 @@ class itinerary_day extends Model
         'meal',
         'itinerary_description',
         'destination_id',
-        'accommodation_id'
+        'accommodation_id',
+        'pin',
+        'date_created'
     ];
 }

@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>New Itinerary Page nn</h1>
+            <h1>New Itinerary Page</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -34,7 +34,7 @@
               </div>
               <div class="container-fluid x_content">
                 <br />
-               
+
               <form  method="post" id="post_form" action="{{ route('itineraries.store') }}" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
                 @csrf
                 <div class="card-body">
@@ -91,7 +91,7 @@
                           </div>
                             </div>
                         </div>
-  
+
 
        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group row">
@@ -106,7 +106,7 @@
                                 </select>
                               </div>
                                 </div>
-                            </div>                  
+                            </div>
 
 
    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -124,7 +124,7 @@
                         <label for="inputEmail3" class="col-sm-4 col-md-4 col-form-label">Trans.</label>
                         <div class="col-sm-8 col-md-8">
                           <select name="transport[]" id="" class="form-control"  required="">
-                             
+
                              <option value="">--Transport--</option>
                             <option>Bike riding</option>
                               <option>Camel</option>
@@ -175,7 +175,7 @@
                         </div>
                         </div>
                       </div>
-                  
+
 
                         </div>
                         </div>

@@ -6,7 +6,7 @@
 <div class="row content-wrapper" style="background-color:#9bbda2;">
     <!-- Content Header (Page header) -->
     <div class="col-md-12">
-    <section class="content-header">        
+    <section class="content-header">
       <div class="container-fluid">
         <div class="col-md-12">
           <div class="col-sm-8">
@@ -32,16 +32,16 @@
               <div class="card-header">
               </div>
               <div class="container-fluid x_content">
-                    
+
                     <form  method="POST"  action="{{ route('tailorMade.update',$id) }}" enctype="multipart/form-data">
                          @method('PATCH')
                              @csrf
-                             
+
                             <div class="row card-body">
                                 <div class="col-lg-5 col-md-12 col-sm-12">
                                     <label for="">First name:</label>
                                     <div class="form-group">     <input type="hidden" class="form-control" name="price" value="">
-                                   <input type="hidden" class="form-control" name="currency" value="">       
+                                   <input type="hidden" class="form-control" name="currency" value="">
                                    <input type="hidden" class="form-control" name="id" value="{{$tailorMades->id}}">
 
                                         <input type="text" name="first_name" value="{{$tailorMades->first_name}}" min="2">
@@ -50,8 +50,8 @@
 
                                  <div class="col-lg-5 col-md-12 col-sm-12">
                                     <label for="">Last name:</label>
-                                    <div class="form-group">   
-                                                                 
+                                    <div class="form-group">
+
                                     <input type="text" name="last_name" value="{{$tailorMades->last_name}}" min="2">
                                     </div>
                                 </div>
@@ -82,14 +82,14 @@
                                         <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
                                     </div>
                                 </div>
-                         
+
                                   <div class="col-lg-3 col-md-6 col-sm-12">
                                    <label for="">Adults(>16yrs):</label>
                                     <div class="form-group">
                                         <input type="number" class="zt-control" value="{{$tailorMades->adults}}" name="adults" min="0">
                                     </div>
                                   </div>
-                                
+
                                 <div class="col-lg-2  col-md-6 col-sm-12 pl-0">
                                   <label for="">Teens(13-14yrs):</label>
                                     <div class="form-group">
@@ -122,10 +122,10 @@
                                         </select>
                                     </div>
                                 </div>
-                         
+
                                 <div class="col-lg-5 col-md-12 col-sm-12">
                                      <label for="">Accomodation:</label>
-                                    <div class="form-group icon_down">                                     
+                                    <div class="form-group icon_down">
                                         <select class="selectpicker search-fields form-control" name="accomodation">
                                            <option value="{{$tailorMades->accomodation}}">{{$tailorMades->accommodation}}</option>
               <option value="Basic">Basic</option>
@@ -143,54 +143,60 @@
 <div class="col-lg-3 col-md-12 col-sm-12">
                                     <label for="">Destination:</label>
                                     <div class="form-group">
-                                        <input type="text" name="destination" value="{{$tailorMades->destination}}" min="0">
+                                        <input type="text" name="destination" value="{{$tailorMades->destination}}" min="0.00">
                                     </div>
                                 </div>
-                                   <div class="col-lg-4 col-md-6 col-sm-12 pl-0">
+                                   <div class="col-lg-3 col-md-6 col-sm-12 pl-0">
                                   <label for="">Min Budget(Budget Range):</label>
                                     <div class="form-group">
-                                        <input type="number" class="zt-control" value="{{$tailorMades->min_budget}}" name="min_budget" min="0">
+                                        <input type="number" class="zt-control" value="{{$tailorMades->min_budget}}" name="min_budget" min="0.00">
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="col-lg-3 col-md-6 col-sm-12">
                                    <label for="">Max Budget:</label>
                                     <div class="form-group">
-                                        <input type="number" class="zt-control" value="{{$tailorMades->max_budget}}" name="max_budget" min="0">
+                                        <input type="number" class="zt-control" value="{{$tailorMades->max_budget}}" name="max_budget" min="0.00">
                                     </div>
                                 </div>
-     
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <label for="">Calculated costs:</label>
+                                  <div class="form-group">
+                                      <input type="number" class="zt-control" value="{{$tailorMades->calculated_cost}}" name="calculated_cost" min="0.00">
+                                  </div>
+                              </div>
 
 
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
                                    <label for="">Tour Photo:</label>
                                     <div class="form-group">
-                                    <input type="file" name="attachment[]" onChange="displayImage(this)" id="photo" accept="image/*" class="" style="display:block;"> 
-                                   
+                                    <input type="file" name="attachment[]" onChange="displayImage(this)" id="photo" accept="image/*" class="" style="display:block;">
+
                                 </div>
                                 </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
             <span class="img-div">
               <div class="text-center img-placeholder"  onClick="triggerClick()">
                 <h4>Update image</h4>
-             
+
               <img src="{{URL::asset('/storage/tailorMade/'.$tailorMades->attachment?? '') }}" onClick="triggerClick()" id="profileDisplay">
                 </div>
             </span>
-            </div>  
+            </div>
 
             <div class="col-md-12">
                <label for="">  Additional Information we should know?</label>
-                <div class="form-group"> 
+                <div class="form-group">
          <textarea rows="3" name="additional_information" style="width:  100%"> {{$tailorMades->other_information}}</textarea>
         </div>
         </div>
 
-                                 
+
                                    <div class="col-lg-12 mt-3">
                                     <button type="submit" class="btn btn-success float-right">Update</button>
-                                </div>        
-                              
+                                </div>
+
                               </form>
 
     </section>

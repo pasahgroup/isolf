@@ -10,6 +10,7 @@ use App\Models\Tourcostsummary;
 use App\Models\departures;
 use App\Models\specialOffer;
 use App\Models\tailorMade;
+use Carbon\Carbon;
 
 use App\Models\itinerary;
 use App\Models\itinerary_day;
@@ -54,10 +55,10 @@ public function email()
 {
 
 //dd('dddd');
-   
+
 $id=11;
-      $tour_addons = program::where('id', $id)->first();       
-        $type=$tour_addons->main; 
+      $tour_addons = program::where('id', $id)->first();
+        $type=$tour_addons->main;
 
 //dd($tour_addons);
 
@@ -112,7 +113,7 @@ public function emailSendF()
        include_once(app_path().'/jrf/sample/setting.php');
        $jasper = new PHPJasperXML();
            // $jasper = new PHPJasper;
-       
+
 //dd('bvncx');
 $input =app_path().'/reports/pieChart.jrxml';
  //$input =app_path().'/reports/department.jrxml';
@@ -144,8 +145,8 @@ $options = [
 $id=11;
 
 
-      $tour_addons = program::where('id', $id)->first();       
-        $type=$tour_addons->main; 
+      $tour_addons = program::where('id', $id)->first();
+        $type=$tour_addons->main;
 
 //dd($tour_addons);
 
@@ -205,8 +206,8 @@ $data["date"] = "Date: $date";
 
 // $arrayName =$socialmedia;
 $data['socialmedia'] =$socialmedia;
-$data['datas'] =$datas; 
-$data['programs'] =$tour_addons; 
+$data['datas'] =$datas;
+$data['programs'] =$tour_addons;
 //dd($data);
 
 $files = [
@@ -252,10 +253,23 @@ dd('Mail sent successfully');
               //Verify if the pin exists
           $pin=request('pin');
          // dd($pin);
-          
+
+$db_contains = str_contains($pin, 'DB');
+if($db_contains==false)
+{
+  $socialmedia = socialmedia::get();
+  $tailorMades = tailorMade::get();
+  // compact('tailorMades','socialmedia')
+  // return redirect()->route('tailorClientForm')->with('pin',$pin);
+    // return redirect()->route('clientTailorMade')->compact('pin',$pin);
+  //dd('dddd');
+    return redirect()->route('clientTailorMade', [$pin]);
+    //  return view('website.tailorMade.tailorMadeSummary',compact('pin'));
+}
+
     $trip = TourEquiryForm::where('tour_equiry_forms.pin',$pin)->first();
 
-       //dd($trip);  
+       //dd($trip);
 
            if($trip==null)
            {
@@ -264,19 +278,20 @@ dd('Mail sent successfully');
            }
            else
            {
-        
+
          if($trip->status=="Inactive")
            {
              return redirect()->back()->with('error','Your PIN Number has been already Expired');
            }else
            {
-              //$id=$trip->id;  
+              //$id=$trip->id;
               $id=$trip->tour_id;
            }
-           
-           $tour_addon='Programs';          
+
+           $tour_addon='Programs';
            $programs = TourEquiryForm::join('itineraries','itineraries.program_id','tour_equiry_forms.tour_id')
-            ->join('attachments','attachments.destination_id','tour_equiry_forms.tour_id')        
+            ->join('attachments','attachments.destination_id','tour_equiry_forms.tour_id')
+          ->select('tour_equiry_forms.*','attachments.attachment','itineraries.itinerary_summury','itineraries.days')
           ->where('itineraries.tour_addon','Programs')
           ->where('attachments.type','Programs')
           ->where('tour_equiry_forms.tour_id',$id)->first();
@@ -291,62 +306,62 @@ dd('Mail sent successfully');
 //dd($programs);
 
         $datas = itinerary_day::join('itineraries','itineraries.id','itinerary_days.itinerary_id')
-        ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')   
-         ->join('destinations','destinations.id','itinerary_days.destination_id') 
+        ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')
+         ->join('destinations','destinations.id','itinerary_days.destination_id')
          ->join('tour_equiry_forms','tour_equiry_forms.tour_id','itineraries.program_id')
-                  
-         ->join('attachments','attachments.destination_id','accommodations.id') 
+
+         ->join('attachments','attachments.destination_id','accommodations.id')
           ->where('itineraries.tour_addon','Programs')
-          ->where('itineraries.program_id',$id)          
+          ->where('itineraries.program_id',$id)
           ->where('attachments.type','Accommodation')
           ->where('tour_equiry_forms.tour_id',$id)
-       
+
          ->orderby('itinerary_days.id','ASC')
-        
+
          ->select('accommodations.accommodation_name','accommodations.accommodation_descriptions','attachments.attachment','accommodations.category','destinations.destination_name','itineraries.*','tour_equiry_forms.first_name','tour_equiry_forms.last_name','itinerary_days.*')
            ->get();
-    
+
 //dd($datas);
 
 
-         if($datas == "[]"){          
+         if($datas == "[]"){
             $destinations = destination::get();
               return redirect()->back()->with('info',$programs->full_name.' Ops your tailor made still on Progess....');
             // return ($programs->full_name.' Ops your tailor made still on Progess....');
           };
 
-       //$gg=TourEquiryForm::get();     
-        
+       //$gg=TourEquiryForm::get();
+
         $basic=TourEquiryForm::join('attachments','attachments.destination_id','tour_equiry_forms.id')
         ->get();
         //dd($basic);
 
 
          $inclusives=DB::select("select id,inclusive from inclusives  where id not in(select (inclusive_id)id from accommodation_inclusives where tour_id =$id)");
-        
+
            $assignLists = accommodationInclusive::join('inclusives','accommodation_inclusives.inclusive_id','inclusives.id')
         ->where('accommodation_inclusives.tour_id',$id)->get();
 //dd($inclusives);
-  $invoice_amount = invoice::where('customer_id',$trip->id)->first(); 
+  $invoice_amount = invoice::where('customer_id',$trip->id)->first();
 //dd($invoice_amount);
 
         return view('website.tailorMade.tailorMadeSummary',compact('datas','id','programs','basic','inclusives','assignLists','pin','invoice_amount'));
     }
 }
-      
 
-    
+
+
 
 
      public function viewTrip_org(Request $request)    {
 
               //Verify if the pin exists
-           $pin=request('pin');        
+           $pin=request('pin');
 
             $trip = TourEquiryForm::
             where('tour_equiry_forms.pin',$pin)->first();
 
-           // ->where('tour_equiry_forms.status','Active')->first();        
+           // ->where('tour_equiry_forms.status','Active')->first();
             //dd($trip);
 
            if($trip==null)
@@ -356,13 +371,13 @@ dd('Mail sent successfully');
            }
            else
            {
-        
+
          if($trip->status=="Inactive")
            {
              return redirect()->back()->with('error','Your PIN Number has been already Expired');
            }else
            {
-              $id=$trip->id;  
+              $id=$trip->id;
            }
 
 
@@ -371,22 +386,22 @@ dd('Mail sent successfully');
 
         if($trip->tour_type=='Private')
         {
-          //dd($trip->tour_type);  
+          //dd($trip->tour_type);
         // return redirect()->route('privateTourSumary',$id)->with('success','Tour Summary Cost created successful');
 
-              return redirect()->route('groupTourSumary',$id)->with('success','Tour Summary Cost created successful');  
+              return redirect()->route('groupTourSumary',$id)->with('success','Tour Summary Cost created successful');
         }
         elseif ($trip->tour_type=='Group') {
             //dd($trip->tour_type);
-            # code... 
-              return redirect()->route('groupTourSumary',$id)->with('success','Tour Summary Cost created successful');  
+            # code...
+              return redirect()->route('groupTourSumary',$id)->with('success','Tour Summary Cost created successful');
         }else
         {
-         // return 'Tour category was not specified...!'; 
-           return redirect()->back()->with('info','Tour category was not specified...!');     
-        }       
+         // return 'Tour category was not specified...!';
+           return redirect()->back()->with('info','Tour category was not specified...!');
+        }
      }
-    
+
     }
 
 
@@ -395,8 +410,8 @@ public function viewTripf(Request $request,$pin)  {
 
 $tourType="";
               //Verify if the pin exists
-          // $pin=request('pin');  
-          // dd($pin);      
+          // $pin=request('pin');
+          // dd($pin);
 //dd(request('print'));
 if(request('print')=="print")
 {
@@ -404,14 +419,14 @@ if(request('print')=="print")
             where('tailor_mades.pin',$pin)
            ->where('tailor_mades.status','Active')->first();
          $tourType="Private";
-          
+
            }
            else{
   $trip = TourEquiryForm::
             where('tour_equiry_forms.pin',$pin)
            ->where('tour_equiry_forms.status','Active')->first();
            $tourType=$trip->tour_type;
-           }        
+           }
             //dd($trip);
 
            if($trip==null)
@@ -421,29 +436,29 @@ if(request('print')=="print")
            else
            {
            // $id=$trip->tour_id;
-             $id=$trip->id;         
+             $id=$trip->id;
             // dd($id);
         if($tourType=='Private' || $tourType=='Group')
         {
 
         if(request('print')=="print")
-{    
+{
         return redirect()->route('pgtm',$id)->with('success','Tour Summary Cost created successful');
     }
     else
     {
-    return redirect()->route('pg',$id)->with('success','Tour Summary Cost created successful'); 
-     //return redirect()->back()->with('info','The program has No Itinerary');  
+    return redirect()->route('pg',$id)->with('success','Tour Summary Cost created successful');
+     //return redirect()->back()->with('info','The program has No Itinerary');
     }
         }
         // else if ($trip->tour_type=='Group') {
-        //     # code... 
-        //       return redirect()->route('groupTourSumary',$id)->with('success','Tour Summary Cost created successful');  
+        //     # code...
+        //       return redirect()->route('groupTourSumary',$id)->with('success','Tour Summary Cost created successful');
         // }
         else
         {
-         return 'Tour category was not specified...!';      
-        }       
+         return 'Tour category was not specified...!';
+        }
      }
     }
 
@@ -455,7 +470,7 @@ if(request('print')=="print")
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+
 
     public function store(Request $request)
     {
@@ -463,27 +478,27 @@ if(request('print')=="print")
             'first_name' => 'required',
                'last_name' => 'required',
                 'phone' => 'required',
-                 'travel_date' => 'required',            
-            'email' => 'required',    
-               // 'email' => 'required|email|unique:users',          
+                 'travel_date' => 'required',
+            'email' => 'required',
+               // 'email' => 'required|email|unique:users',
         ], [
             'first_name.required' => 'First name field is required.',
-              'last_name.required' => 'Last name field is required.',    
-               'phone.required' => 'Phone number field is required.',  
+              'last_name.required' => 'Last name field is required.',
+               'phone.required' => 'Phone number field is required.',
                 'travel_date.required' => 'Travel date field is required.',
 
             'email.required' => 'Email field is required. test 2',
-            'email.email' => 'Email field must be email address.',            
+            'email.email' => 'Email field must be email address.',
         ]);
 
-  $tour_date=request('tour_date'); 
-         $yearM =date('Y-m-d', strtotime($tour_date)); 
-       
+  $tour_date=request('tour_date');
+         $yearM =date('Y-m-d', strtotime($tour_date));
+
 // Travel date
-           $travel_date=request('travel_date'); 
-         $travel_date =date('Y-m-d', strtotime($travel_date)); 
-         
-        
+           $travel_date=request('travel_date');
+         $travel_date =date('Y-m-d', strtotime($travel_date));
+
+
           $departurePrice=departures::where('tour_id',request('tour_id'))
           ->where('status','Active')
           ->where('start_date',$yearM)
@@ -496,12 +511,12 @@ if(request('print')=="print")
             else{
                  $pricef=request('unit_price');
                  $dapart_id=0;
-            } 
+            }
 
 
     if(request('discount_price')==null)
            {
-          
+
              $discount_pricef=specialOffer::where('tour_id',request('tour_id'))
              ->where('status','Active')
              ->first();
@@ -513,12 +528,15 @@ if(request('print')=="print")
 
              $discount_pricef=$discount_pricef->discount;
              }
-            
+
            }
-            
+
 $pin = rand(111111, 99999999);
-        $hear_from = request('hear');        
-    
+$pin="DB".$pin;
+ $now = Carbon::now();
+
+        $hear_from = request('hear');
+
         $tour_name=request('tour_name');
         $acc=request('accomodation');
         $adults=request('adults');
@@ -528,7 +546,7 @@ $pin = rand(111111, 99999999);
         where('program',$tour_name)
          ->select('tourcostsummaries.*')
         ->where('status',$acc)
-        ->get();  
+        ->get();
 
 
 //Get percent rate
@@ -559,18 +577,18 @@ if($children_p<=0.00)
 
 
          if($Tourcostsummary == "[]"){
-            $unit_price=$pricef;         
-            $teens_cost=($unit_price * $teen_p)*request('teens');          
-            $children_cost=($unit_price * $children_p)*request('children');  
+            $unit_price=$pricef;
+            $teens_cost=($unit_price * $teen_p)*request('teens');
+            $children_cost=($unit_price * $children_p)*request('children');
              //Total discount
            $total_discount=$discount_pricef*request('adults') + $discount_pricef*$teen_p*request('teens') + $discount_pricef*$children_p*request('teens');
-          
+
        //dd($total_discount);
 
             $total_price=($unit_price * $adults)+$teens_cost + $children_cost;
          // dd($total_price);
             $total_addon_price=($addon_price*$teen_p)*request('teens') + ($addon_price * $adults+($addon_price*$children_p)*request('children'));
-            
+
             $total_cost=$total_price + $total_addon_price - $total_discount;
          }
          else
@@ -581,12 +599,12 @@ if($children_p<=0.00)
 
             if($adults==2)
             {
-                $unit_price=$costsummary->twopax;                        
+                $unit_price=$costsummary->twopax;
              }
             elseif ($adults==3)
             {
               $unit_price=$costsummary->threepax;
-            
+
             }elseif ($adults==4)
              {
               $unit_price=$costsummary->fourpax;
@@ -599,16 +617,16 @@ if($children_p<=0.00)
             {
              $unit_price=$costsummary->sixpax;
             }
-         
 
-            $teens_cost=($unit_price * $teen_p)*request('teens');          
-            $children_cost=($unit_price * $children_p)*request('children');   
+
+            $teens_cost=($unit_price * $teen_p)*request('teens');
+            $children_cost=($unit_price * $children_p)*request('children');
             $total_discount=$discount_pricef*request('adults') + $discount_pricef*$teen_p*request('teens') + $discount_pricef*$children_p*request('teens');
 
             $total_price=($unit_price * $adults)+$teens_cost + $children_cost;
-   
+
             $total_addon_price=($addon_price*$teen_p)*request('teens') + ($addon_price * $adults+($addon_price*$children_p)*request('children'));
-            
+
             $total_cost=$total_price + $total_addon_price -  $total_discount;
          }
 
@@ -631,15 +649,15 @@ $adults_cost=$unit_price * $adults;
             'children'=>request('children'),
              'tour_date'=>$yearM,
               'travel_date'=>$travel_date,
-
               'pin'=> $pin,
+                'date_created'=>$now,
                'status'=>'Active',
              'additional_information'=>request('additional_information'),
               'hear_about_us'=>request('hear_about_us'),
 
         'user_id'=>auth()->id()
         ]);
-     
+
         $tourcostsummary = invoice::create([
         'customer_id'=>$tour_costsummary->id,
         'tour_id'=>request('tour_id'),
@@ -703,8 +721,8 @@ $options = [
 
 // Get Itininery
 $id=request('tour_id');
-      $tour_addons = program::where('id', $id)->first();       
-        $type=$tour_addons->main; 
+      $tour_addons = program::where('id', $id)->first();
+        $type=$tour_addons->main;
 
 //dd($tour_addons);
 
@@ -752,8 +770,8 @@ $id=request('tour_id');
 
 // // $arrayName =$socialmedia;
 // $data['socialmedia'] =$socialmedia;
-// $data['datas'] =$datas; 
-// $data['programs'] =$tour_addons; 
+// $data['datas'] =$datas;
+// $data['programs'] =$tour_addons;
 // //dd($data);
 
 // $files = [
@@ -774,7 +792,7 @@ $id=request('tour_id');
 
 //dd('email sent');
   return response()->json(['url' => route('viewTripf', [$pin])]);
-  
+
   //return redirect()->route('viewTripf', [$pin]);
  //return redirect()->back()->with('success','Tour Summary Cost created successful');
 
@@ -810,7 +828,7 @@ $id=request('tour_id');
       ->where('tour_equiry_forms.status','Active')
       ->orderby('invoices.id','desc')
       ->get();
-  
+
 
 $groupTrip=  DB::select("select sum(t1.adults)adults,sum(t1.teens)teens,sum(t1.children)children,tour_type,format(sum(i.total_price),2)tour_cost,format(sum(i.total_addon_price),2)total_Addon_cost,format(sum(i.total_cost),2)total_cost,format(sum(i.total_amount_paid),2)amount_paid,format(sum(i.amount_remain),2)amount_remain from tour_equiry_forms t1,invoices i where t1.id=i.customer_id and t1.status='Active' and t1.tour_type='Group' group by t1.tour_id");
 //dd($groupTrip);
@@ -827,7 +845,7 @@ $groupTrip=  DB::select("select sum(t1.adults)adults,sum(t1.teens)teens,sum(t1.c
          ->where('programs.id',$id)->first();
 
       $socialmedia = socialmedia::get();
-       
+
 
 
        //return view('website.tour.tourEnquiryForm',compact('socialmedia','programc'));

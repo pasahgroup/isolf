@@ -92,7 +92,7 @@
                                 </select>
                               </div>
                                 </div>
-                            </div>                
+                            </div>
 
 
                   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -126,7 +126,7 @@
                              <option>Mini-Bus/Min-Van</option>
                               <option>Min-Van</option>
                               <option>Overland Truck</option>
-                              
+
                           </select>
                         </div>
                           </div>
@@ -169,17 +169,9 @@
                                     </div>
                                 </div>
                             </div>
+                              <button type="submit" class="btn btn-primary float-right">Update</button>
                         </div>
                          </div>
-
-          <div class="form-group row">
-          <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
-              <div>
-                <button type="submit" class="btn btn-primary float-right">Update</button>
-              </div>
-                  </div>
-                </div>
-
             </form>
           <!-- /.col-->
         </div>

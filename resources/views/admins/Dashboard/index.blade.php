@@ -57,7 +57,7 @@
 
                         <i class="fa fa-dollar-sign"></i>
                          <span>Agents(<b class="blue">{{$agents}}</b>)</span>
-                        
+
                         </a>
                     </div>
                      <div class="span2 action-nav-button">
@@ -65,16 +65,16 @@
 
                         <i class="fa fa-dollar-sign"></i>
   <span>Partiners(<b class="blue">{{$partiners}}</b>)</span>
-                    
+
                         </a>
 
                     </div>
                      <div class="span2 action-nav-button">
-                        <a href="/Tour-Guide">
+                        <a href="/tailorMade">
 
                         <i class="fa fa-dollar-sign"></i>
-  <span>Tour-Guide(<b class="blue">{{$tourGuides}}</b>)</span>
-                        
+  <span>Tailor Mades(<b class="blue">{{$tailorMades}}</b>)</span>
+
                         </a>
 
                     </div>
@@ -85,7 +85,7 @@
 
                         <i class="fa fa-dollar-sign"></i>
                         <span>Tour-Guide(<b class="blue">{{$tourGuides}}</b>)</span>
-                        
+
                         </a>
 
                     </div>
@@ -105,5 +105,5 @@
     </section>
     <!-- /.content -->
   </div>
- 
+
 @endsection

@@ -22,10 +22,12 @@ class CreateItineraryDaysTable extends Migration
             $table->string('distance')->nullable();
             $table->string('transport')->nullable();
             $table->string('meal')->nullable();
-            
+
             $table->string('itinerary_description',340)->nullable();
             $table->integer('destination_id')->unsigned();
             $table->integer('accommodation_id')->unsigned();
+              $table->string('pin')->nullable();
+              $table->date('date_created')->nullable();
             $table->timestamps();
         });
     }

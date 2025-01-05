@@ -17,7 +17,7 @@ class CreateTourEquiryFormsTable extends Migration
             $table->bigIncrements('id');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('email')->nullable();           
+            $table->string('email')->nullable();
 
             $table->integer('phone')->nullable();
             $table->string('country')->nullable();
@@ -26,19 +26,19 @@ class CreateTourEquiryFormsTable extends Migration
              $table->integer('depart_id')->unsigned();
             $table->string('tour_type')->nullable();
             $table->string('accommodation')->nullable();
-                  $table->integer('adults')->nullable();      
+                  $table->integer('adults')->nullable();
 
             $table->integer('teens')->nullable();
             $table->integer('children')->nullable();
               $table->date('tour_date')->nullable();
              $table->date('travel_date')->nullable();
 
-               $table->integer('pin')->unsigned();
+                  $table->string('pin',12)->nullable();
                $table->string('status')->nullable();
 
              $table->string('additional_information')->nullable();
               $table->string('hear_about_us')->nullable();
-              
+                   $table->date('date_created')->nullable();
             $table->timestamps();
         });
     }

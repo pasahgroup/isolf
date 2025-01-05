@@ -291,6 +291,10 @@ $addon =  payment::updateOrCreate(
         // Handle JSON parse error...
     }
 }
+else
+{
+    return redirect()->back()->with('info','No Internet connection');
+}
 
  //return response()->json(['url' => redirect('https://payments.pesapal.com/palatialtours',compact(['first_name','status']));
 //return redirect('https://payments.pesapal.com/palatialtours',compact('status'));

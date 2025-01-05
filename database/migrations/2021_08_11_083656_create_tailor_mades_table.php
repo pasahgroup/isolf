@@ -22,10 +22,10 @@ class CreateTailorMadesTable extends Migration
              $table->string('phone',64)->nullable();
             $table->date('arrival_date')->date();
            $table->integer('days')->nullable();
-            $table->integer('adults')->nullable();           
+            $table->integer('adults')->nullable();
             $table->integer('teens')->nullable();
             $table->integer('children')->nullable();
-            
+
             $table->string('destination')->nullable();
             $table->string('tour_type')->nullable();
             $table->string('accommodation')->nullable();
@@ -38,15 +38,16 @@ class CreateTailorMadesTable extends Migration
         $table->string('currency')->nullable();
         $table->string('physical_rating')->nullable();
 
-               $table->integer('pin')->unsigned();
+                  $table->string('pin',12)->nullable();
                $table->string('status')->nullable();
                $table->string('payee_status')->nullable();
                  $table->string('attachment')->nullable();
             $table->date('end_date')->date();
              $table->string('other_information')->nullable();
              $table->string('hear_about_us')->nullable();
+               $table->date('date_created')->nullable();
             $table->timestamps();
-           
+
         });
     }
 

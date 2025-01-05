@@ -56,7 +56,7 @@
 
                         <i class="fa fa-dollar-sign"></i>
                          <span>Agents(<b class="blue"><?php echo e($agents); ?></b>)</span>
-                        
+
                         </a>
                     </div>
                      <div class="span2 action-nav-button">
@@ -64,16 +64,16 @@
 
                         <i class="fa fa-dollar-sign"></i>
   <span>Partiners(<b class="blue"><?php echo e($partiners); ?></b>)</span>
-                    
+
                         </a>
 
                     </div>
                      <div class="span2 action-nav-button">
-                        <a href="/Tour-Guide">
+                        <a href="/tailorMade">
 
                         <i class="fa fa-dollar-sign"></i>
-  <span>Tour-Guide(<b class="blue"><?php echo e($tourGuides); ?></b>)</span>
-                        
+  <span>Tailor Mades(<b class="blue"><?php echo e($tailorMades); ?></b>)</span>
+
                         </a>
 
                     </div>
@@ -84,7 +84,7 @@
 
                         <i class="fa fa-dollar-sign"></i>
                         <span>Tour-Guide(<b class="blue"><?php echo e($tourGuides); ?></b>)</span>
-                        
+
                         </a>
 
                     </div>
@@ -104,6 +104,7 @@
     </section>
     <!-- /.content -->
   </div>
- 
+
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('admins.layouts.Apps.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\isolf\resources\views/admins/Dashboard/index.blade.php ENDPATH**/ ?>

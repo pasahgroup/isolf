@@ -14,22 +14,21 @@ class tailorMade extends Model
         'nationality',
          'email',
           'phone',
-        'arrival_date',     
-      
+        'arrival_date',
         'adults',
         'teens',
         'children',
          'days',
         'tour_type',
         'physical_rating',
-        'destination',        
+        'destination',
         'accommodation',
-        
+
         'min_budget',
         'max_budget',
         'calculated_cost',
         'total_amount_paid',
-        'amount_remain',        
+        'amount_remain',
         'currency',
         'end_date',
         'pin',
@@ -37,6 +36,7 @@ class tailorMade extends Model
         'payee_status',
         'attachment',
         'other_information',
-        'hear_about_us'
+        'hear_about_us',
+        'date_created'
     ];
 }

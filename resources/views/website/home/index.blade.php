@@ -25,9 +25,98 @@
 
       <div class="carousel-caption full-width center-txt">
         <div class="container">
-          <span class="main-header">Enjoy Adventurevvv bnm <br> Experience</span>
+
+
+
+                                              <div class="col-lg-4 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
+
+
+                                                  <div class="rounded p-5">
+                                                      <h4 class="text-white">Book Your Ride</h4>
+
+             <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data">
+                                      @csrf
+                                                          <div class="row"  style="border:solid 1px">
+                                                                <div class="col-12">
+                                      <div class="input-group">
+
+                          <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
+                          <span class="fas fa-map-marker-alt"></span>
+                          <span class="ms-1">@lang('Program')</span>
+                                                          </div>
+                                                          <select class="form-select wrap" aria-label="Default select example" name="program" id="program">
+                                                               <option>--select the tour--</option>
+                                                               @foreach($programs as $prog)
+                                                        <option value="{{$prog->id}}">{{$prog->id}}:{{$prog->tour_name}}</option>
+                                                          @endforeach
+                                                                                              </select>
+                                                                  </div>
+                                                              </div>
+<br>
+                                                              <div class="col-12">
+                                                                  <div class="input-group">
+                                   <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
+                               <span class="fas fa-calendar-alt"></span><span class="ms-1">Travel Date</span>
+                                                           </div>
+                                  <input class="form-control" type="date" name="travel_date" id='travel_date' class="form-control form--control pick_time" required>
+
+                              </div>
+                                                              </div>
+                                                              <div class="col-12">
+                                              <button href="" class="btn btn-primary rounded-pill d-flex justify-content-center btn-light w-100 py-2" style="margin-bottom:0px;">Ok</button>
+                                                              </div>
+                                                          </div>
+                                                      </form>
+
+                                                  </div>
+                                              </div>
+
+
+          <span class="main-header">Enjoy Adventure <br> Experience</span>
           <hr>
-          <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.</p>
+          <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.  {{$slides->id}}</p>
+
+    <div class="top-header-area" style="background:yellow;padding:1px;margin-top: 135px;">
+         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#345742;margin-top:0px;margin-bottom:0px;">
+              <div class="col-lg-9 col-md-4">
+               <i href="" class="text-decoration-none">
+                    <marquee>Hello! Welcome Book with us</marquee>
+                </i>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-8 text-left">
+                     <form  method="POST"  action="{{ route('all-search') }}" enctype="multipart/form-data">
+                  @csrf
+                    <div class="input-group">
+                       <select class="form-control selectpicker" name="tour_type" id="tour_type">
+            <option selected>{{$title}}</option>
+            <option>Wildlife Safaris</option>
+             <option>Hiking & Trekking</option>
+             <option>Beach Holidays</option>
+             <option>Day Tours</option>
+             <option>Historical Sites</option>
+             <option>Special Offers</option>
+              <option value="group">Group Tours</option>
+               <option value="Group-scheduled">Scheduled Group Tours</option>
+              <option value="special-occasions">Special Occasions</option>
+                <option value="cultural">Cultural Tours</option>
+
+          </select>
+
+                      <div class="input-group-append">
+                            <button class="btn btn-search btn-primary hvr-sweep-to-right">
+                                <i class="fa fa-search"> Search</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
 
         </div>
       </div>
