@@ -528,7 +528,7 @@
 
 
                                         <img src="{{URL::asset('/storage/uploads/'.$trekking->attachment) }}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
-                                                                                       <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $trekking->days  }} Days: ${{number_format($trekking->price),2 }}/=</strong></div>
+                                <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $trekking->days  }} Days: ${{number_format($trekking->price),2 }}/=</strong></div>
 
         <div class="package-list-content">
       <h3 class="package-list-title">
@@ -563,8 +563,8 @@
         <div class="carousel-inner">
             <div class="item active">
                  <div class="package-list-wrap ">
-                                                                                <img src="{{URL::asset('/storage/uploads/'.$popular_holiday->attachment)}}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
-                                                                                <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $popular_holiday->days  }} Days: ${{number_format($popular_holiday->price),2 }}/=</strong></div>
+                  <img src="{{URL::asset('/storage/uploads/'.$popular_holiday->attachment)}}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
+                  <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $popular_holiday->days  }} Days: ${{number_format($popular_holiday->price),2 }}/=</strong></div>
 
 
                 <div class="package-list-content">
@@ -581,8 +581,8 @@
                          @foreach ($popular_holidayf as $holidays)
                                                 <div class="item">
                                                     <div class="package-list-wrap ">
-                                                                                <img src="{{URL::asset('/storage/uploads/'.$holidays->attachment) }}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
-                                                                                  <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $holidays->days  }} Days: ${{number_format($holidays->price),2 }}/=</strong></div>
+                                                <img src="{{URL::asset('/storage/uploads/'.$holidays->attachment) }}" class="img-fluid" alt="No Image" style="height:240px;width:100%;">
+              <div class="listing-badge now-open" style="transform:rotate(0deg);top:1px;background-color:#345742;color:#fde205;width:150px;margin-right:50px"><strong>{{ $holidays->days  }} Days: ${{number_format($holidays->price),2 }}/=</strong></div>
                 <div class="package-list-content">
                     <h3 class="package-list-title">
             <p class="text-white">{{ $holidays->tour_name }}</p>

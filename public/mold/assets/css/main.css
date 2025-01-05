@@ -1745,7 +1745,7 @@ hr.dark {
 }
 .page-img .main-head {
   font-family: 'Raleway', sans-serif;
-  font-size: 3.6em;
+  font-size:2em;
   font-weight: bold;
   margin: 0px;
   text-transform: uppercase;
@@ -5424,7 +5424,7 @@ ul.clean-ul .desc {
   padding: 90px 0;
 }
 .post-single .page-img {
-  padding: 140px 0;
+  padding: 10px 0;
 }
 .post-single .page-img-txt .sub-head {
   margin-bottom: 60px;
