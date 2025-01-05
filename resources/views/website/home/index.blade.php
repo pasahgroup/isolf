@@ -13,12 +13,11 @@
 
 
 <body>
-
   <!-- Add Class carousel-fade just to fade transition -->
   <div class="carousel slide carousel-fade full-heightx stick-top" id="carousel" style="min-height: 610px;">
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-      <div class="item zooming with-overlay active" style="background-image: url('http://placehold.it/1680x1050');"></div>
+      <div class="item zooming with-overlay active" style="background-image: url('http://placehold.it/1680x1050x');"></div>
 
         @foreach($sliders as $slides)
         <div class="item zooming with-overlay" style="background-image: url('{{URL::asset('/storage/uploads/'.$slides->attachment)}}');">
@@ -34,38 +33,24 @@
                                                   <div class="rounded p-5">
                                                       <h4 class="text-white">Book Your Travel</h4>
 
-             <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data">
-                                      @csrf
-                                                          <div class="row"  style="border:solid 1px">
-                                                                <div class="col-12">
-                                      <div class="input-group">
 
-                          <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
-                          <span class="fas fa-map-marker-alt"></span>
-                          <span class="ms-1">@lang('Program')</span>
-                                                          </div>
-                                                          <select class="form-select wrap" aria-label="Default select example" name="program" id="program">
-                                                               <option>--select the tour--</option>
-                                                               @foreach($programs as $prog)
-                                                        <option value="{{$prog->id}}">{{$prog->id}}:{{$prog->tour_name}}</option>
-                                                          @endforeach
-                                                                                              </select>
-                                                                  </div>
-                                                              </div>
-<br>
-                                                              <div class="col-12">
-                                                                  <div class="input-group">
-                                   <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
-                               <span class="fas fa-calendar-alt"></span><span class="ms-1">Travel Date</span>
-                                                           </div>
-                                  <input class="form-control" type="date" name="travel_date" id='travel_date' class="form-control form--control pick_time" required>
+                                            <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data">
+                                                                                            @csrf
+                                                    <div class="input-group">
 
-                              </div>
-                                                              </div>
-                                                              <div class="col-12">
-                                              <button href="" class="btn btn-primary rounded-pill d-flex justify-content-center btn-light w-100 py-2" style="margin-bottom:0px;">Ok</button>
-                                                              </div>
-                                                          </div>
+                                                        <select class="form-select wrap" aria-label="Default select example" name="program" id="program"  style="background-color:#6a6536">
+                                                             <option>--select the tour--</option>
+                                                             @foreach($programs as $prog)
+                                                      <option value="{{$prog->id}}">{{$prog->id}}:{{$prog->tour_name}}</option>
+                                                        @endforeach
+                                                                                            </select>
+
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-primary hvr-sweep-to-right">
+                                                                <i class="fa fa-search"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                       </form>
 
                                                   </div>
@@ -134,43 +119,26 @@
 
                                               <div class="col-lg-4 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
 
-
                                                   <div class="rounded p-5">
                                                       <h4 class="text-white">Book Your Travel</h4>
 
-              <form class="book--form row gx-3 gy-4 g-md-4" method="post" action="#">
-                                      @csrf
-                                                          <div class="row"  style="border:solid 1px">
-                                                                <div class="col-12">
-                                      <div class="input-group">
+                                  <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data">
+                                                                               @csrf
+                                       <div class="input-group">
+                                           <select class="form-select wrap" aria-label="Default select example" name="program" id="program" style="background-color:#6a6536">
+                                                <option>--select the tour--</option>
+                                                @foreach($programs as $prog)
+                                         <option value="{{$prog->id}}">{{$prog->id}}:{{$prog->tour_name}}</option>
+                                           @endforeach
+                                                                               </select>
 
-                          <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
-                          <span class="fas fa-map-marker-alt"></span>
-                          <span class="ms-1">@lang('Program')</span>
-                                                          </div>
-                                                          <select class="form-select wrap" aria-label="Default select example">
-                                                               <option>--select the tour--</option>
-                                                               @foreach($programs as $prog)
-                                                        <option value="{{$prog->id}}">{{$prog->id}}:{{$prog->tour_name}}</option>
-                                                          @endforeach
-                                                                                              </select>
-                                                                  </div>
-                                                              </div>
-<br>
-                                                              <div class="col-12">
-                                                                  <div class="input-group">
-                                   <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
-                               <span class="fas fa-calendar-alt"></span><span class="ms-1">Travel Date</span>
-                                                           </div>
-                                  <input class="form-control" type="date" name="pick_time" id='dateAndTimePicker' class="form-control form--control pick_time" required>
-
-                              </div>
-                                                              </div>
-                                                              <div class="col-12">
-                                              <button href="" class="btn btn-primary rounded-pill d-flex justify-content-center btn-light w-100 py-2" style="margin-bottom:0px;">Ok</button>
-                                                              </div>
-                                                          </div>
-                                                      </form>
+                                           <div class="input-group-append">
+                                               <button class="btn btn-primary hvr-sweep-to-right">
+                                                   <i class="fa fa-search"></i>
+                                               </button>
+                                           </div>
+                                       </div>
+                                    </form>
 
                                                   </div>
 

@@ -41,7 +41,7 @@ class TourGuideController extends Controller
 
     public function NewBooking()
    {
-     dd('booking');
+     //dd('booking');
       $socialmedias = socialmedia::get();
       $tailorMades = tailorMade::get();
       return view('website.agents.tourGuide',compact('tailorMades','socialmedias'));
