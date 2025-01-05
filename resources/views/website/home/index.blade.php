@@ -32,7 +32,7 @@
 
 
                                                   <div class="rounded p-5">
-                                                      <h4 class="text-white">Book Your Ride</h4>
+                                                      <h4 class="text-white">Book Your Travel</h4>
 
              <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data">
                                       @csrf
@@ -136,7 +136,7 @@
 
 
                                                   <div class="rounded p-5">
-                                                      <h4 class="text-white">Book Your Ride</h4>
+                                                      <h4 class="text-white">Book Your Travel</h4>
 
               <form class="book--form row gx-3 gy-4 g-md-4" method="post" action="#">
                                       @csrf
@@ -621,7 +621,7 @@
       <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
 
 
-        <div class="col-sm-12 col-md-12">
+        <div class="col-sm-12 col-md-11">
             <div class="single_blog listing-shot item-grid">
                   <div class="item-overlay">
              <img src="{{URL::asset('/storage/attraction/'.$wild->attachment) }}" class="img-fluid" alt="No Image" style="height:120px;" alt="">
@@ -636,7 +636,7 @@
 
     @foreach ($culture as $cult)
         <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
-          <div class="col-sm-12 col-md-12">
+          <div class="col-sm-12 col-md-11">
               <div class="single_blog listing-shot item-grid">
                     <div class="item-overlay">
                <img src="{{URL::asset('/storage/attraction/'.$cult->attachment) }}" class="img-fluid" alt="No Image" style="height:120px;" alt="">
@@ -651,7 +651,7 @@
 
        @foreach ($historical as $hist)
               <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
-                <div class="col-sm-12 col-md-12">
+                <div class="col-sm-12 col-md-11">
                     <div class="single_blog listing-shot item-grid">
                           <div class="item-overlay">
                      <img src="{{URL::asset('/storage/attraction/'.$hist->attachment) }}" class="img-fluid" alt="No Image" style="height:120px;" alt="">
@@ -666,7 +666,7 @@
 
        @foreach ($geographical as $geo)
           <li style="border:solid 1px yellow;margin:1px -15px 3px;background-color:#">
-            <div class="col-sm-12 col-md-12">
+            <div class="col-sm-12 col-md-11">
                 <div class="single_blog listing-shot item-grid">
                       <div class="item-overlay">
                  <img src="{{URL::asset('/storage/attraction/'.$geo->attachment) }}" class="img-fluid" alt="No Image" style="height:120px;" alt="">
