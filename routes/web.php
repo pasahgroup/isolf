@@ -304,7 +304,8 @@ Route::get('/destroy-titles/{x}', [TitleController::class, 'destroy'])->name('de
 
 Route::resource('/add-ons', AddonsController::class);
 Route::resource('/buy-addons', BuyaddonsController::class);
-Route::resource('/addons', addonshowController::class);
+// Route::resource('/addons', addonshowController::class);
+Route::resource('/addons', websiteController::class);
 
 Route::resource('/Testimonies', TestimonyController::class);
 Route::get('/Testimony-Comment', [TestimonyController::class, 'clientComment'])->name('clientComment');
