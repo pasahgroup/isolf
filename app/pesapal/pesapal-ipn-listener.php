@@ -4,12 +4,12 @@ include_once('oauth.php');
 // Register a merchant account on demo.pesapal.com and use the merchant key for
 // testing. When you are ready to go live make sure you change the key to the
 // live account registered on www.pesapal.com
-$consumer_key = 'xN2px0DCDBvE9cIr+zEK2fH00/sRjTJW';
+$consumer_key = 'xaQSKspmBe5Kw0yxjWxaIflTSEg1inwa';
 
 // Use the secret from your test account on demo.pesapal.com. When you are ready
 // to go live make sure you  change the secret to the live account registered on
 // www.pesapal.com
-$consumer_secret = 'z3pein/v6RLsbAhyuC1zHffXahg=';
+$consumer_secret = '8v/Q/cyX03nl96+jjrmO1FvwZ7Y=';
 
 // Change to https://www.pesapal.com/api/QueryPaymentStatus' when you are ready
 // to go live!
