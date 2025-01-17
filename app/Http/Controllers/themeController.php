@@ -48,7 +48,7 @@ class themeController extends Controller
      */
     public function store(Request $request)
     {
-        
+
 // dd('prig');
 
    if(request('attachment')){
@@ -70,9 +70,9 @@ class themeController extends Controller
                 [ 'tour_id'=>request('tour_id')],
                 ['title'=>request('title'),
                 'status'=>request('status'),
-                    'description'=>request('description'),                   
+                    'description'=>request('description'),
                     'attachment'=>$imageToStore
-                ]);                
+                ]);
                 return redirect()->back()->with('success','Slider created succesfully');
        }
      }
@@ -84,9 +84,9 @@ class themeController extends Controller
                 [ 'tour_id'=>request('tour_id')],
                 ['title'=>request('title'),
                 'status'=>request('status'),
-                    'description'=>request('description')                   
+                    'description'=>request('description')
                     //'attachment'=>$imageToStore
-                ]);               
+                ]);
                 return redirect()->route('themes.index')->with('success','Slider created succesfully');
        }
 
@@ -106,16 +106,16 @@ class themeController extends Controller
    //                   //upload the image
    //                   $path = $attached->storeAs('public/uploads/', $imageToStore);
 
-       
+
    //          $slider = slider::Create(
-   //              [ 'title'=>request('title'),               
+   //              [ 'title'=>request('title'),
    //              'section'=>request('section'),
    //              'status'=>request('status'),
-   //                  'description'=>request('description'),                   
+   //                  'description'=>request('description'),
    //                  'attachment'=>$imageToStore
-   //              ]);                
+   //              ]);
    //              return redirect()->back()->with('success','Slider created succesfully');
-     
+
    //      }
    //    }
 
@@ -142,16 +142,14 @@ class themeController extends Controller
      */
     public function edit($id)
     {
-
         $sliders = slider::where('sliders.id',$id)
           ->first();
 
     $sliderTour = program::where('id',$sliders->tour_id)->first();
-    
- // dd($sliderTour->tour_name);
 
+ // dd($sliderTour->tour_name);
      $tours = program::get();
-        return view('admins.themes.edit',compact('sliders','tours','sliderTour'));  
+        return view('admins.themes.edit',compact('sliders','tours','sliderTour'));
     }
 
     /**
@@ -185,13 +183,13 @@ class themeController extends Controller
 
 //             $slider = slider::UpdateOrCreate(
 //                   [ 'id'=>$id],
-               
+
 //                  ['section'=>request('section'),
 //                   'title'=>request('title'),
 //                 'status'=>request('status'),
-//                     'description'=>request('description'),                   
+//                     'description'=>request('description'),
 //                     'attachment'=>$imageToStore
-//                 ]);                
+//                 ]);
 //                   return redirect()->route('themes.index')->with('success','Slider created succesfully');
 //        }
 //        else{
@@ -199,13 +197,13 @@ class themeController extends Controller
 // // dd('printed2');
 
 //   $slider = slider::UpdateOrCreate(
-//                 [ 'id'=>$id],              
+//                 [ 'id'=>$id],
 
 //                 ['section'=>request('section'),
 //                  'title'=>request('title'),
 //                 'status'=>request('status'),
 //                     'description'=>request('description')
-//                 ]);                
+//                 ]);
 //                 return redirect()->route('themes.index')->with('success','Slider created succesfully');
 
 //        }
@@ -215,7 +213,6 @@ class themeController extends Controller
 
 
   if(request('attachment')){
-
                 $attach = request('attachment');
                 foreach($attach as $attached){
 
@@ -230,35 +227,37 @@ class themeController extends Controller
                      //upload the image
                      $path = $attached->storeAs('public/uploads/', $imageToStore);
 
-       
-//dd($id);
+
+ dd($id);
 
              $slider = slider::UpdateOrCreate(
-                [ 'id'=>$id],              
+                [ 'id'=>$id],
 
                 ['section'=>request('section'),
                  'title'=>request('title'),
+                  'tour_id'=>request('tour_id'),
                 'status'=>request('status'),
                     'description'=>request('description'),
                        'attachment'=>$imageToStore
-                ]);                
+                ]);
                 return redirect()->route('themes.index')->with('success','Slider created succesfully');
-     
+
         }
       }
       else{
-       
+ //dd(request('tour_id'));
   $slider = slider::UpdateOrCreate(
-                [ 'id'=>$id],              
+                [ 'id'=>$id],
 
                 ['section'=>request('section'),
                  'title'=>request('title'),
+                   'tour_id'=>request('tour_id'),
                 'status'=>request('status'),
                     'description'=>request('description')
-                ]);                
+                ]);
                 return redirect()->route('themes.index')->with('success','Slider created succesfully');
 
-       }   
+       }
     }
 
     /**
@@ -272,7 +271,7 @@ class themeController extends Controller
         $delete = slider::where('id',$id)->first();
         if($delete->delete()){
             return redirect()->back()->with('success','Widget removed successfully');
-        }    
+        }
         else{
             return redirect()->back()->with('error','Widget not exists');
         }

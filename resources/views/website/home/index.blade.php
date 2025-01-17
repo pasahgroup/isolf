@@ -13,11 +13,80 @@
 
 
 <body>
+  @if($message = Session::get('success'))
+  <div class="alert alert-success">
+    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+    <span aria-hidden="true">&times;</span></button>
+    <strong>Well!: </strong> {{$message}}
+  </div>
+  @endif
+
+ @if($message = Session::get('info'))
+  <div class="alert alert-warning">
+    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+    <span aria-hidden="true">&times;</span></button>
+    <strong>Ops!: </strong> {{$message}}
+  </div>
+  @endif
+
+ @if($message = Session::get('error'))
+  <div class="alert alert-danger">
+    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+    <span aria-hidden="true">&times;</span></button>
+    <strong>Sorry!: </strong> {{$message}}
+  </div>
+  @endif
   <!-- Add Class carousel-fade just to fade transition -->
   <div class="carousel slide carousel-fade full-heightx stick-top" id="carousel" style="min-height: 610px;">
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-      <div class="item zooming with-overlay active" style="background-image: url('http://placehold.it/1680x1050x');"></div>
+      <div class="item zooming with-overlay active" style="background-image: url('{{URL::asset('/storage/uploads/'.$slidersf->attachment)}}');">
+
+    <div class="carousel-caption full-width center-txt">
+      <div class="container">
+
+
+
+                                            <div class="col-lg-4 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
+
+                                                <div class="rounded p-5">
+                                                    <h4 class="text-white">Book Your Travel</h4>
+
+
+                                          <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data">
+                                                                                          @csrf
+                                                  <div class="input-group">
+
+                                                      <select class="form-select wrap" aria-label="Default select example" name="program" id="program"  style="background-color:#6a6536">
+                                                           <option>--select the tour--</option>
+                                                           @foreach($programs as $prog)
+                                                    <option value="{{$prog->id}}">=> {{$prog->tour_name}}</option>
+                                                      @endforeach
+                                                                                          </select>
+
+                                                      <div class="input-group-append">
+                                                          <button class="btn btn-primary hvr-sweep-to-right" id="myBtn">
+                                                              <i class="fa fa-search"></i>
+                                                          </button>
+                                                      </div>
+                                                  </div>
+                                            </form>
+
+                                                </div>
+                                            </div>
+
+
+        <span class="main-header">{{$slidersf->title}}</span>
+        <p class="sub-header demo-1">{{$slidersf->tour_id}}:{{$slidersf->description}}</p>
+
+        <div class="right">
+            <a href="{{route('safaris.show',$slidersf->tour_id) }}" class="btn btn-primary hvr-sweep-to-right">View More</a>
+        </div>
+
+          </div>
+    </div>
+    </div>
+
 
         @foreach($sliders as $slides)
         <div class="item zooming with-overlay" style="background-image: url('{{URL::asset('/storage/uploads/'.$slides->attachment)}}');">
@@ -41,162 +110,32 @@
                                                         <select class="form-select wrap" aria-label="Default select example" name="program" id="program"  style="background-color:#6a6536">
                                                              <option>--select the tour--</option>
                                                              @foreach($programs as $prog)
-                                                      <option value="{{$prog->id}}">{{$prog->id}}:{{$prog->tour_name}}</option>
+                                                      <option value="{{$prog->id}}">=> {{$prog->tour_name}}</option>
                                                         @endforeach
                                                                                             </select>
 
                                                         <div class="input-group-append">
-                                                            <button class="btn btn-primary hvr-sweep-to-right">
+                                                            <button class="btn btn-primary hvr-sweep-to-right" id="myBtn">
                                                                 <i class="fa fa-search"></i>
                                                             </button>
                                                         </div>
                                                     </div>
-                                                      </form>
+                                              </form>
 
                                                   </div>
                                               </div>
 
 
-          <span class="main-header">Enjoy Adventure <br> Experience</span>
-          <hr>
-          <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.  {{$slides->id}}</p>
+          <span class="main-header">{{$slides->tour_id}}: {{$slides->title}}</span>
+          <p class="sub-header">{{$slides->description}}</p>
 
-    <div class="top-header-area" style="background:yellow;padding:1px;margin-top: 135px;">
-         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#345742;margin-top:0px;margin-bottom:0px;">
-              <div class="col-lg-9 col-md-4">
-               <i href="" class="text-decoration-none">
-                    <marquee>Hello! Welcome Book with us</marquee>
-                </i>
-
-            </div>
-
-
-            <div class="col-lg-3 col-md-8 text-left">
-                     <form  method="POST"  action="{{ route('all-search') }}" enctype="multipart/form-data">
-                  @csrf
-                    <div class="input-group">
-                       <select class="form-control selectpicker" name="tour_type" id="tour_type">
-            <option selected>{{$title}}</option>
-            <option>Wildlife Safaris</option>
-             <option>Hiking & Trekking</option>
-             <option>Beach Holidays</option>
-             <option>Day Tours</option>
-             <option>Historical Sites</option>
-             <option>Special Offers</option>
-              <option value="group">Group Tours</option>
-               <option value="Group-scheduled">Scheduled Group Tours</option>
-              <option value="special-occasions">Special Occasions</option>
-                <option value="cultural">Cultural Tours</option>
-
-          </select>
-
-                      <div class="input-group-append">
-                            <button class="btn btn-search btn-primary hvr-sweep-to-right">
-                                <i class="fa fa-search"> Search</i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-
-            </div>
-        </div>
-    </div>
-
+          <div class="right">
+              <a href="{{route('safaris.show',$slides->tour_id) }}" class="btn btn-primary hvr-sweep-to-right">View More</a>
+          </div>
         </div>
       </div>
       </div>
  @endforeach
-
-
- @foreach ($quickLinkSliders as $quickSliderf)
-        <div class="item zooming with-overlay" style="background-image: url('{{URL::asset('/storage/uploads/'.$quickSliderf->attachment)}}');">
-
-      <div class="carousel-caption full-width center-txt">
-        <div class="container">
-
-
-
-                                              <div class="col-lg-4 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
-
-                                                  <div class="rounded p-5">
-                                                      <h4 class="text-white">Book Your Travel</h4>
-
-                                  <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data">
-                                                                               @csrf
-                                       <div class="input-group">
-                                           <select class="form-select wrap" aria-label="Default select example" name="program" id="program" style="background-color:#6a6536">
-                                                <option>--select the tour--</option>
-                                                @foreach($programs as $prog)
-                                         <option value="{{$prog->id}}">{{$prog->id}}:{{$prog->tour_name}}</option>
-                                           @endforeach
-                                                                               </select>
-
-                                           <div class="input-group-append">
-                                               <button class="btn btn-primary hvr-sweep-to-right">
-                                                   <i class="fa fa-search"></i>
-                                               </button>
-                                           </div>
-                                       </div>
-                                    </form>
-
-                                                  </div>
-
-
-                                              </div>
-
-
-          <span class="main-header">Enjoy Adventure <br> Experience</span>
-          <hr>
-          <p class="sub-header">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis modi tenetur obcaecati veniam harum ipsa voluptas, incidunt cum.  {{$quickSliderf->id}}</p>
-
-    <div class="top-header-area" style="background:yellow;padding:1px;margin-top: 135px;">
-         <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#345742;margin-top:0px;margin-bottom:0px;">
-              <div class="col-lg-9 col-md-4">
-               <i href="" class="text-decoration-none">
-                    <marquee>Hello! Welcome Book with us</marquee>
-                </i>
-
-            </div>
-
-
-            <div class="col-lg-3 col-md-8 text-left">
-                     <form  method="POST"  action="{{ route('all-search') }}" enctype="multipart/form-data">
-                  @csrf
-                    <div class="input-group">
-                       <select class="form-control selectpicker" name="tour_type" id="tour_type">
-            <option selected>{{$title}}</option>
-            <option>Wildlife Safaris</option>
-             <option>Hiking & Trekking</option>
-             <option>Beach Holidays</option>
-             <option>Day Tours</option>
-             <option>Historical Sites</option>
-             <option>Special Offers</option>
-              <option value="group">Group Tours</option>
-               <option value="Group-scheduled">Scheduled Group Tours</option>
-              <option value="special-occasions">Special Occasions</option>
-                <option value="cultural">Cultural Tours</option>
-
-          </select>
-
-                      <div class="input-group-append">
-                            <button class="btn btn-search btn-primary hvr-sweep-to-right">
-                                <i class="fa fa-search"> Search</i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-
-            </div>
-        </div>
-    </div>
-
-        </div>
-      </div>
-      </div>
- @endforeach
-
     </div>
 
     <!-- Controls -->
@@ -215,10 +154,52 @@
     <!-- Available Variation Class for carousel-indicators => dashed, circle" -->
     <ol class="carousel-indicators dashed">
       <li data-target="#carousel" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel" data-slide-to="1"></li>
+@for($i=1;$i<$sliderCount;$i++)
+      <li data-target="#carousel" data-slide-to="{{$i}}"></li>
+@endfor
+
     </ol>
   </div>
 
+
+
+       <div class="align-items-center py-2 px-xl-5 d-lg-flex" style="background-color:#345742;margin-top:0px;margin-bottom:0px;">
+            <div class="col-lg-9 col-md-4">
+             <i href="" class="text-decoration-none">
+                  <marquee>Hello! Welcome Book with us</marquee>
+              </i>
+          </div>
+
+          <div class="col-lg-3 col-md-8 text-left">
+                   <form  method="POST"  action="{{ route('all-search') }}" enctype="multipart/form-data">
+                @csrf
+                  <div class="input-group">
+                     <select class="form-control selectpicker" name="tour_type" id="tour_type">
+          <option selected>{{$title}}</option>
+          <option>Wildlife Safaris</option>
+           <option>Hiking & Trekking</option>
+           <option>Beach Holidays</option>
+           <option>Day Tours</option>
+           <option>Historical Sites</option>
+           <option>Special Offers</option>
+            <option value="group">Group Tours</option>
+             <option value="Group-scheduled">Scheduled Group Tours</option>
+            <option value="special-occasions">Special Occasions</option>
+              <option value="cultural">Cultural Tours</option>
+
+        </select>
+
+                    <div class="input-group-append">
+                          <button class="btn btn-search btn-primary hvr-sweep-to-right">
+                              <i class="fa fa-search"> Search</i>
+                          </button>
+                      </div>
+                  </div>
+              </form>
+
+
+          </div>
+      </div>
 
 
   <section class="showcase" style="background: url('assets/img/worldmap.png') no-repeat center; background-size: cover;padding-top: 30px;padding-bottom: 20px;">
@@ -648,4 +629,24 @@
           @endforeach
     </ul>
   </div>
+
+  <script>
+       $(document).ready(function() {
+           $('#myBtn').click(function() {
+               // Send an Ajax request to fetch the URL
+               $.ajax({
+                   url: '/get-url', // Replace with your Laravel route
+                   method: 'GET',
+                   dataType: 'json',
+                   success: function(data) {
+                       // Open the URL in a new tab
+                       window.open(data.url, '_blank');
+                   },
+                   error: function() {
+                       alert('Failed to fetch the URL.');
+                   }
+               });
+           });
+       });
+   </script>
 @endsection

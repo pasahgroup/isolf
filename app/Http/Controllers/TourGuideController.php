@@ -39,12 +39,19 @@ class TourGuideController extends Controller
        return view('website.agents.tourGuide',compact('tailorMades','socialmedias'));
     }
 
-    public function NewBooking()
+    public function NewBooking(Request $request)
    {
-     //dd('booking');
+     //d(request('program'));
+     $program_id=request('program');
+
       $socialmedias = socialmedia::get();
       $tailorMades = tailorMade::get();
-      return view('website.agents.tourGuide',compact('tailorMades','socialmedias'));
+
+
+  //return redirect()->route('tourcostsummary.index')->with('success','Cost Summary successfully updated!');
+    //  return redirect()->route('clientTailorMade', [$pin]);
+        return redirect()->route('safaris.show',$program_id)->with('success','Tour Summary-You can continue Booking');
+      //return view('website.agents.tourGuide',compact('tailorMades','socialmedias'));
    }
 
     /**

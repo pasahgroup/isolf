@@ -1448,7 +1448,7 @@ hr.dark {
   background-position: center;
 }
 .carousel .carousel-control {
-  width: 80px;
+  width: 0px;
   height: 80px;
   text-align: left;
   z-index: 99;
@@ -1462,8 +1462,8 @@ hr.dark {
   display: inline-block;
   font-size: 20px;
   height: 80px;
-  width: 80px;
-  line-height: 80px;
+  width: 0px;
+  line-height: 0px;
   text-align: center;
   position: static;
   left: 0;
@@ -1494,10 +1494,10 @@ hr.dark {
   bottom: 15px;
 }
 .carousel .carousel-control.left.bottom-right {
-  top: auto;
+  /* top: auto; */
   margin: 0;
   bottom: 15px;
-  left: auto;
+  /* left: auto; */
   right: 95px;
 }
 .carousel .carousel-control.left.bottom-left {
@@ -1521,7 +1521,7 @@ hr.dark {
   bottom: 15px;
 }
 .carousel .carousel-control.right.bottom-right {
-  top: auto;
+  /* top: auto; */
   margin: 0;
   bottom: 15px;
 }

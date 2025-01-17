@@ -565,6 +565,16 @@ else{
 // {
 // $programs->type="";
 // }
+
+//dd($programs);
+
+
+  if($programs ==Null){
+    //dd('Is null');
+  //return redirect()->route('/home')->with('info','The Program has Itineraries');
+ return redirect()->back()->with('info','The Program has no Itinery Data');
+};
+
  $same_programs = program::
            join('itineraries','itineraries.program_id','programs.id')
           ->join('attachments','programs.id','attachments.destination_id')
@@ -575,6 +585,8 @@ else{
             ->select('programs.*','attachments.attachment','itineraries.*')
           ->paginate(3);
  //dd($same_programs);
+
+
 
        $datas = itinerary::join('itinerary_days','itineraries.id','itinerary_days.itinerary_id')
         ->join('accommodations','accommodations.id','itinerary_days.accommodation_id')

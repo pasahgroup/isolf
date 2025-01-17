@@ -1,6 +1,5 @@
-
-  @extends('admins.layouts.Apps.app')
-  @section('contents')
+  
+  <?php $__env->startSection('contents'); ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -34,10 +33,10 @@
                 <br />
 
 
-                  <form method="post" id="post_form" role="form" class="registration-form" action="{{ route('themes.update',$sliders->id) }}" enctype="multipart/form-data">
-               @csrf
+                  <form method="post" id="post_form" role="form" class="registration-form" action="<?php echo e(route('themes.update',$sliders->id)); ?>" enctype="multipart/form-data">
+               <?php echo csrf_field(); ?>
                 <input type="hidden" name="_method" value="PUT">
-            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+            <input type="hidden" name="user_id" value="<?php echo e(Auth::id()); ?>">
                 <div class="card-body">
                     <div class="row">
 
@@ -46,7 +45,7 @@
                                  <div class="form-group row">
                                 <div class="col-sm-12 col-md-12">
                                   <div class="form-group row">
-                                    <input type="text" name="title" class="form-control" value="{{$sliders->title}}">
+                                    <input type="text" name="title" class="form-control" value="<?php echo e($sliders->title); ?>">
                                         </div>
                                 </div>
                                   </div>
@@ -55,7 +54,7 @@
                       <label for="inputEmail3">Description </label>
                         <div class="form-group row">
                             <div class="col-sm-12 col-md-12">
-                             <textarea class="form-control" name="description" cols="30" rows="2">{{ $sliders->description}}</textarea>
+                             <textarea class="form-control" name="description" cols="30" rows="2"><?php echo e($sliders->description); ?></textarea>
                           </div>
                             </div>
                         </div>
@@ -66,10 +65,10 @@
                                 <div class="col-sm-12 col-md-12">
 
                               <select name="tour_id" id="" class="form-control" required="">
-                              <option value="{{$sliderTour->id}}">{{$sliderTour->tour_name}}</option>
-                            @foreach ($tours as $tour)
-                                <option value="{{ $tour->id }}">{{ $tour->tour_name }}</option>
-                            @endforeach
+                              <option value="<?php echo e($sliderTour->id); ?>"><?php echo e($sliderTour->tour_name); ?></option>
+                            <?php $__currentLoopData = $tours; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tour): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($tour->id); ?>"><?php echo e($tour->tour_name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
 
                                 </div>
@@ -83,7 +82,7 @@
                                 <div class="col-sm-12 col-md-12">
 
                             <select name="status" id="status" class="form-control">
-                              <option value="{{$sliders->status}}">{{$sliders->status}}</option>
+                              <option value="<?php echo e($sliders->status); ?>"><?php echo e($sliders->status); ?></option>
 
                                 <option value="0">0</option>
                                 <option value="1">1</option>
@@ -97,7 +96,18 @@
                         <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
                            <div class="row">
  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        <x-label for="password_confirmation" :value="__('Photo')" />
+                                        <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.label','data' => ['for' => 'password_confirmation','value' => __('Photo')]]); ?>
+<?php $component->withName('label'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['for' => 'password_confirmation','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Photo'))]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
                                     <div class="form-group">
                                     <input type="file" name="attachment[]" onChange="displayImage(this)" id="attachment" accept="image/*" class="" style="display:block;">
 
@@ -108,7 +118,7 @@
             <span class="img-div float-right">
               <div class="text-center img-placeholder"  onClick="triggerClick()">
               </div>
-              <img src="{{ URL::asset('/storage/uploads/'.$sliders->attachment) }}" onClick="triggerClick()" id="profileDisplay">
+              <img src="<?php echo e(URL::asset('/storage/uploads/'.$sliders->attachment)); ?>" onClick="triggerClick()" id="profileDisplay">
             </span>
 </div>
 
@@ -131,4 +141,6 @@
     </section>
   </div>
   <!-- /.content-wrapper -->
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admins.layouts.Apps.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\isolf\resources\views/admins/themes/edit.blade.php ENDPATH**/ ?>
