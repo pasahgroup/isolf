@@ -53,7 +53,7 @@
                                                     <h4 class="text-white">Book Your Travel</h4>
 
 
-                                          <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data">
+                                          <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data"  target="_blank">
                                                                                           @csrf
                                                   <div class="input-group">
 
@@ -103,7 +103,7 @@
                                                       <h4 class="text-white">Book Your Travel</h4>
 
 
-                                            <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data">
+                                            <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data"  target="_blank">
                                                                                             @csrf
                                                     <div class="input-group">
 
@@ -634,8 +634,9 @@
        $(document).ready(function() {
            $('#myBtn').click(function() {
                // Send an Ajax request to fetch the URL
+               //alert('passed');
                $.ajax({
-                   url: '/get-url', // Replace with your Laravel route
+                   url: '/safaris/1', // Replace with your Laravel route
                    method: 'GET',
                    dataType: 'json',
                    success: function(data) {
