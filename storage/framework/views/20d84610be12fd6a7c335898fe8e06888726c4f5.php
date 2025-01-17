@@ -129,11 +129,11 @@
                                               </div>
 
 
-          <span class="main-header"><?php echo e($slides->tour_id); ?>: <?php echo e($slides->title); ?></span>
+          <span class="main-header"><?php echo e($slides->tour_id); ?>: <?php echo e($slides->title); ?> cc</span>
           <p class="sub-header"><?php echo e($slides->description); ?></p>
 
           <div class="right">
-              <a href="<?php echo e(route('safaris.show',$slides->tour_id)); ?>" class="btn btn-primary hvr-sweep-to-right">View More</a>
+              <a href="<?php echo e(route('safaris.show',$slides->tour_id)); ?>" class="btn btn-primary hvr-sweep-to-right" target="_blank">View More</a>
           </div>
         </div>
       </div>

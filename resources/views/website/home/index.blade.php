@@ -80,7 +80,7 @@
         <p class="sub-header demo-1">{{$slidersf->tour_id}}:{{$slidersf->description}}</p>
 
         <div class="right">
-            <a href="{{route('safaris.show',$slidersf->tour_id) }}" class="btn btn-primary hvr-sweep-to-right">View More</a>
+            <a href="{{route('safaris.show',$slidersf->tour_id) }}" class="btn btn-primary hvr-sweep-to-right" target="_blank">View More</a>
         </div>
 
           </div>
@@ -130,7 +130,7 @@
           <p class="sub-header">{{$slides->description}}</p>
 
           <div class="right">
-              <a href="{{route('safaris.show',$slides->tour_id) }}" class="btn btn-primary hvr-sweep-to-right">View More</a>
+              <a href="{{route('safaris.show',$slides->tour_id) }}" class="btn btn-primary hvr-sweep-to-right" target="_blank">View More</a>
           </div>
         </div>
       </div>
