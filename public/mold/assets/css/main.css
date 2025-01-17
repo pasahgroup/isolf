@@ -1645,7 +1645,7 @@ hr.dark {
 }
 .main-image-txt .sub-header,
 .carousel-caption .sub-header {
-  margin: 10px auto 30px;
+  margin: 1px auto 3px;
   font-size: 1.2em;
   line-height: 1.5;
   text-align: center;
