@@ -77,7 +77,7 @@
 
 
         <span class="main-header">{{$slidersf->title}}</span>
-        <p class="sub-header demo-1">{{$slidersf->tour_id}}:{{$slidersf->description}}</p>
+        <p class="sub-header demo-1">{{$slidersf->description}}</p>
 
         <div class="right">
             <a href="{{route('safaris.show',$slidersf->tour_id) }}" class="btn btn-primary hvr-sweep-to-right" target="_blank">View More</a>
@@ -126,7 +126,7 @@
                                               </div>
 
 
-          <span class="main-header">{{$slides->tour_id}}: {{$slides->title}}</span>
+          <span class="main-header">{{$slides->title}}</span>
           <p class="sub-header">{{$slides->description}}</p>
 
           <div class="right">

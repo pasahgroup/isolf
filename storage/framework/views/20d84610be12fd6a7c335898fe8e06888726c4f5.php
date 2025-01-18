@@ -80,7 +80,7 @@
 
 
         <span class="main-header"><?php echo e($slidersf->title); ?></span>
-        <p class="sub-header demo-1"><?php echo e($slidersf->tour_id); ?>:<?php echo e($slidersf->description); ?></p>
+        <p class="sub-header demo-1"><?php echo e($slidersf->description); ?></p>
 
         <div class="right">
             <a href="<?php echo e(route('safaris.show',$slidersf->tour_id)); ?>" class="btn btn-primary hvr-sweep-to-right" target="_blank">View More</a>
@@ -129,7 +129,7 @@
                                               </div>
 
 
-          <span class="main-header"><?php echo e($slides->tour_id); ?>: <?php echo e($slides->title); ?></span>
+          <span class="main-header"><?php echo e($slides->title); ?></span>
           <p class="sub-header"><?php echo e($slides->description); ?></p>
 
           <div class="right">
