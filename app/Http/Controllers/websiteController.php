@@ -232,7 +232,7 @@ class websiteController extends Controller
 
      //Seach Engine
        // $seo = title::where('title','What We Offer')->first();
-       $title = "Palatial Tour Tanzania";
+       $title = "ISOL Tours Tanzania";
        $description = "";
        $keywords = "";
 

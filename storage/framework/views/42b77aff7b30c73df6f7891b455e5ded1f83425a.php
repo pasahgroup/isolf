@@ -284,9 +284,9 @@
 
                            <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Address:<?php echo e($contacts->address??'Arusha'); ?></a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Contact No: (+255)753 216 263</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Email: info@isol.com</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Website: www.isol.com</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Contact No: <?php echo e($contacts->phone??' No Number'); ?></a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Email: <?php echo e($contacts->email??'No Email'); ?></a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Website: <?php echo e($contacts->website??'No Website'); ?></a>
                         </div>
                     </div>
             </div>
