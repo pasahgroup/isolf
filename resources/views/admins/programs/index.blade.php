@@ -125,7 +125,6 @@ table.fold-table > tbody > tr.fold.open {
     </tr>
   </thead>
     <tbody class="searchable">
-
       @foreach ($datas as $data)
     <tr class="view">
       <td>{{ $data->tour_name }}</td>

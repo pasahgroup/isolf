@@ -125,7 +125,6 @@ table.fold-table > tbody > tr.fold.open {
     </tr>
   </thead>
     <tbody class="searchable">
-
       <?php $__currentLoopData = $datas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <tr class="view">
       <td><?php echo e($data->tour_name); ?></td>
