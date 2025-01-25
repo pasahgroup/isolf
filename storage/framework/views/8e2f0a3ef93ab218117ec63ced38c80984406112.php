@@ -114,9 +114,29 @@ table.fold-table > tbody > tr.fold.open {
     <section class=" container-fluid content">
 
 
-    <div class="input-group"> <span class="input-group-addon">Filter</span>
-          <input id="filter" type="text" class="form-control" placeholder="--search here...">
-      </div>
+            <div class="row">
+                <div class="card-body">
+
+              <form  method="post" id="post_form" action="<?php echo e(route('programs.store')); ?>" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
+                <?php echo csrf_field(); ?>
+            <input type="hidden" name="user_id" value="<?php echo e(Auth::id()); ?>">
+
+                  <div class="col-lg-8 col-md-4 col-sm-6 col-xs-12">
+              <div class="input-group">
+                    <input id="filter" type="text" class="form-control" placeholder="--search here...">
+                </div>
+
+              </div>
+
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <button type="submit" class="btn btn-primary float-right">Search</button>
+              </div>
+                  </form>
+
+                <a href="programs" class="btn btn-primary float-right">Refresh</a>
+            </div>
+        </div>
+
 
 <table class="fold-table table-bordered table-striped" id="myTable">
   <thead>

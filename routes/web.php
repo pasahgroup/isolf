@@ -72,7 +72,6 @@ Route::get('/ff', function () {
 Route::get('email-send/{id}',[TourEquiryFormController::class,'emailSendF'])->name('email-send');
 Route::get('email',[TourEquiryFormController::class,'email'])->name('email');
 
-
 Route::get('/stl', function () {
   \Artisan::call('config:clear');
   \Artisan::call('cache:clear');

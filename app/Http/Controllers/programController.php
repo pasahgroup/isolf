@@ -28,8 +28,19 @@ class programController extends Controller
         ->where('attachments.type','Programs')
          ->orWhere('attachments.type','Addon')
           ->paginate(15);
-        return view('admins.programs.index_org',compact('datas'));
+        return view('admins.programs.index',compact('datas'));
     }
+
+    public function search($search)
+    {
+        $datas = program::join('attachments','attachments.destination_id','programs.id')
+        ->select('programs.*','attachments.attachment')
+        ->where('attachments.type','Programs')
+         ->orWhere('attachments.type','Addon')
+          ->paginate(15);
+        return view('admins.programs.index',compact('datas'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

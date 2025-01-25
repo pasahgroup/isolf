@@ -98,11 +98,8 @@
 
                                               <div class="col-lg-4 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
 
-
                                                   <div class="rounded p-5">
                                                       <h4 class="text-white">Book Your Travel</h4>
-
-
                                             <form  method="POST"  action="{{ route('new-booking') }}" enctype="multipart/form-data"  target="_blank">
                                                                                             @csrf
                                                     <div class="input-group">
