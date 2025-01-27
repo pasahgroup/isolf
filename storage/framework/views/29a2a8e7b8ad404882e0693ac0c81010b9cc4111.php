@@ -2,7 +2,7 @@
   <?php $__env->startSection('contents'); ?>
 <link href="../../img_library/main.css" rel="stylesheet">
     <link href="../../img_library/mform.css" rel="stylesheet">
- 
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -38,14 +38,14 @@
                 <?php echo csrf_field(); ?>
             <input type="hidden" name="user_id" value="<?php echo e(Auth::id()); ?>">
                 <div class="card-body">
-                    
+
                     <div class="row">
                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label class="control-label" for="first-name">Tour Name
                        </label>
                       <input type="text" class="form-control" name="tour_name"  placeholder="Tour Name">
                       </div>
-                 
+
                     <div class="col-lg-1 col-md-4 col-sm-6 col-xs-12">
                       <label class="control-label" for="first-name">Days
                        </label>
@@ -87,7 +87,7 @@
                                       <option>Group</option>
                                     </select>
                       </div>
-                                       
+
                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                       <label class="control-label" for="first-name">Service Type
                        </label>
@@ -136,8 +136,8 @@
           <label class="control-label" for="first-name">Tour Highlight</label>
           <textarea name="tour_highlight" class="form-control" class="form-control" maxlength="990"></textarea>
                   </div>
-                 
-    
+
+
  <div class="row">
             <div class="col-md-4 col-sm-6 col-xs-12">
           <label class="control-label" for="first-name">Pysical Rating</label>
@@ -165,7 +165,7 @@
           <label class="control-label" for="popular_experience">Popular Experience</label>
           <select name="popular_experience" class="form-control">
             <option>No</option>
-              <option>Yes</option>              
+              <option>Yes</option>
           </select>
           </div>
         </div>
@@ -189,27 +189,21 @@
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
                                     <div class="form-group">
-                                    <input type="file" name="attachment[]" onChange="displayImage(this)" id="attachment" accept="image/*" class="" style="display:block;"> 
-                                   
+                                    <input type="file" name="attachment[]" onChange="displayImage(this)" id="attachment" accept="image/*" class="" style="display:block;">
+
                                 </div>
                                 </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
             <span class="img-div">
-              <div class="text-center img-placeholder"  onClick="triggerClick()">               
+              <div class="text-center img-placeholder"  onClick="triggerClick()">
               </div>
               <img src="images/no.png" onClick="triggerClick()" id="profileDisplay">
             </span>
             </div>
            </div>
 
-                </div>
-
-                <div class="form-group row">
-          <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
-              <div>
-                <button type="submit" class="btn btn-primary float-right">Save</button>
-              </div>
-                  </div>
+             <a href="/programs" type="submit" class="btn btn-secondary float-left"><i class="fas fa-angle-double-left"></i></a>
+  <button type="submit" class="btn btn-primary float-right">Save</button>
                 </div>
 
             </form>

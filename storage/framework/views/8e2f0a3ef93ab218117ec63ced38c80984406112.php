@@ -11,11 +11,14 @@
 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+
+
+
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-
-
+//Costom bootstrap
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></style>
 <style>
 @charset  "UTF-8";
 @import  url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
@@ -111,26 +114,36 @@ table.fold-table > tbody > tr.fold.open {
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
        <!-- Main content -->
+       <div class="card-header">
+                  <div class="card-tools">
+           <a href="<?php echo e(route('programs.create')); ?>" class="btn btn-primary" >
+             <i class="fas fa-plus"></i> Program
+           </a>
+         </div>
+       </div>
     <section class=" container-fluid content">
-
-
             <div class="row">
                 <div class="card-body">
 
-              <form  method="post" id="post_form" action="<?php echo e(route('programs.store')); ?>" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
+              <form  method="post" id="post_form" action="<?php echo e(route('search',1)); ?>" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
                 <?php echo csrf_field(); ?>
             <input type="hidden" name="user_id" value="<?php echo e(Auth::id()); ?>">
 
                   <div class="col-lg-8 col-md-4 col-sm-6 col-xs-12">
               <div class="input-group">
-                    <input id="filter" type="text" class="form-control" placeholder="--search here...">
+                    <input type="text" id="filter" class="form-control" name="search" placeholder="--search here...">
+                    <div class="input-group-append">
+                              <button type="submit" class="btn btn-primary float-right">Search</button>
+                    </div>
                 </div>
 
+              <!-- </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"> -->
+                  <!-- <button type="submit" class="btn btn-primary float-right">Search</button> -->
               </div>
 
-              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                  <button type="submit" class="btn btn-primary float-right">Search</button>
-              </div>
+
+
                   </form>
 
                 <a href="programs" class="btn btn-primary float-right">Refresh</a>

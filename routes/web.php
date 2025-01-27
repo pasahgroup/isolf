@@ -129,6 +129,9 @@ Route::get('/accommodation-Destroy/{x}', [accommodationController::class, 'destr
 Route::resource('/dashboard', dashboardController::class);
 Route::resource('/programs', programController::class);
 
+Route::post('/search/{x}', [programController::class, 'search'])->name('search');
+Route::get('/search/{x}', [programController::class, 'search'])->name('search');
+
 Route::resource('/itineraries', itineraryController::class);
 });
 

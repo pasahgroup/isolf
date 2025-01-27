@@ -57,22 +57,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="carousel-inner" role="listbox">
       <div class="item zooming with-overlay active" style="background-image: url('http://placehold.it/1680x1050');"></div>
       <div class="item zooming with-overlay" style="background-image: url('http://placehold.it/1680x1050');"></div>

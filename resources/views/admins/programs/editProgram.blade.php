@@ -42,8 +42,8 @@
              <input type="hidden" name="edit" value="Edit">
               <input type="hidden" name="id" value="{{$tours->id}}">
                 <div class="card-body">
-                    <div class="row">                  
-                    
+                    <div class="row">
+
                      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label class="control-label" for="first-name">Tour Name
                        </label>
@@ -61,7 +61,7 @@
                        </label>
                         <input type="number" class="form-control" name="cost" value="{{$tours->cost}}">
                       </div>
-                          
+
                     <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
                     <label class="control-label" for="">Price
                     </label>
@@ -91,7 +91,7 @@
                                       <option>Group</option>
                                     </select>
                       </div>
-                                       
+
                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                       <label class="control-label" for="first-name">Service Type
                        </label>
@@ -107,7 +107,7 @@
                                         </select>
                       </div>
 
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
                       <label class="control-label" for="first-name">Style
                        </label>
                            <select name="style" id="" class="form-control">
@@ -118,7 +118,7 @@
                                           <option>Premium</option>
                                         </select>
                       </div>
-                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
                       <label class="control-label" for="first-name">Main
                        </label>
                            <select name="main" id="" class="form-control">
@@ -127,8 +127,8 @@
                                           <option>Addon</option>
                                         </select>
                       </div>
-                              
-                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+
+                         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
                       <label class="control-label" for="first-name">Tour Code
                        </label>
                     <input type="text" name="tour_code" class="form-control" value="{{$tours->tour_code}}" readonly>
@@ -140,7 +140,7 @@
                        </label>
                        <textarea name="overview"   class="form-control" maxlength="990">{{$tours->overview}}</textarea>
                   </div>
-                 
+
                   <div class="col-md-12 col-sm-6 col-xs-12">
           <label class="control-label" for="first-name">Tour Highlight</label>
           <textarea name="tour_highlight" class="form-control" class="form-control" maxlength="990">{{$tours->tour_highlight}}</textarea>
@@ -174,11 +174,11 @@
           <select name="popular_experience" class="form-control">
               <option value="{{$tours->popular_experience}}">{{$tours->popular_experience}}</option>
                <option>No</option>
-              <option>Yes</option>              
+              <option>Yes</option>
           </select>
           </div>
         </div>
-      
+
 
                   <div class="col-md-12 col-sm-6 col-xs-12">
                     <label class="control-label" for="first-name">SEO</label>
@@ -189,24 +189,24 @@
                  <div class="col-lg-6 col-md-12 col-sm-12">
                                     <x-label for="password_confirmation" :value="__('Image')" />
                                     <div class="form-group">
-                                    <input type="file" name="attachment[]" onChange="displayImage(this)" id="attachment" accept="image/*" class="" style="display:block;"> 
-                                   
+                                    <input type="file" name="attachment[]" onChange="displayImage(this)" id="attachment" accept="image/*" class="" style="display:block;">
+
                                 </div>
                                 </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
             <span class="img-div">
-              <div class="text-center img-placeholder"  onClick="triggerClick()">               
+              <div class="text-center img-placeholder"  onClick="triggerClick()">
               </div>
               <img src="{{ URL::asset('/storage/uploads/'.$tours->attachment) }}" onClick="triggerClick()" id="profileDisplay">
             </span>
             </div>
            </div>
-
                 </div>
 
                 <div class="form-group row">
-          <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
+          <div class="col-md-12 col-sm-12 col-xs-12">
               <div>
+                 <a href="/programs" type="submit" class="btn btn-secondary float-left"><i class="fas fa-angle-double-left"></i></a>
                 <button type="submit" class="btn btn-primary float-right">Update</button>
               </div>
                   </div>

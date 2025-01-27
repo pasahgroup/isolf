@@ -28,15 +28,19 @@ class programController extends Controller
         ->where('attachments.type','Programs')
          ->orWhere('attachments.type','Addon')
           ->paginate(15);
+          //  ->get();
         return view('admins.programs.index',compact('datas'));
     }
 
-    public function search($search)
+    public function search(Request $request,$id)
     {
+      $search=request('search');
+
         $datas = program::join('attachments','attachments.destination_id','programs.id')
         ->select('programs.*','attachments.attachment')
         ->where('attachments.type','Programs')
-         ->orWhere('attachments.type','Addon')
+         //->orWhere('attachments.type','Addon')
+         ->where('tour_name', 'LIKE', "%{$search}%")
           ->paginate(15);
         return view('admins.programs.index',compact('datas'));
     }
